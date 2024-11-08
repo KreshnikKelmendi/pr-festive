@@ -95,7 +95,7 @@ export default function ContactForm() {
             onChange={(e) => setName(e.target.value)}
             placeholder="Emri"
             required
-            className="mt-1 block w-full lg:w-[244px] text-white px-4 py-3 border bg-[#031603] border-gray-300 rounded-[5px] focus:outline-none focus:ring focus:border-blue-500"
+            className=" block w-full lg:w-[244px] text-white px-4 py-3 border bg-[#031603] border-gray-300 rounded-[5px] focus:outline-none focus:ring focus:border-blue-500"
           />
 
           <input
@@ -104,7 +104,7 @@ export default function ContactForm() {
             onChange={(e) => setSurname(e.target.value)}
             placeholder="Mbiemri"
             required
-            className="mt-1 block w-full lg:w-[244px] px-4 py-3 bg-[#031603] text-white rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-500"
+            className="mt-1 block w-full lg:w-[244px] px-4 py-3 bg-[#031603] text-white rounded-[5px] focus:outline-none focus:ring focus:border-blue-500"
           />
         </div>
 
@@ -124,7 +124,7 @@ export default function ContactForm() {
             onChange={(e) => setCompanyEmail(e.target.value)}
             placeholder="Email i Kompanisë"
             required
-            className="mt-1 block w-full lg:w-[244px] px-4 py-3 bg-[#031603] rounded-md text-white shadow-sm focus:outline-none focus:ring focus:border-blue-500"
+            className="block w-full lg:w-[244px] px-4 py-3 bg-[#031603] rounded-md text-white shadow-sm focus:outline-none focus:ring focus:border-blue-500"
           />
 
           <input

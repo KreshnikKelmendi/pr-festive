@@ -1,12 +1,12 @@
 import React from 'react';
 import Image from 'next/image';
-import logo from "../../../../public/verendimen-logo.png"
+import logo from "../../../../public/GREEN.png"
 import { AppCriteria } from './AppCriteria';
 
 export const Formpage = () => {
   return (
     <>
-    <div className="bg-[#031603] w-full rounded-[5px] mt-[20px] items-center justify-center">
+    <div className="bg-[#031603] w-full rounded-[5px] items-center justify-center">
         <div className='justify-center flex py-[67px]'>
          <Image
                 src={logo}

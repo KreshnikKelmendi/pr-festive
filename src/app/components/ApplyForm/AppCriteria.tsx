@@ -1,22 +1,26 @@
 import React from 'react'
 import Image from 'next/image'
-import sampleImage from '../../../../public/image1.png'
+
 import secondImage from "../../../../public/pdfFile.png"
 
 export const AppCriteria = () => {
   return (
     <div className='lg:px-32'>
-      <div className="flex flex-col items-center bg-white p-6 rounded-lg shadow-md">
-        <Image 
-          src={sampleImage} 
-          alt="Sample" 
-          className="rounded-lg mb-4" 
-        />
+      <div className="flex flex-col items-center bg-white rounded-lg shadow-md">
+        <video 
+          src="/FINAL WIDE (1).mp4"
+          playsInline
+          autoPlay
+          loop
+          className="rounded-lg mb-4 w-full h-auto"
+        >
+          Your browser does not support the video tag.
+        </video>
+        
         <div className='py-8 text-center'>
           <p className="text-[32px] font-bold text-[#EF5B13]">Kriteret e Aplikimit</p>
           <p className="text-[#031603] w-[381px] h-[26px]">
             Këtu mund të gjeni projekt dokumentin dhe kriteret kualifikuese për aplikim në shtëpizat Verë n&rsquo;Dimën&quot;
-
           </p>
           
           <div className='flex justify-center items-center'>
