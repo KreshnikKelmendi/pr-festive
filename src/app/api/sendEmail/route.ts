@@ -33,9 +33,9 @@ export async function POST(req: Request) {
       text: `You have a new message from ${name} ${surname}.`,
       attachments: [
         {
-          filename: fullFileName,      // Use the full filename with extension
+          filename: fullFileName,
           content: buffer,
-          contentType: mimeType,       // Specify the MIME type
+          contentType: mimeType,   
         },
       ],
     };
