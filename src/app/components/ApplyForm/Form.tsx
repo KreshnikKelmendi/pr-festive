@@ -86,7 +86,7 @@ export default function ContactForm() {
           className='object-contain mx-auto'
         />
         <p className="text-[32px] text-center text-[#EF5B13]">Formulari për Aplikim</p>
-        <p className='text-center'>Plotëso formularin për të aplikuar për shtëpizë në "Verë n'Dimën".</p>
+        <p className='text-center'>Plotëso formularin për të aplikuar për shtëpizë në &quot;Verë n&rsquo;Dimën&quot;.</p>
 
         <div className="flex flex-col lg:flex-row justify-center items-center space-x-0 lg:space-x-4 space-y-4 lg:space-y-0">
           <input

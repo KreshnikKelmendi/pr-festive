@@ -1,5 +1,4 @@
 import React from 'react';
-import ContactForm from './Form';
 import Image from 'next/image';
 import logo from "../../../../public/verendimen-logo.png"
 import { AppCriteria } from './AppCriteria';

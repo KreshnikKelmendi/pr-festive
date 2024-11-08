@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import sampleImage from '../../../../public/image1.png' // Adjust the path as needed
+import sampleImage from '../../../../public/image1.png'
 import secondImage from "../../../../public/pdfFile.png"
 
 export const AppCriteria = () => {
@@ -15,7 +15,8 @@ export const AppCriteria = () => {
         <div className='py-8 text-center'>
           <p className="text-[32px] font-bold text-[#EF5B13]">Kriteret e Aplikimit</p>
           <p className="text-[#031603] w-[381px] h-[26px]">
-            Këtu mund të gjeni projekt dokumentin dhe kriteret kualifikuese për aplikim në shtëpizat "Verë n'Dimën".
+            Këtu mund të gjeni projekt dokumentin dhe kriteret kualifikuese për aplikim në shtëpizat Verë n&rsquo;Dimën&quot;
+
           </p>
           
           <div className='flex justify-center items-center'>
