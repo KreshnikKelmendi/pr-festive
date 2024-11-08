@@ -79,7 +79,7 @@ export default function ContactForm() {
 
   return (
     <div className="flex justify-center lg:px-32 py-8 bg-[#031603]">
-      <form onSubmit={handleSubmit} className="w-full bg-white rounded-[5px] space-y-6 p-8">
+      <form onSubmit={handleSubmit} className="w-full bg-white rounded-[5px] space-y-4 p-8">
         <Image
           src={pattern}
           alt="Logo"
@@ -95,7 +95,7 @@ export default function ContactForm() {
             onChange={(e) => setName(e.target.value)}
             placeholder="Emri"
             required
-            className=" block w-full lg:w-[244px] text-white px-4 py-3 border bg-[#031603] border-gray-300 rounded-[5px] focus:outline-none focus:ring focus:border-blue-500"
+            className="block w-full lg:w-[244px] text-white px-4 py-3 border bg-[#031603] border-gray-300 rounded-[5px] focus:outline-none focus:ring focus:border-blue-500"
           />
 
           <input
@@ -104,7 +104,7 @@ export default function ContactForm() {
             onChange={(e) => setSurname(e.target.value)}
             placeholder="Mbiemri"
             required
-            className="mt-1 block w-full lg:w-[244px] px-4 py-3 bg-[#031603] text-white rounded-[5px] focus:outline-none focus:ring focus:border-blue-500"
+            className="lg:mt-1 block w-full lg:w-[244px] px-4 py-3 bg-[#031603] text-white rounded-[5px] focus:outline-none focus:ring focus:border-blue-500"
           />
         </div>
 
@@ -114,7 +114,7 @@ export default function ContactForm() {
           onChange={(e) => setCompanyName(e.target.value)}
           placeholder="Emri i Kompanisë"
           required
-          className="mt-1 block w-full lg:w-[503px] mx-auto px-4 py-3 bg-[#031603] text-white border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-500"
+          className="lg:mt-1 block w-full lg:w-[503px] mx-auto px-4 py-3 bg-[#031603] text-white border-gray-300 rounded-[5px] focus:outline-none focus:ring focus:border-blue-500"
         />
 
         <div className="lg:flex lg:justify-center lg:space-x-4 flex-col lg:flex-row space-y-4 lg:space-y-0">
@@ -131,9 +131,9 @@ export default function ContactForm() {
             type="tel"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
-            placeholder="Phone Number"
+            placeholder="Nr.Tel"
             required
-            className="mt-1 block w-full lg:w-[244px] px-4 py-3 bg-[#031603] rounded-md text-white shadow-sm focus:outline-none focus:ring focus:border-blue-500"
+            className="lg:mt-1 block w-full lg:w-[244px] px-4 py-3 bg-[#031603] rounded-[5px] text-white focus:outline-none focus:ring focus:border-blue-500"
           />
         </div>
 
@@ -143,7 +143,7 @@ export default function ContactForm() {
             onChange={handleFileChange}
             required
             accept=".pdf, .docx, .jpg, .jpeg"
-            className="mt-1 block w-full lg:w-[503px] mx-auto px-4 py-3 bg-[#031603] rounded-md text-white shadow-sm focus:outline-none focus:ring focus:border-blue-500"
+            className="lg:mt-1 block w-full lg:w-[503px] mx-auto px-4 py-3 bg-[#031603] rounded-md text-white shadow-sm focus:outline-none focus:ring focus:border-blue-500"
           />
           <p className='text-center pt-2 font-bold text-sm text-[#EF5B13]'>* Bashkangjit certifikatën e biznesit dhe <br />dokumentin personal të identifikimit (të skanuar në të njëjtin dokument)</p>
           {fileError && <p className="text-red-500 text-sm mt-2">{fileError}</p>}
@@ -152,13 +152,13 @@ export default function ContactForm() {
         <div className="flex justify-center items-center">
           <button
             type="submit"
-            className="w-[200px] bg-[#EF5B13] hover:bg-blue-600 text-white font-semibold py-2 rounded-md transition duration-200 shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
+            className="w-[200px] bg-[#EF5B13] hover:bg-[#031603] hover:duration-200 ease-in-out text-white font-semibold py-2 rounded-[5px] transition duration-200 shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
           >
             Send
           </button>
          
         </div>
-        <p className='text-center'>© 2024 Prishtina Festive</p>
+        <p className='text-center text-[#031603] text-[12px]'>© 2024 Prishtina Festive</p>
         <Image
           src={pattern}
           alt="Logo"
