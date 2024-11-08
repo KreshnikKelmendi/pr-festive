@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 
 export async function POST(req: Request) {
   try {
-    const { name, surname, file, fileName = 'attachment' } = await req.json();
+    const { name, surname, companyName, companyEmail, phoneNumber, file, fileName = 'attachment' } = await req.json();
 
     // Decode the base64 file string into a buffer
     const base64Data = file.split('base64,')[1];  // Extract the base64 part
@@ -28,35 +28,34 @@ export async function POST(req: Request) {
     // Prepare the mail options
     const mailOptions = {
       from: "noreplynplsport@gmail.com",
-      to: 'kreshnik.kelmendi@trekuartista.com, kreshnik.kelmendi1994@gmail.com',
-      subject: 'New Message with Attachment',
-      text: `You have a new message from ${name} ${surname}.`,
+      to: 'kreshnik.kelmendi1994@gmail.com, info@prishtinafestive.com',
+      subject: `Email from ${name} ${surname}`,
+      text: `Aplikues i ri. Ja detajet:
+      
+      Emri i plotë: ${name} ${surname}
+      Emri i kompanisë: ${companyName}
+      Email i kompanisë: ${companyEmail}
+      Nr.Kontaktues: ${phoneNumber}`,
       attachments: [
         {
           filename: fullFileName,
           content: buffer,
-          contentType: mimeType,   
+          encoding: 'base64',
+          contentType: mimeType,
         },
       ],
     };
 
-    // Send the email
+    // Send email
     await transporter.sendMail(mailOptions);
 
-    return new Response(JSON.stringify({ message: 'Email sent successfully!' }), {
+    return new Response(JSON.stringify({ message: 'Email sent successfully' }), {
       status: 200,
     });
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      return new Response(
-        JSON.stringify({ error: 'Failed to send email', details: error.message }),
-        { status: 500 }
-      );
-    } else {
-      return new Response(
-        JSON.stringify({ error: 'An unknown error occurred' }),
-        { status: 500 }
-      );
-    }
+  } catch (error) {
+    console.error(error);
+    return new Response(JSON.stringify({ error: 'Error sending email' }), {
+      status: 500,
+    });
   }
 }

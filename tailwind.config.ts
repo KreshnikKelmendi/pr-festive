@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        custom: ['AeonikProTRIAL-Bold'],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
