@@ -40,7 +40,7 @@ export const AppCriteria = () => {
             Këtu mund të gjeni projekt dokumentin dhe kriteret kualifikuese për aplikim në shtëpizat Verë n&rsquo;Dimën&quot;
           </p>
           
-          <div className='flex justify-center items-center'>
+          <div className='flex justify-center items-center mt-2 lg:mt-0'>
             <a 
               href="/Thirrja per aplikim per tregun e fundvitit.pdf" 
               download="Thirrja per aplikim per tregun e fundvitit" 
