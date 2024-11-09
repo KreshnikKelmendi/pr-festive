@@ -28,7 +28,7 @@ export async function POST(req: Request) {
     // Prepare the mail options
     const mailOptions = {
       from: "noreplynplsport@gmail.com",
-      to: 'kreshnik.kelmendi1994@gmail.com',
+      to: 'info@nplsportmarketing.com, info@prishtinafestive.com',
       subject: `Email from ${name} ${surname}`,
       text: `Aplikues i ri. Ja detajet:
       
