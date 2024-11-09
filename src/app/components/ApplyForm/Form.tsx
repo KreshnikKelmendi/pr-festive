@@ -13,7 +13,6 @@ export default function ContactForm() {
     const [fileError, setFileError] = useState<string>('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [showModal, setShowModal] = useState(false);
-    const [errorMessage, setErrorMessage] = useState<string>('');
     const [loading, setLoading] = useState(false);
     const [tooManyRequests, setTooManyRequests] = useState(false);
     const [showFileErrorModal, setShowFileErrorModal] = useState(false); // New state for file error modal
@@ -22,7 +21,7 @@ export default function ContactForm() {
         e.preventDefault();
 
         if (!file) {
-            setErrorMessage("Please upload a file.");
+            setFileError("Please upload a file.");
             return;
         }
 
@@ -64,11 +63,11 @@ export default function ContactForm() {
                 } else if (response.status === 429) {
                     setTooManyRequests(true);
                 } else {
-                    setErrorMessage(`Error: ${result.error}`);
+                    setFileError(`Error: ${result.error}`);
                 }
-            } catch (error) {
+            } catch {
                 setLoading(false);
-                setErrorMessage("There was an error with the request.");
+                setFileError("There was an error with the request.");
             }
         };
     };
@@ -206,14 +205,14 @@ export default function ContactForm() {
 
             {showModal && (
                 <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
-                    <div className="bg-white p-6 rounded-md shadow-lg w-80 text-center">
-                        <p className="text-xl text-[#EF5B13] font-bold">Faleminderit!</p>
-                        <p className="mt-2">Aplikimi juaj është dërguar me sukses. Për detaje tjera do të njoftoheni me kohë</p>
+                    <div className="bg-white p-8 rounded-lg text-center">
+                        <h2 className="text-xl font-bold text-[#031603]">Faleminderit!</h2>
+                        <p className="mt-2 text-[#031603]">Aplikimi juaj është dërguar me sukses. Për detaje tjera do të njoftoheni me kohë!</p>
                         <button
                             onClick={closeModal}
-                            className="mt-4 w-full bg-[#EF5B13] hover:bg-[#031603] text-white font-semibold py-2 rounded-md"
+                            className="mt-4 bg-[#031603] text-white font-semibold py-2 px-4 rounded-md"
                         >
-                            Close
+                            Mbyll
                         </button>
                     </div>
                 </div>
@@ -221,14 +220,14 @@ export default function ContactForm() {
 
             {tooManyRequests && (
                 <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
-                    <div className="bg-white p-6 rounded-md shadow-lg w-80 text-center">
-                        <p className="text-xl text-red-500">Limit Exceeded</p>
-                        <p className="mt-2">You have made too many requests. Please try again later.</p>
+                    <div className="bg-white p-8 rounded-lg text-center">
+                        <h2 className="text-xl font-semibold text-[#031603]">Përgjigje e ngadaltë</h2>
+                        <p className="mt-2 text-[#031603]">Kemi shumë kërkesa. Ju lutem provoni më vonë.</p>
                         <button
                             onClick={closeTooManyRequestsAlert}
-                            className="mt-4 w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded-md"
+                            className="mt-4 bg-[#031603] text-white font-semibold py-2 px-4 rounded-md"
                         >
-                            Close
+                            Mbyll
                         </button>
                     </div>
                 </div>
@@ -236,14 +235,14 @@ export default function ContactForm() {
 
             {showFileErrorModal && (
                 <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
-                    <div className="bg-white p-6 rounded-md shadow-lg w-80 text-center">
-                        <p className="text-xl text-red-500 font-bold">File Error</p>
-                        <p className="mt-2 text-sm tracking-tight justify-center font-medium">{fileError}</p>
+                    <div className="bg-white p-8 rounded-lg text-center">
+                        <h2 className="text-xl font-semibold text-[#031603]">Gabim në ngarkim</h2>
+                        <p className="mt-2 text-[#031603]">{fileError}</p>
                         <button
                             onClick={closeFileErrorModal}
-                            className="mt-4 w-full bg-[#EF5B13] hover:bg-[#031603] text-white font-semibold py-2 rounded-md"
+                            className="mt-4 bg-[#031603] text-white font-semibold py-2 px-4 rounded-md"
                         >
-                            Mbyll lajmërimin!
+                            Mbyll
                         </button>
                     </div>
                 </div>
