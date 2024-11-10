@@ -75,20 +75,20 @@ export default function ContactForm() {
     const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
             const selectedFile = e.target.files[0];
-
+    
             const allowedTypes = [
                 'application/pdf',
                 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
                 'image/jpeg',
                 'image/jpg',
             ];
-
+    
             if (selectedFile && !allowedTypes.includes(selectedFile.type)) {
                 setFileError('Invalid file type. Please upload a PDF, DOCX, or JPG file.');
                 setFile(null);
                 setShowFileErrorModal(true); // Show error modal
-            } else if (selectedFile.size > 1024 * 1024) { // Check for file size > 1MB
-                setFileError("Përmbajtja e ngarkuar është më e madhe se 1MB, ju lutem kompresoni përmbajtjen dhe provoni përsëri.");
+            } else if (selectedFile.size > 2 * 1024 * 1024) { // Check for file size > 3MB
+                setFileError("Përmbajtja e ngarkuar është më e madhe se 2MB, ju lutem kompresoni përmbajtjen dhe provoni përsëri.");
                 setFile(null);
                 setShowFileErrorModal(true); // Show error modal
             } else {
@@ -97,6 +97,7 @@ export default function ContactForm() {
             }
         }
     };
+    
 
     const closeModal = () => {
         setShowModal(false);
@@ -180,7 +181,7 @@ export default function ContactForm() {
                         dokumentin personal të identifikimit (të skanuar në të njëjtin dokument)
                     </p>
                     <div className="underline uppercase text-[#031603] mt-2 text-center text-sm font-bold">
-                        Ju lutem mos ngarkoni përmbajtje më të madhe se 1MB
+                        Ju lutem mos ngarkoni përmbajtje më të madhe se 2MB
                     </div>
                 </div>
 
@@ -193,24 +194,24 @@ export default function ContactForm() {
                     </button>
                 </div>
 
-                <p className="text-center text-[#031603] text-[12px]">© 2024 Prishtina Festive</p>
+                <p className="text-center text-[#031603] font-semibold text-[12px]">© 2024 Prishtina Festive</p>
                 <Image src={pattern} alt="Logo" className="object-contain mx-auto" />
             </form>
 
             {loading && (
                 <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
-                    <div className="w-16 h-16 border-t-4 border-b-4 border-blue-500 border-solid rounded-full animate-spin"></div>
+                    <div className="w-16 h-16 border-t-4 border-b-4 border-[#031603] border-solid rounded-full animate-spin"></div>
                 </div>
             )}
 
             {showModal && (
                 <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
                     <div className="bg-white p-8 rounded-lg text-center">
-                        <h2 className="text-xl font-bold text-[#031603]">Faleminderit!</h2>
+                        <h2 className="text-xl font-bold text-[#031603] uppercase">Faleminderit!</h2>
                         <p className="mt-2 text-[#031603]">Aplikimi juaj është dërguar me sukses. Për detaje tjera do të njoftoheni me kohë!</p>
                         <button
                             onClick={closeModal}
-                            className="mt-4 bg-[#031603] text-white font-semibold py-2 px-4 rounded-md"
+                            className="mt-4 w-full bg-[#031603] hover:bg-[#EF5B13] text-white font-semibold py-2 px-4 rounded-md"
                         >
                             Mbyll
                         </button>
