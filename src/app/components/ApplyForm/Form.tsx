@@ -235,7 +235,7 @@ export default function ContactForm() {
             {tooManyRequests && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
                     <div className="bg-white p-8 rounded-md shadow-lg">
-                        <p className="text-center font-bold">You're sending requests too quickly. Please try again later.</p>
+                        <p className="text-center font-bold">Requests too quickly. Please try again later.</p>
                         <button onClick={closeTooManyRequestsAlert} className="mt-4 bg-[#031603] text-white font-semibold py-2 px-4 rounded-md focus:outline-none">
                             Close
                         </button>
