@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 
 export async function POST(req: Request) {
   try {
-    const { name, surname, companyName, companyEmail, phoneNumber, file, fileName = 'attachment' } = await req.json();
+    const { name, surname, companyName, companyEmail, phoneNumber, file, fileName, applyForMotorTools = 'attachment' } = await req.json();
 
     // Decode the base64 file string into a buffer
     const base64Data = file.split('base64,')[1];  // Extract the base64 part
@@ -21,7 +21,7 @@ export async function POST(req: Request) {
       service: 'Gmail',
       auth: {
         user: "noreplynplsport@gmail.com",
-        pass: "vhmb lrkt xzrj fwof", // Use your Gmail app-specific password
+        pass: "vhmb lrkt xzrj fwof", 
       },
     });
 
@@ -35,7 +35,9 @@ export async function POST(req: Request) {
       Emri i plotë: ${name} ${surname}
       Emri i kompanisë: ${companyName}
       Email i kompanisë: ${companyEmail}
-      Nr.Kontaktues: ${phoneNumber}`,
+      Nr.Kontaktues: ${phoneNumber}
+      Bashkangjis aplikimin për mjete motorike: ${applyForMotorTools}`,
+      
       attachments: [
         {
           filename: fullFileName,

@@ -11,7 +11,7 @@ export const Formpage = () => {
          <Image
                 src={logo}
                 alt="Logo"
-                className='w-[200px] h-[200px] object-contain'
+                className='w-[150px] lg:w-[200px] lg:h-[200px] object-contain'
             />
             </div>
       {/* <div className="text-center pt-[80px]">

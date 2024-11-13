@@ -15,7 +15,8 @@ export default function ContactForm() {
     const [showModal, setShowModal] = useState(false);
     const [loading, setLoading] = useState(false);
     const [tooManyRequests, setTooManyRequests] = useState(false);
-    const [showFileErrorModal, setShowFileErrorModal] = useState(false); // New state for file error modal
+    const [showFileErrorModal, setShowFileErrorModal] = useState(false);
+    const [applyForMotorTools, setApplyForMotorTools] = useState(false);
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -45,6 +46,7 @@ export default function ContactForm() {
                         companyEmail,
                         file: base64File,
                         phoneNumber,
+                        applyForMotorTools
                     }),
                 });
 
@@ -60,6 +62,7 @@ export default function ContactForm() {
                     setCompanyEmail('');
                     setFile(null);
                     setPhoneNumber('');
+                    setApplyForMotorTools(false);
                 } else if (response.status === 429) {
                     setTooManyRequests(true);
                 } else {
@@ -86,11 +89,11 @@ export default function ContactForm() {
             if (selectedFile && !allowedTypes.includes(selectedFile.type)) {
                 setFileError('Invalid file type. Please upload a PDF, DOCX, or JPG file.');
                 setFile(null);
-                setShowFileErrorModal(true); // Show error modal
-            } else if (selectedFile.size > 2 * 1024 * 1024) { // Check for file size > 3MB
+                setShowFileErrorModal(true);
+            } else if (selectedFile.size > 2 * 1024 * 1024) {
                 setFileError("Përmbajtja e ngarkuar është më e madhe se 2MB, ju lutem kompresoni përmbajtjen dhe provoni përsëri.");
                 setFile(null);
-                setShowFileErrorModal(true); // Show error modal
+                setShowFileErrorModal(true);
             } else {
                 setFileError('');
                 setFile(selectedFile);
@@ -98,7 +101,6 @@ export default function ContactForm() {
         }
     };
     
-
     const closeModal = () => {
         setShowModal(false);
     };
@@ -107,7 +109,7 @@ export default function ContactForm() {
         setTooManyRequests(false);
     };
 
-    const closeFileErrorModal = () => { // Function to close file error modal
+    const closeFileErrorModal = () => {
         setShowFileErrorModal(false);
     };
 
@@ -176,19 +178,33 @@ export default function ContactForm() {
                         accept=".pdf, .docx, .jpg, .jpeg"
                         className="lg:mt-1 block w-full lg:w-[503px] mx-auto px-4 py-3 bg-[#031603] rounded-md text-white shadow-sm focus:outline-none focus:ring focus:border-blue-500"
                     />
-                    <p className="text-center pt-2 font-bold text-sm text-[#EF5B13]">
-                        * Bashkangjit certifikatën e biznesit dhe <br />
+                     <div className="flex items-center justify-start mt-4 lg:w-[503px] mx-auto w-full px-4 py-2 bg-[#031603] rounded-md ">
+                        <input
+                            type="checkbox"
+                            checked={applyForMotorTools}
+                            onChange={() => setApplyForMotorTools(!applyForMotorTools)}
+                            className="mr-2 h-6 w-6 accent-[#EF5B13]" 
+                        />
+                        <label className="text-[#EF5B13] text-sm font-medium"><b className='uppercase'>Aplikoj për mjete motorike</b> <span className='text-[10px] lg:text-[12px] italic text-white'><br />(Klikoni në katrorin e vogël nëse aplikoni për mjete motorike)</span></label>
+                    </div>
+                    <div className='flex items-center justify-start lg:w-[503px] mx-auto'>
+                    <p className="lg:text-center pt-2 font-bold text-sm text-[#EF5B13] italic">
+                        *Bashkangjit certifikatën e biznesit dhe <br />
                         dokumentin personal të identifikimit (të skanuar në të njëjtin dokument)
                     </p>
-                    <div className="underline uppercase text-[#031603] mt-2 text-center text-sm font-bold">
+                    </div>
+                    <div className="underline uppercase text-[#031603] mt-2 lg:text-center text-sm font-bold">
                         Ju lutem mos ngarkoni përmbajtje më të madhe se 2MB
                     </div>
+                   
+
+                   
                 </div>
 
                 <div className="flex justify-center items-center">
                     <button
                         type="submit"
-                        className="w-[200px] bg-[#EF5B13] hover:bg-[#031603] hover:duration-200 ease-in-out text-white font-semibold py-2 rounded-[5px] transition duration-200 shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
+                        className="w-full lg:w-[200px] bg-[#EF5B13] hover:bg-[#031603] hover:duration-200 ease-in-out text-white font-semibold py-2 rounded-[5px] transition duration-200 shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
                     >
                         Dërgo
                     </button>
@@ -205,14 +221,11 @@ export default function ContactForm() {
             )}
 
             {showModal && (
-                <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
-                    <div className="bg-white p-8 rounded-lg text-center">
-                        <h2 className="text-xl font-bold text-[#031603] uppercase">Faleminderit!</h2>
-                        <p className="mt-2 text-[#031603]">Aplikimi juaj është dërguar me sukses. Për detaje tjera do të njoftoheni me kohë!</p>
-                        <button
-                            onClick={closeModal}
-                            className="mt-4 w-full bg-[#031603] hover:bg-[#EF5B13] text-white font-semibold py-2 px-4 rounded-md"
-                        >
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex lg:justify-center items-center z-50">
+                    <div className="bg-white p-8 rounded-md shadow-lg">
+                        <p className="text-center font-bold uppercase text-2xl">Faleminderit për aplikimin!</p>
+                        <p className="text-center font-medium">Për detaje tjera do të njoftoheni me kohë.</p>
+                        <button onClick={closeModal} className="mt-4 bg-[#EF5B13] hover:bg-[#031603] w-full text-white font-semibold py-2 px-4 rounded-md focus:outline-none">
                             Mbyll
                         </button>
                     </div>
@@ -220,29 +233,21 @@ export default function ContactForm() {
             )}
 
             {tooManyRequests && (
-                <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
-                    <div className="bg-white p-8 rounded-lg text-center">
-                        <h2 className="text-xl font-semibold text-[#031603]">Përgjigje e ngadaltë</h2>
-                        <p className="mt-2 text-[#031603]">Kemi shumë kërkesa. Ju lutem provoni më vonë.</p>
-                        <button
-                            onClick={closeTooManyRequestsAlert}
-                            className="mt-4 bg-[#031603] text-white font-semibold py-2 px-4 rounded-md"
-                        >
-                            Mbyll
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                    <div className="bg-white p-8 rounded-md shadow-lg">
+                        <p className="text-center font-bold">You're sending requests too quickly. Please try again later.</p>
+                        <button onClick={closeTooManyRequestsAlert} className="mt-4 bg-[#031603] text-white font-semibold py-2 px-4 rounded-md focus:outline-none">
+                            Close
                         </button>
                     </div>
                 </div>
             )}
 
             {showFileErrorModal && (
-                <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
-                    <div className="bg-white p-8 rounded-lg text-center">
-                        <h2 className="text-xl font-semibold text-[#031603]">Gabim në ngarkim</h2>
-                        <p className="mt-2 text-[#031603]">{fileError}</p>
-                        <button
-                            onClick={closeFileErrorModal}
-                            className="mt-4 bg-[#031603] text-white font-semibold py-2 px-4 rounded-md"
-                        >
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                    <div className="bg-white p-8 rounded-md shadow-lg py-12">
+                        <p className="text-center font-bold">{fileError}</p>
+                        <button onClick={closeFileErrorModal} className="mt-4 w-full bg-[#EF5B13] hover:bg-[#031603] text-white font-semibold py-2 px-4 rounded-md focus:outline-none">
                             Mbyll
                         </button>
                     </div>
