@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import logo from "../../../../public/GREEN.png"
 import { AppCriteria } from './AppCriteria';
+import Closed from './Closed';
 
 export const Formpage = () => {
   return (
@@ -11,7 +12,7 @@ export const Formpage = () => {
          <Image
                 src={logo}
                 alt="Logo"
-                className='w-[150px] lg:w-[200px] lg:h-[200px] object-contain'
+                className='w-[150px] lg:w-[150px] lg:h-[150px] object-contain'
             />
             </div>
       {/* <div className="text-center pt-[80px]">
@@ -21,6 +22,7 @@ export const Formpage = () => {
 
       <div className=''>
         <AppCriteria />
+        
       </div>
     </div>
     </>
