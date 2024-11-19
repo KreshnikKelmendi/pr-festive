@@ -2,7 +2,6 @@ import React from 'react';
 import Image from 'next/image';
 import logo from "../../../../public/GREEN.png"
 import { AppCriteria } from './AppCriteria';
-import Closed from './Closed';
 
 export const Formpage = () => {
   return (
