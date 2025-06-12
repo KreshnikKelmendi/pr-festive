@@ -2,9 +2,9 @@ import Link from 'next/link';
 import { useState } from 'react';
 import Image from 'next/image';
 import logo from '../../../public/Logo-green.png';
-import { CgCloseR } from 'react-icons/cg';
-import { FaHamburger } from 'react-icons/fa';
-import { PiHamburgerBold } from 'react-icons/pi';
+// import { CgCloseR } from 'react-icons/cg';
+// import { FaHamburger } from 'react-icons/fa';
+// import { PiHamburgerBold } from 'react-icons/pi';
 import { MenuIcon, X } from 'lucide-react';
 
 function Header() {
