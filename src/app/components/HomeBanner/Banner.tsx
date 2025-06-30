@@ -1,107 +1,93 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import mainBannerDesktop from "../../../../public/mainbanner-desktop.png";
-import mainBannerPhone from "../../../../public/mainbanner-phone.png";
+import { useState } from "react";
+import logo from "../../../../public/logo-prishtinafestive2.png";
+import { MdKeyboardDoubleArrowDown } from "react-icons/md";
 
 export default function Banner(): JSX.Element {
-  const textRef = useRef<HTMLDivElement>(null);
-  const yellowBgRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Background animation with a nice reveal
-      gsap.fromTo(
-        yellowBgRef.current,
-        {
-          scaleX: 0,
-          opacity: 0,
-        },
-        {
-          scaleX: 1,
-          opacity: 1,
-          duration: 1.2,
-          ease: "power3.inOut",
-        }
-      );
+  const handleDownloadPDF = () => {
+    const link = document.createElement('a');
+    link.href = '/Thirrje per aplikim.pdf';
+    link.download = 'Thirrje per aplikim.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
-      // Create an impactful intro sequence for words
-      const words = textRef.current?.querySelectorAll('.animate-word');
-      if (words) {
-        // Initial state
-        gsap.set(words, {
-          opacity: 0,
-          scale: 0.8,
-          y: 50,
-          rotation: -15,
-        });
-
-        // Create a timeline for the sequence
-        const tl = gsap.timeline({
-          delay: 0.3,
-        });
-
-        // Animate each word with rotation and movement
-        words.forEach((word, index) => {
-          tl.to(word, {
-            opacity: 1,
-            scale: 1,
-            y: 0,
-            rotation: 0,
-            duration: 1,
-            ease: "power2.out",
-            delay: index * 0.2,
-          });
-        });
-      }
-    });
-
-    return () => ctx.revert();
-  }, []);
+  const scrollToForm = () => {
+    const formSection = document.getElementById('apply-form');
+    if (formSection) {
+      formSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
-    <div className="relative w-full mx-auto lg:h-screen bg-[#FFDB00]">
-      <div className="relative h-screen lg:h-screen flex items-center overflow-hidden">
-        {/* Desktop Image */}
-        <div className="hidden lg:block absolute inset-0 w-full h-full">
+    <div className="relative w-full bg-[#FFDB00]">
+      <div className="flex flex-col items-center justify-center p-8">
+        {/* Logo */}
+        <div className="mb-14">
           <Image
-            src={mainBannerDesktop}
-            alt="Prishtina Festive Desktop Banner"
-            fill
+            src={logo}
+            alt="Prishtina Festive Logo"
+            width={240}
+            height={120}
+            className="mx-auto"
             priority
-            className=""
           />
         </div>
-        {/* Mobile Image */}
-        <div className="lg:hidden absolute inset-0 w-full h-full">
-          <Image
-            src={mainBannerPhone}
-            alt="Prishtina Festive Mobile Banner"
-            fill
-            priority
-            className=""
-          />
-        </div>
-        {/* Text Container with Yellow Background */}
-        <div className="relative z-10 lg:ml-[5%] flex items-center">
-          <div 
-            ref={yellowBgRef}
-            className="absolute inset-0 transform origin-left"
-            style={{ width: '120%', height: '120%' }}
-          />
-          <div 
-            ref={textRef}
-            className="relative px-8 py-6 lg:px-12 lg:py-8"
+
+        {/* Title */}
+        <h1 className="text-4xl md:text-7xl lg:text-5xl font-bold text-[#1D1D1B] mb-8 font-malkie-slab text-center leading-tight">
+          Prishtina Festive
+        </h1>
+        
+        {/* Subtitle */}
+        <p className="text-3xl md:text-5xl text-[#EF5B13] font-semibold mb-10 font-malkie-slab tracking-[1px] text-center leading-snug">
+          A doni me mërdhi Verën?
+        </p>
+
+        {/* Description */}
+        <p className="text-base md:text-xl text-[#1D1D1B] mb-14 font-aeonik-pro text-center max-w-3xl mx-auto leading-normal">
+          Këtu mund të gjeni projekt dokumentin dhe kriteret kualifikuese për aplikim në shtëpizat "Akull n'Verë".
+        </p>
+
+        {/* Download Button */}
+        <div className="mb-10">
+          <button
+            onClick={handleDownloadPDF}
+            className="bg-[#EF5B13] text-white px-8 py-3 font-bold text-base lg:text-xl hover:bg-[#D44A0F] transition-colors duration-300 font-aeonik-pro shadow-lg"
           >
-            <h1 className="text-5xl md:text-4xl lg:text-9xl text-[#1D1D1B]">
-              <span className="animate-word flex h-full justify-center items-center bg-[#FFDB00] w-fit p-4 font-malkieslab transform-gpu">A doni</span>
-              <span className="animate-word flex h-full justify-center items-center bg-[#FFDB00] w-fit p-4 mt-1 font-malkieslab transform-gpu">me mërdhi</span>
-              <span className="animate-word flex h-full justify-center items-center bg-[#FFDB00] w-fit p-4 mt-1 font-malkieslab transform-gpu">Verën?</span>
-            </h1>
-          </div>
+            Shkarko Dokumentin
+          </button>
+        </div>
+
+        {/* Down Arrow Only */}
+        <div className="text-center">
+          <button
+            onClick={scrollToForm}
+            className="text-[#1D1D1B] hover:text-[#EF5B13] transition-colors duration-300"
+          >
+            <div className="flex flex-col items-center space-y-1">
+              <MdKeyboardDoubleArrowDown color="#EF5B13" className="w-10 h-10 animate-bounce" />
+            </div>
+          </button>
         </div>
       </div>
     </div>
   );
 }
+
+<style jsx global>{`
+@keyframes bounce-slow {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(20px); }
+}
+.animate-bounce-slow {
+  animation: bounce-slow 1.5s infinite;
+}
+.delay-300 {
+  animation-delay: 0.3s;
+}
+`}</style>

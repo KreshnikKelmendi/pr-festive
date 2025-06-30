@@ -6,6 +6,8 @@ import React from 'react';
 // import { AppCriteria } from './AppCriteria';
 // import Header from '../Header';
 import Banner from '../HomeBanner/Banner';
+import ContactForm from './Form';
+
 // import SecondBanner from '../HomeBanner/SecondBanner';
 
 export const Formpage = () => {
@@ -15,7 +17,9 @@ export const Formpage = () => {
     {/* <Header /> */}
       <Banner />
       {/* <SecondBanner /> */}
+      {/* <AppCriteria /> */}
+      <ContactForm />
     </div>
     </>
-  );
+  );  
 };
