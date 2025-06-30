@@ -8,21 +8,23 @@ const SecondBanner = () => {
 
   useEffect(() => {
     // Set up the Intersection Observer
+    const titleNode = titleRef.current;
+    const videoNode = videoRef.current;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             // When element is in view, trigger GSAP animation
-            if (entry.target === titleRef.current) {
-              gsap.to(titleRef.current, {
+            if (entry.target === titleNode) {
+              gsap.to(titleNode, {
                 opacity: 1,
                 x: 0,
                 duration: 0.8,
                 ease: 'power2.out',
               });
             }
-            if (entry.target === videoRef.current) {
-              gsap.to(videoRef.current, {
+            if (entry.target === videoNode) {
+              gsap.to(videoNode, {
                 opacity: 1,
                 duration: 0.8,
                 ease: 'power2.out',
@@ -30,15 +32,15 @@ const SecondBanner = () => {
             }
           } else {
             // Reset animations when out of view
-            if (entry.target === titleRef.current) {
-              gsap.to(titleRef.current, {
+            if (entry.target === titleNode) {
+              gsap.to(titleNode, {
                 opacity: 0,
                 x: -100,
                 duration: 0.8,
               });
             }
-            if (entry.target === videoRef.current) {
-              gsap.to(videoRef.current, {
+            if (entry.target === videoNode) {
+              gsap.to(videoNode, {
                 opacity: 0,
                 duration: 0.8,
               });
@@ -52,13 +54,13 @@ const SecondBanner = () => {
     );
 
     // Observe the title and video elements
-    if (titleRef.current) observer.observe(titleRef.current);
-    if (videoRef.current) observer.observe(videoRef.current);
+    if (titleNode) observer.observe(titleNode);
+    if (videoNode) observer.observe(videoNode);
 
     // Clean up observer on component unmount
     return () => {
-      if (titleRef.current) observer.unobserve(titleRef.current);
-      if (videoRef.current) observer.unobserve(videoRef.current);
+      if (titleNode) observer.unobserve(titleNode);
+      if (videoNode) observer.unobserve(videoNode);
     };
   }, []);
 

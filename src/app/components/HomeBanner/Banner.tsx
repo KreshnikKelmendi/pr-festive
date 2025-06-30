@@ -5,8 +5,6 @@ import logo from "../../../../public/logo-prishtinafestive2.png";
 import { MdKeyboardDoubleArrowDown } from "react-icons/md";
 
 export default function Banner(): JSX.Element {
-  const [isHovered, setIsHovered] = useState(false);
-
   const handleDownloadPDF = () => {
     const link = document.createElement('a');
     link.href = '/Thirrje per aplikim.pdf';
@@ -50,7 +48,7 @@ export default function Banner(): JSX.Element {
 
         {/* Description */}
         <p className="text-base md:text-xl text-[#1D1D1B] mb-14 font-aeonik-pro text-center max-w-3xl mx-auto leading-normal">
-          Këtu mund të gjeni projekt dokumentin dhe kriteret kualifikuese për aplikim në shtëpizat "Akull n'Verë".
+          Këtu mund të gjeni projekt dokumentin dhe kriteret kualifikuese për aplikim në shtëpizat &quot;Akull n&rsquo;Verë&quot;.
         </p>
 
         {/* Download Button */}
