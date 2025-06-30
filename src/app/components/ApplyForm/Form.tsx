@@ -17,7 +17,7 @@ export default function ContactForm() {
     const [loading, setLoading] = useState(false);
     const [tooManyRequests, setTooManyRequests] = useState(false);
     const [showFileErrorModal, setShowFileErrorModal] = useState(false);
-    const [applyForMotorTools, setApplyForMotorTools] = useState(false);
+    const [selectedSpace, setSelectedSpace] = useState<string>('');
     const [submittedName, setSubmittedName] = useState('');
     const [submittedSurname, setSubmittedSurname] = useState('');
 
@@ -31,6 +31,11 @@ export default function ContactForm() {
 
         if (!personalDocument) {
             setFileError("Ju lutem ngarkoni dokumentin personal të identifikimit.");
+            return;
+        }
+
+        if (!selectedSpace) {
+            setFileError("Ju lutem zgjidhni një hapësirë.");
             return;
         }
 
@@ -67,7 +72,7 @@ export default function ContactForm() {
                     personalDocument: base64PersonalDoc,
                     personalDocumentName: personalDocument.name,
                     phoneNumber,
-                    applyForMotorTools: applyForMotorTools ? 'yes' : 'no'
+                    selectedSpace
                 }),
             });
 
@@ -87,7 +92,7 @@ export default function ContactForm() {
                 setBusinessCertificate(null);
                 setPersonalDocument(null);
                 setPhoneNumber('');
-                setApplyForMotorTools(false);
+                setSelectedSpace('');
             } else if (response.status === 429) {
                 setTooManyRequests(true);
             } else {
@@ -274,16 +279,53 @@ export default function ContactForm() {
 
                 {/* SEKSIONI 3: TË TJERA */}
                 <div className="space-y-4">
-                    <h3 className="text-[#EF5B13] font-bold text-lg text-center">TË TJERA</h3>
+                    <h3 className="text-[#EF5B13] font-bold text-lg text-center">ZGJIDHNI HAPËSIRËN</h3>
                     
-                    <div className="flex items-center justify-start mt-6 lg:w-[503px] mx-auto w-full px-4 py-2 bg-[#031603] rounded-md ">
-                        <input
-                            type="checkbox"
-                            checked={applyForMotorTools}
-                            onChange={() => setApplyForMotorTools(!applyForMotorTools)}
-                            className="mr-2 h-6 w-6 accent-[#EF5B13]" 
-                        />
-                        <label className="text-[#EF5B13] text-sm font-medium"><b className='uppercase'>Aplikoj për mjete motorike</b> <span className='text-[10px] lg:text-[12px] italic text-white'><br />(Klikoni në katrorin e vogël nëse aplikoni për mjete motorike)</span></label>
+                    <div className="space-y-3 lg:w-[503px] mx-auto">
+                        <div className="flex items-center justify-start w-full px-4 py-3 bg-[#031603] rounded-md">
+                            <input
+                                type="radio"
+                                name="space"
+                                value="Skënderbeu"
+                                checked={selectedSpace === 'Skënderbeu'}
+                                onChange={(e) => setSelectedSpace(e.target.value)}
+                                className="mr-3 h-5 w-5 accent-[#EF5B13]" 
+                            />
+                            <label className="text-[#EF5B13] text-sm font-medium">
+                                <b className='uppercase'>Hapësira 1: Sheshi "Skënderbeu"</b> 
+                                <span className='text-[10px] lg:text-[12px] italic text-white block'>Çmimi: 2,600.00€ + Tvsh</span>
+                            </label>
+                        </div>
+
+                        <div className="flex items-center justify-start w-full px-4 py-3 bg-[#031603] rounded-md">
+                            <input
+                                type="radio"
+                                name="space"
+                                value="Zahir Pajaziti"
+                                checked={selectedSpace === 'Zahir Pajaziti'}
+                                onChange={(e) => setSelectedSpace(e.target.value)}
+                                className="mr-3 h-5 w-5 accent-[#EF5B13]" 
+                            />
+                            <label className="text-[#EF5B13] text-sm font-medium">
+                                <b className='uppercase'>Hapësira 2: Sheshi "Zahir Pajaziti"</b> 
+                                <span className='text-[10px] lg:text-[12px] italic text-white block'>Çmimi: 2,400.00€ + Tvsh</span>
+                            </label>
+                        </div>
+
+                        <div className="flex items-center justify-start w-full px-4 py-3 bg-[#031603] rounded-md">
+                            <input
+                                type="radio"
+                                name="space"
+                                value="Nëna Terezë"
+                                checked={selectedSpace === 'Nëna Terezë'}
+                                onChange={(e) => setSelectedSpace(e.target.value)}
+                                className="mr-3 h-5 w-5 accent-[#EF5B13]" 
+                            />
+                            <label className="text-[#EF5B13] text-sm font-medium">
+                                <b className='uppercase'>Hapësira 3: Sheshi "Nëna Terezë"</b> 
+                                <span className='text-[10px] lg:text-[12px] italic text-white block'>Çmimi: 900.00€ + Tvsh</span>
+                            </label>
+                        </div>
                     </div>
                 </div>
 

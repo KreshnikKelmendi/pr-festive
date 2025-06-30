@@ -12,7 +12,7 @@ export async function POST(req: Request) {
       businessCertificateName,
       personalDocument,
       personalDocumentName,
-      applyForMotorTools = 'attachment' 
+      selectedSpace
     } = await req.json();
 
     // Decode the base64 file strings into buffers
@@ -266,12 +266,9 @@ export async function POST(req: Request) {
                 <div class="info-label">Emri i Plotë</div>
                 <div class="info-value">${name} ${surname}</div>
               </div>
-            </div>
-            
-            <div class="motor-tools-section">
-              <div class="motor-tools-title">Aplikimi për Mjete Motorike</div>
-              <div class="motor-tools-status">
-                ${applyForMotorTools === 'yes' ? '<span class="motor-tools-tick">✓</span> Aplikuesi ka plotësuar katrotin për mjete motorike' : 'Aplikuesi nuk ka plotësuar katrotin për mjete motorike'}
+              <div class="info-item">
+                <div class="info-label">Hapësira e Zgjedhur</div>
+                <div class="info-value">${selectedSpace}</div>
               </div>
             </div>
             
@@ -302,9 +299,7 @@ Emri i Kompanisë: ${companyName}
 Email i Kompanisë: ${companyEmail}
 Numri i Telefonit: ${phoneNumber}
 Emri i Plotë: ${name} ${surname}
-
-APLIKIMI PËR MJETE MOTORIKE:
-${applyForMotorTools === 'yes' ? '✓ Aplikuesi ka plotësuar katrotin për mjete motorike' : 'Aplikuesi nuk ka plotësuar katrotin për mjete motorike'}
+Hapësira e Zgjedhur: ${selectedSpace}
 
 DOKUMENTET E BASHKANGJITURA:
 • Certifikata e biznesit të regjistruar në ARBK
@@ -319,7 +314,7 @@ www.prishtinafestive.com
     // Prepare the mail options
     const mailOptions = {
       from: "Aplikimi i Ri - Prishtina Festive <donotreply.sportmarketing@gmail.com>",
-      to: 'info@prishtinafestive.com, info@nplsportmarketing.com',
+      to: 'kreshnik.kelmendi@trekuartista.com',
       subject: `Aplikim i Ri: ${name} ${surname} - ${companyName}`,
       text: textContent,
       html: htmlContent,
