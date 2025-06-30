@@ -292,7 +292,7 @@ export default function ContactForm() {
                                 className="mr-3 h-5 w-5 accent-[#EF5B13]" 
                             />
                             <label className="text-[#EF5B13] text-sm font-medium">
-                                <b className='uppercase'>Hapësira 1: Sheshi "Skënderbeu"</b> 
+                                <b className='uppercase'>Hapësira 1: Sheshi &quot;Skënderbeu&quot;</b> 
                                 <span className='text-[10px] lg:text-[12px] italic text-white block'>Çmimi: 2,600.00€ + Tvsh</span>
                             </label>
                         </div>
@@ -307,7 +307,7 @@ export default function ContactForm() {
                                 className="mr-3 h-5 w-5 accent-[#EF5B13]" 
                             />
                             <label className="text-[#EF5B13] text-sm font-medium">
-                                <b className='uppercase'>Hapësira 2: Sheshi "Zahir Pajaziti"</b> 
+                                <b className='uppercase'>Hapësira 2: Sheshi &quot;Zahir Pajaziti&quot;</b> 
                                 <span className='text-[10px] lg:text-[12px] italic text-white block'>Çmimi: 2,400.00€ + Tvsh</span>
                             </label>
                         </div>
@@ -322,7 +322,7 @@ export default function ContactForm() {
                                 className="mr-3 h-5 w-5 accent-[#EF5B13]" 
                             />
                             <label className="text-[#EF5B13] text-sm font-medium">
-                                <b className='uppercase'>Hapësira 3: Sheshi "Nëna Terezë"</b> 
+                                <b className='uppercase'>Hapësira 3: Sheshi &quot;Nëna Terezë&quot;</b> 
                                 <span className='text-[10px] lg:text-[12px] italic text-white block'>Çmimi: 900.00€ + Tvsh</span>
                             </label>
                         </div>
