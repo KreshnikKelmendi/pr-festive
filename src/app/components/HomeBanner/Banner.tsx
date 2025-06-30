@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
 import logo from "../../../../public/logo-prishtinafestive2.png";
 import { MdKeyboardDoubleArrowDown } from "react-icons/md";
 
