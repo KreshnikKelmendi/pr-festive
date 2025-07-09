@@ -20,6 +20,7 @@ export default function ContactForm() {
     const [selectedSpace, setSelectedSpace] = useState<string>('');
     const [submittedName, setSubmittedName] = useState('');
     const [submittedSurname, setSubmittedSurname] = useState('');
+    const [showSpaceErrorModal, setShowSpaceErrorModal] = useState(false);
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -35,7 +36,7 @@ export default function ContactForm() {
         }
 
         if (!selectedSpace) {
-            setFileError("Ju lutem zgjidhni një hapësirë.");
+            setShowSpaceErrorModal(true);
             return;
         }
 
@@ -166,6 +167,10 @@ export default function ContactForm() {
 
     const closeFileErrorModal = () => {
         setShowFileErrorModal(false);
+    };
+
+    const closeSpaceErrorModal = () => {
+        setShowSpaceErrorModal(false);
     };
 
     return (
@@ -370,6 +375,17 @@ export default function ContactForm() {
                     <div className="bg-white p-8 rounded-md shadow-lg py-12">
                         <p className="text-center font-bold">{fileError}</p>
                         <button onClick={closeFileErrorModal} className="mt-4 w-full bg-[#EF5B13] hover:bg-[#031603] text-white font-semibold py-2 px-4 rounded-md focus:outline-none">
+                            Mbyll
+                        </button>
+                    </div>
+                </div>
+            )}
+
+            {showSpaceErrorModal && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+                    <div className="bg-white p-8 rounded-md shadow-lg py-12">
+                        <p className="text-center font-bold text-lg">Ju lutem klikoni mbi rrethin tek hapësira "Zahir Pajaziti"</p>
+                        <button onClick={closeSpaceErrorModal} className="mt-4 w-full bg-[#EF5B13] hover:bg-[#031603] text-white font-semibold py-2 px-4 rounded-md focus:outline-none">
                             Mbyll
                         </button>
                     </div>
