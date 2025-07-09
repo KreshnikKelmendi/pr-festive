@@ -384,7 +384,7 @@ export default function ContactForm() {
             {showSpaceErrorModal && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
                     <div className="bg-white p-8 rounded-md shadow-lg py-12">
-                        <p className="text-center font-bold text-lg">Ju lutem klikoni mbi rrethin tek hapësira "Zahir Pajaziti"</p>
+                        <p className="text-center font-bold text-lg">Ju lutem klikoni mbi rrethin tek hapësira &quot;Zahir Pajaziti&quot;</p>
                         <button onClick={closeSpaceErrorModal} className="mt-4 w-full bg-[#EF5B13] hover:bg-[#031603] text-white font-semibold py-2 px-4 rounded-md focus:outline-none">
                             Mbyll
                         </button>
