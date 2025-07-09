@@ -1022,5 +1022,16 @@
       "/attachments/C-Compressed.jpg.png",
       "/attachments/Leternjoftimi Elvina.pdf.pdf"
     ]
+  },
+  {
+    "fullname": "Arber Zenelaj",
+    "companyName": "Coffe Factory",
+    "phoneNumber": "043514400",
+    "companyEmail": "arberzenelaj7@gmail.com",
+    "selectedSpace": "Zahir Pajaziti",
+    "attachments": [
+      "/attachments/New Doc 2020-02-03 103511_250709_154307.pdf.pdf",
+      "/attachments/54a35959-9591-4a1a-b972-d7610eaef619.jpeg.png"
+    ]
   }
 ] 

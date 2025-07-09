@@ -287,13 +287,8 @@ export default function ContactForm() {
                     </div>
                     
                     <div className="space-y-3 lg:w-[503px] mx-auto">
-                        <div className="group flex items-center justify-start w-full px-4 py-3 bg-gray-200 rounded-md border border-gray-300 cursor-not-allowed opacity-75 transition-all duration-300 hover:opacity-90">
-                            <div className="mr-3 h-5 w-5 flex items-center justify-center">
-                                <div className="w-4 h-4 border-2 border-gray-400 rounded-full flex items-center justify-center">
-                                    <div className="w-2 h-2 bg-gray-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                </div>
-                            </div>
-                            <label className="text-gray-600 text-sm font-medium cursor-not-allowed">
+                        <div className="flex items-center justify-start w-full px-4 py-3 bg-gray-200 rounded-md border border-gray-300 opacity-75">
+                            <label className="text-gray-600 text-sm font-medium">
                                 <b className='uppercase'>Hapësira 1: Sheshi &quot;Skënderbeu&quot;</b> 
                                 <span className='text-[10px] lg:text-[12px] italic text-gray-500 block'>Çmimi: 2,600.00€ + Tvsh</span>
                             </label>
