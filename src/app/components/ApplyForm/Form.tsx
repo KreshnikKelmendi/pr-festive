@@ -281,23 +281,31 @@ export default function ContactForm() {
                 <div className="space-y-4">
                     <h3 className="text-[#EF5B13] font-bold text-lg text-center">ZGJIDHNI HAPËSIRËN</h3>
                     
+                    {/* Time Remaining Message */}
+                    <div className="lg:w-[503px] mx-auto">
+                        <p className="text-center text-sm text-[#EF5B13] font-bold">Edhe 2 ditë kanë mbetur për të rezervuar hapësirën tuaj në Zahir Pajaziti!</p>
+                    </div>
+                    
                     <div className="space-y-3 lg:w-[503px] mx-auto">
-                        <div className="flex items-center justify-start w-full px-4 py-3 bg-[#031603] rounded-md">
-                            <input
-                                type="radio"
-                                name="space"
-                                value="Skënderbeu"
-                                checked={selectedSpace === 'Skënderbeu'}
-                                onChange={(e) => setSelectedSpace(e.target.value)}
-                                className="mr-3 h-5 w-5 accent-[#EF5B13]" 
-                            />
-                            <label className="text-[#EF5B13] text-sm font-medium">
+                        <div className="group flex items-center justify-start w-full px-4 py-3 bg-gray-200 rounded-md border border-gray-300 cursor-not-allowed opacity-75 transition-all duration-300 hover:opacity-90">
+                            <div className="mr-3 h-5 w-5 flex items-center justify-center">
+                                <div className="w-4 h-4 border-2 border-gray-400 rounded-full flex items-center justify-center">
+                                    <div className="w-2 h-2 bg-gray-400 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                </div>
+                            </div>
+                            <label className="text-gray-600 text-sm font-medium cursor-not-allowed">
                                 <b className='uppercase'>Hapësira 1: Sheshi &quot;Skënderbeu&quot;</b> 
-                                <span className='text-[10px] lg:text-[12px] italic text-white block'>Çmimi: 2,600.00€ + Tvsh</span>
+                                <span className='text-[10px] lg:text-[12px] italic text-gray-500 block'>Çmimi: 2,600.00€ + Tvsh</span>
                             </label>
+                            <div className="ml-auto flex items-center space-x-2">
+                                <svg className="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fillRule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
+                                </svg>
+                                <span className="text-red-500 text-xs font-semibold">HAPËSIRA E MBUSHUR</span>
+                            </div>
                         </div>
 
-                        <div className="flex items-center justify-start w-full px-4 py-3 bg-[#031603] rounded-md">
+                        <div className="flex items-center justify-start w-full px-4 py-3 bg-[#031603] rounded-md border-2 border-[#EF5B13] shadow-lg">
                             <input
                                 type="radio"
                                 name="space"
@@ -309,21 +317,7 @@ export default function ContactForm() {
                             <label className="text-[#EF5B13] text-sm font-medium">
                                 <b className='uppercase'>Hapësira 2: Sheshi &quot;Zahir Pajaziti&quot;</b> 
                                 <span className='text-[10px] lg:text-[12px] italic text-white block'>Çmimi: 2,400.00€ + Tvsh</span>
-                            </label>
-                        </div>
-
-                        <div className="flex items-center justify-start w-full px-4 py-3 bg-[#031603] rounded-md">
-                            <input
-                                type="radio"
-                                name="space"
-                                value="Nëna Terezë"
-                                checked={selectedSpace === 'Nëna Terezë'}
-                                onChange={(e) => setSelectedSpace(e.target.value)}
-                                className="mr-3 h-5 w-5 accent-[#EF5B13]" 
-                            />
-                            <label className="text-[#EF5B13] text-sm font-medium">
-                                <b className='uppercase'>Hapësira 3: Sheshi &quot;Nëna Terezë&quot;</b> 
-                                <span className='text-[10px] lg:text-[12px] italic text-white block'>Çmimi: 900.00€ + Tvsh</span>
+                                <span className='text-[10px] lg:text-[12px] italic text-green-400 block font-bold'>HAPËSIRA E DISPONUESHME</span>
                             </label>
                         </div>
                     </div>
