@@ -35,7 +35,7 @@ const ApplicantsList: React.FC = () => {
 
   return (
     <div className="p-8">
-      <h1 className="text-2xl font-bold mb-4">Lista e Aplikantëve për Akull n'Verë 2025</h1>
+      <h1 className="text-2xl font-bold mb-4">Lista e Aplikantëve për Akull n&apos;Verë 2025</h1>
       <table className="min-w-full border border-gray-300">
         <thead>
           <tr className="bg-gray-100">

@@ -179,7 +179,7 @@ const ApplicantsList: React.FC = () => {
       'Nr. Telefonit'
     ];
     
-    sortedSpaces.forEach((space, spaceIndex) => {
+    sortedSpaces.forEach((space) => {
       const businessesInSpace = groupedBySpace[space];
       
       // Check if we need a new page
@@ -229,7 +229,7 @@ const ApplicantsList: React.FC = () => {
           2: { cellWidth: 60 }, // Full name
           3: { cellWidth: 35, halign: 'center' }  // Phone
         },
-        didDrawPage: function (data) {
+        didDrawPage: function () {
           // Add page number
           doc.setFontSize(10);
           doc.setTextColor(150, 150, 150);
@@ -238,7 +238,7 @@ const ApplicantsList: React.FC = () => {
       });
       
       // Update currentY for next space
-      currentY = (doc as any).lastAutoTable.finalY + 15;
+      currentY = (doc as unknown as { lastAutoTable: { finalY: number } }).lastAutoTable.finalY + 15;
     });
     
     doc.save('lista-bizneseve-perzgjedhura.pdf');
@@ -350,7 +350,7 @@ const ApplicantsList: React.FC = () => {
   return (
     <div className="p-8 min-h-screen bg-gradient-to-br from-yellow-50 via-orange-50 to-yellow-100">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-3xl font-extrabold text-orange-700 drop-shadow">Lista e Aplikuesve për Akull n'Verë 2025</h1>
+        <h1 className="text-3xl font-extrabold text-orange-700 drop-shadow">Lista e Aplikuesve për Akull n&apos;Verë 2025</h1>
         <Link href="/" className="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded shadow transition duration-200">⬅ Kthehu në Faqen Kryesore</Link>
       </div>
       <div className="flex flex-wrap gap-4 mb-6">
