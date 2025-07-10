@@ -37,7 +37,7 @@ const ApplicantsList: React.FC = () => {
         const parsedData = JSON.parse(savedApplicants);
         setApplicants(parsedData);
         setLoading(false);
-      } catch (err) {
+      } catch {
         // If parsing fails, fetch from original source
         fetchOriginalData();
       }
