@@ -20,12 +20,34 @@ const ApplicantsList: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [spaceFilter, setSpaceFilter] = useState('');
   const [companyFilter, setCompanyFilter] = useState('');
+  const [nameFilter, setNameFilter] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedApplicants, setSelectedApplicants] = useState<Set<string>>(new Set());
   const [showSelectedModal, setShowSelectedModal] = useState(false);
+  const [editingApplicant, setEditingApplicant] = useState<string | null>(null);
+  const [editingSpace, setEditingSpace] = useState('');
   const applicantsPerPage = 25;
 
   useEffect(() => {
+    // Check if we have saved data in localStorage
+    const savedApplicants = localStorage.getItem('applicants-data');
+    
+    if (savedApplicants) {
+      try {
+        const parsedData = JSON.parse(savedApplicants);
+        setApplicants(parsedData);
+        setLoading(false);
+      } catch (err) {
+        // If parsing fails, fetch from original source
+        fetchOriginalData();
+      }
+    } else {
+      // No saved data, fetch from original source
+      fetchOriginalData();
+    }
+  }, []);
+
+  const fetchOriginalData = () => {
     fetch('/applicants-akull-n-vere-2025.json')
       .then((res) => {
         if (!res.ok) throw new Error('Failed to fetch applicants');
@@ -33,27 +55,36 @@ const ApplicantsList: React.FC = () => {
       })
       .then((data) => {
         setApplicants(data);
+        // Save to localStorage
+        localStorage.setItem('applicants-data', JSON.stringify(data));
         setLoading(false);
       })
       .catch((err) => {
         setError(err.message);
         setLoading(false);
       });
-  }, []);
+  };
 
   // Reset to page 1 when filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [spaceFilter, companyFilter]);
+  }, [spaceFilter, companyFilter, nameFilter]);
 
 
 
   const uniqueSpaces = Array.from(new Set(applicants.map(a => a.selectedSpace)));
+  
+  // Calculate count for each space
+  const spaceCounts = uniqueSpaces.reduce((acc, space) => {
+    acc[space] = applicants.filter(applicant => applicant.selectedSpace === space).length;
+    return acc;
+  }, {} as { [key: string]: number });
 
   const filteredApplicants = applicants.filter(applicant => {
     const matchesSpace = spaceFilter ? applicant.selectedSpace === spaceFilter : true;
     const matchesCompany = companyFilter ? applicant.companyName.toLowerCase().includes(companyFilter.toLowerCase()) : true;
-    return matchesSpace && matchesCompany;
+    const matchesName = nameFilter ? applicant.fullname.toLowerCase().includes(nameFilter.toLowerCase()) : true;
+    return matchesSpace && matchesCompany && matchesName;
   });
 
   // Calculate pagination
@@ -126,6 +157,40 @@ const ApplicantsList: React.FC = () => {
   // Close selected businesses modal
   const handleCloseSelectedModal = () => {
     setShowSelectedModal(false);
+  };
+
+  // Handle space editing
+  const handleEditSpace = (applicantId: string, currentSpace: string) => {
+    setEditingApplicant(applicantId);
+    setEditingSpace(currentSpace);
+  };
+
+  const handleSaveSpace = (applicantId: string) => {
+    const [companyName, fullname] = applicantId.split('-');
+    const updatedApplicants = applicants.map(applicant => {
+      if (applicant.companyName === companyName && applicant.fullname === fullname) {
+        return { ...applicant, selectedSpace: editingSpace };
+      }
+      return applicant;
+    });
+    setApplicants(updatedApplicants);
+    // Save updated data to localStorage
+    localStorage.setItem('applicants-data', JSON.stringify(updatedApplicants));
+    setEditingApplicant(null);
+    setEditingSpace('');
+  };
+
+  const handleCancelEdit = () => {
+    setEditingApplicant(null);
+    setEditingSpace('');
+  };
+
+  // Reset to original data
+  const handleResetToOriginal = () => {
+    if (confirm('A jeni të sigurt që dëshironi të rivendosni të dhënat në gjendjen fillestare? Kjo do të fshijë të gjitha ndryshimet.')) {
+      localStorage.removeItem('applicants-data');
+      fetchOriginalData();
+    }
   };
 
   // Generate PDF for selected businesses
@@ -361,9 +426,9 @@ const ApplicantsList: React.FC = () => {
             value={spaceFilter}
             onChange={e => setSpaceFilter(e.target.value)}
           >
-            <option value="">Të gjitha</option>
+            <option value="">Të gjitha ({applicants.length})</option>
             {uniqueSpaces.map(space => (
-              <option key={space} value={space}>{space}</option>
+              <option key={space} value={space}>{space} ({spaceCounts[space]})</option>
             ))}
           </select>
         </div>
@@ -375,6 +440,16 @@ const ApplicantsList: React.FC = () => {
             placeholder="Kërko kompani..."
             value={companyFilter}
             onChange={e => setCompanyFilter(e.target.value)}
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 mb-1">Kërko Emrin:</label>
+          <input
+            type="text"
+            className="border rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-orange-400"
+            placeholder="Kërko emër..."
+            value={nameFilter}
+            onChange={e => setNameFilter(e.target.value)}
           />
         </div>
       </div>
@@ -413,6 +488,12 @@ const ApplicantsList: React.FC = () => {
           className="bg-[#EF5B13] hover:bg-[#031603] text-white font-bold py-2 px-6 rounded shadow transition duration-200"
         >
           Shkarko të gjithë listën e aplikuesve (PDF)
+        </button>
+        <button
+          onClick={handleResetToOriginal}
+          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded shadow transition duration-200"
+        >
+          Rivendos të Dhënat
         </button>
       </div>
       <div className="overflow-x-auto rounded-xl shadow-2xl bg-gray-50 border border-orange-200">
@@ -460,7 +541,43 @@ const ApplicantsList: React.FC = () => {
                     <td className="border px-6 py-3 font-bold bg-gray-100 rounded-l-md">{applicant.companyName}</td>
                     <td className="border px-6 py-3">{applicant.phoneNumber}</td>
                     <td className="border px-6 py-3 underline text-blue-600"><a href={`mailto:${applicant.companyEmail}`}>{applicant.companyEmail}</a></td>
-                    <td className="border px-6 py-3">{applicant.selectedSpace}</td>
+                    <td className="border px-6 py-3">
+                      {editingApplicant === applicantId ? (
+                        <div className="flex items-center space-x-2">
+                          <select
+                            value={editingSpace}
+                            onChange={(e) => setEditingSpace(e.target.value)}
+                            className="border rounded px-2 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-orange-400"
+                          >
+                            {uniqueSpaces.map(space => (
+                              <option key={space} value={space}>{space}</option>
+                            ))}
+                          </select>
+                          <button
+                            onClick={() => handleSaveSpace(applicantId)}
+                            className="bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded text-xs"
+                          >
+                            Ruaj
+                          </button>
+                          <button
+                            onClick={handleCancelEdit}
+                            className="bg-gray-500 hover:bg-gray-600 text-white px-2 py-1 rounded text-xs"
+                          >
+                            Anulo
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="flex items-center justify-between">
+                          <span>{applicant.selectedSpace}</span>
+                          <button
+                            onClick={() => handleEditSpace(applicantId, applicant.selectedSpace)}
+                            className="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded text-xs ml-2"
+                          >
+                            Ndrysho
+                          </button>
+                        </div>
+                      )}
+                    </td>
                     <td className="border px-6 py-3">
                       {applicant.attachments && applicant.attachments[0] ? (
                         <a href={applicant.attachments[0]} target="_blank" rel="noopener noreferrer" className="text-orange-600 hover:underline font-medium">Shiko Certifikatën</a>

@@ -1019,8 +1019,8 @@
     "companyEmail": "malokumon1@gmail.com",
     "selectedSpace": "Skënderbeu",
     "attachments": [
-      "/attachments/C-Compressed.jpg.png",
-      "/attachments/Leternjoftimi Elvina.pdf.pdf"
+      "/attachments/IMG-ab3fe1cdb3ed32543f856b4f462e583f-V.jpg.png",
+      "/attachments/17520529602815341111640780930727.jpg.png"
     ]
   },
   {
@@ -1032,6 +1032,94 @@
     "attachments": [
       "/attachments/New Doc 2020-02-03 103511_250709_154307.pdf.pdf",
       "/attachments/54a35959-9591-4a1a-b972-d7610eaef619.jpeg.png"
+    ]
+  },
+  {
+    "fullname": "Salih Gjinovci",
+    "companyName": "PLAZA PARK SH.P.K.",
+    "phoneNumber": "044707854",
+    "companyEmail": "Greenterraceshpk@gmail.com",
+    "selectedSpace": "Skënderbeu",
+    "attachments": [
+      "/attachments/IMG_1956.jpeg.png",
+      "/attachments/IMG_1957.jpeg.png"
+    ]
+  },
+  {
+    "fullname": "Arrita Plakolli Haxhimehmeti",
+    "companyName": "Pasta Fasta SH.P.K",
+    "phoneNumber": "+38349554757",
+    "companyEmail": "info@pastafasta-ks.com",
+    "selectedSpace": "Zahir Pajaziti",
+    "attachments": [
+      "/attachments/Certifikata e ARBK-se PASTA_FASTA.pdf.pdf",
+      "/attachments/ID ARRITA PLAKOLLI HAXHIMEHMETI.pdf.pdf"
+    ]
+  },
+  {
+    "fullname": "Bashkim Bytyqi",
+    "companyName": "Pepperific LLC",
+    "phoneNumber": "+38349554757",
+    "companyEmail": "pepperific.ks@gmail.com",
+    "selectedSpace": "Zahir Pajaziti",
+    "attachments": [
+      "/attachments/certifikata e biznesit  pepperific.pdf.pdf",
+      "/attachments/id bashkim bytyqi.pdf.pdf"
+    ]
+  },
+  {
+    "fullname": "alban rrahmani",
+    "companyName": "NINA CAFFE SH.P.K.",
+    "phoneNumber": "044666372",
+    "companyEmail": "alban_rahmani@hotmail.com",
+    "selectedSpace": "Zahir Pajaziti",
+    "attachments": [
+      "/attachments/NINA.pdf.pdf",
+      "/attachments/Alban Rrahmani ID.pdf.pdf"
+    ]
+  },
+  {
+    "fullname": "Violeta Hyseni",
+    "companyName": "Autizmi flet",
+    "phoneNumber": "044889498",
+    "companyEmail": "autizmiflet@hotmail.com",
+    "selectedSpace": "Zahir Pajaziti",
+    "attachments": [
+      "/attachments/IMG_3091.jpeg.png",
+      "/attachments/IMG_3094.jpeg.png"
+    ]
+  },
+  {
+    "fullname": "Gezim Rrustemi",
+    "companyName": "Llin’s coffee sh.p.k",
+    "phoneNumber": "044667351",
+    "companyEmail": "gezim.m.rrustemi@gmail.com",
+    "selectedSpace": "Zahir Pajaziti",
+    "attachments": [
+      "/attachments/IMG_3682.jpeg.png",
+      "/attachments/IMG_3678.jpeg.png"
+    ]
+  },
+  {
+    "fullname": "Durim Xhemajli",
+    "companyName": "The Moving Guys L.L.C",
+    "phoneNumber": "045548844",
+    "companyEmail": "Themovingguysllc1@gmail.com",
+    "selectedSpace": "Zahir Pajaziti",
+    "attachments": [
+      "/attachments/inbound5817837015493191085.jpg.png",
+      "/attachments/inbound6237161674835107096.jpg.png"
+    ]
+  },
+  {
+    "fullname": "Butrint Baholli",
+    "companyName": "Festplan SHPK",
+    "phoneNumber": "044425572",
+    "companyEmail": "hasanmetaj.shqipdon@gmail.com",
+    "selectedSpace": "Zahir Pajaziti",
+    "attachments": [
+      "/attachments/Certifikata e biznesit.pdf.pdf",
+      "/attachments/ID Butrint Baholli.pdf.pdf"
     ]
   }
 ] 
