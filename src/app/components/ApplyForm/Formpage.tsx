@@ -7,18 +7,20 @@ import React from 'react';
 // import Header from '../Header';
 import Banner from '../HomeBanner/Banner';
 import ContactForm from './Form';
+import ThankYouMessage from './ThankYouMessage';
 
 // import SecondBanner from '../HomeBanner/SecondBanner';
 
 export const Formpage = () => {
   return (
     <>
-    <div className="">
+    <div className="relative">
     {/* <Header /> */}
       <Banner />
       {/* <SecondBanner /> */}
       {/* <AppCriteria /> */}
-      <ContactForm />
+      {/* <ContactForm /> */}
+      <ThankYouMessage />
     </div>
     </>
   );  

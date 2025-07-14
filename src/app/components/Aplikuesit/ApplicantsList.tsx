@@ -193,6 +193,13 @@ const ApplicantsList: React.FC = () => {
     }
   };
 
+  // Force refresh data from server
+  const handleForceRefresh = () => {
+    localStorage.removeItem('applicants-data');
+    setLoading(true);
+    fetchOriginalData();
+  };
+
   // Generate PDF for selected businesses
   const handleGenerateSelectedPdf = () => {
     const selectedData = getSelectedApplicantsData();
@@ -494,6 +501,12 @@ const ApplicantsList: React.FC = () => {
           className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-6 rounded shadow transition duration-200"
         >
           Rivendos të Dhënat
+        </button>
+        <button
+          onClick={handleForceRefresh}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded shadow transition duration-200"
+        >
+          🔄 Rifresko të Dhënat
         </button>
       </div>
       <div className="overflow-x-auto rounded-xl shadow-2xl bg-gray-50 border border-orange-200">
