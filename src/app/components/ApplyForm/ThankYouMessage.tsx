@@ -28,7 +28,7 @@ export default function ThankYouMessage() {
                         
                         {/* Subtitle */}
                         <p className="text-sm lg:text-2xl font-semibold text-[#031603] opacity-90 leading-relaxed">
-                            për aplikim për shtëpizë në <span className="font-bold text-[#EF5B13]">Akull n'Verë</span>
+                            për aplikim për shtëpizë në <span className="font-bold text-[#EF5B13]">Akull n&apos;Verë</span>
                         </p>
                     </div>
 
