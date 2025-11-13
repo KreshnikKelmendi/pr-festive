@@ -19,11 +19,11 @@ export default function Banner(): JSX.Element {
     <div className="relative w-full bg-[#FFDB00]">
       <div className="flex flex-col items-center justify-center p-8">
         {/* Logo */}
-        <div className="mb-14">
+        <div className="mb-6">
           <Image
             src={logo}
             alt="Prishtina Festive Logo"
-            width={240}
+            width={200}
             height={120}
             className="mx-auto"
             priority
@@ -31,7 +31,7 @@ export default function Banner(): JSX.Element {
         </div>
 
         {/* Title */}
-        <h1 className="text-4xl md:text-7xl lg:text-5xl font-bold text-[#1D1D1B] mb-8 font-malkie-slab text-center leading-tight">
+        <h1 className="text-4xl md:text-7xl lg:text-5xl font-bold text-[#1D1D1B] mb-6 font-malkie-slab text-center leading-tight">
           Prishtina Festive
         </h1>
         
@@ -41,12 +41,12 @@ export default function Banner(): JSX.Element {
         </p>
 
         {/* Description */}
-        <p className="text-base md:text-xl text-[#1D1D1B] mb-14 font-aeonik-pro text-center max-w-3xl mx-auto leading-normal">
+        <p className="text-base md:text-xl text-[#1D1D1B] mb-10 font-aeonik-pro text-center max-w-3xl mx-auto leading-normal">
           Këtu mund të gjeni projekt dokumentin dhe kriteret kualifikuese për aplikim në shtëpizat &quot;Verë n&rsquo;Dimën&quot;.
         </p>
 
         {/* View Button */}
-        <div className="mb-10">
+        <div className="mb-8">
           <button
             onClick={handleViewPDF}
             className="bg-[#367a3b] text-white px-8 py-3 font-bold text-base lg:text-xl hover:bg-[#87c260] transition-colors duration-300 font-aeonik-pro shadow-lg rounded-md flex items-center gap-2 mx-auto"

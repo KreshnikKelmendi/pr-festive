@@ -193,7 +193,7 @@ export default function ContactForm() {
     };
 
     return (
-        <div className="flex justify-center">
+        <div className="flex justify-center mt-[-8px]">
             <form onSubmit={handleSubmit} className="w-full space-y-4 px-8">
                 <Image src={pattern} alt="Logo" className="lg:w-[100ch] w-full object-contain mx-auto" />
                 <div className='lg:w-[409px] mx-auto'>
@@ -205,7 +205,7 @@ export default function ContactForm() {
                 <div className="space-y-4">
                     <h3 className="text-[#367a3b] font-bold text-lg text-center">INFORMATA PERSONALE</h3>
                     
-                    <div className="w-full max-w-[700px] mx-auto px-2 space-y-4">
+                    <div className="w-full max-w-[700px] mx-auto space-y-4">
                         <input
                             type="text"
                             value={fullName}
@@ -240,7 +240,7 @@ export default function ContactForm() {
                                 onChange={(e) => setPhoneNumber(e.target.value)}
                                 placeholder="Nr.kontaktues"
                                 required
-                                className="flex-1 px-4 py-3 bg-[#031603] text-white border border-[#EF5B13]/30 rounded-md focus:outline-none focus:border-[#EF5B13] transition-all placeholder-gray-500"
+                                className="flex-1 px-4 py-3 bg-[#031603] text-white border border-[#EF5B13]/30 rounded-md focus:outline-none focus:border-[#EF5B13] transition-all"
                             />
                         </div>
                     </div>
@@ -250,7 +250,7 @@ export default function ContactForm() {
                 <div className="space-y-4">
                     <h3 className="text-[#367a3b] font-bold text-lg text-center">DOKUMENTET PËR NGARKIM</h3>
                     
-                    <div className="w-full max-w-[700px] mx-auto px-2 space-y-4">
+                    <div className="w-full max-w-[700px] mx-auto space-y-4">
                         {/* File inputs in flex layout */}
                         <div className="flex flex-col lg:flex-row gap-4">
                             {/* Business Certificate */}
@@ -319,7 +319,7 @@ export default function ContactForm() {
                             }`}
                         >
                             {/* Image - Fixed square size */}
-                            <div className="relative w-24 h-24 lg:w-40 lg:h-40 mb-3 lg:mb-4 overflow-hidden mx-auto">
+                            <div className="relative w-24 h-24 lg:w-44 lg:h-44 mb-3 lg:mb-4 overflow-hidden mx-auto">
                                 <Image
                                     src={image2}
                                     alt="Sheshi Skënderbeu"
@@ -369,7 +369,7 @@ export default function ContactForm() {
                             }`}
                         >
                             {/* Image - Fixed square size */}
-                            <div className="relative w-24 h-24 lg:w-40 lg:h-40 mb-3 lg:mb-4 overflow-hidden mx-auto">
+                            <div className="relative w-24 h-24 lg:w-44 lg:h-44 mb-3 lg:mb-4 overflow-hidden mx-auto">
                                 <Image
                                     src={image1}
                                     alt="Sheshi Zahir Pajaziti"
@@ -419,7 +419,7 @@ export default function ContactForm() {
                             }`}
                         >
                             {/* Image - Fixed square size */}
-                            <div className="relative w-24 h-24 lg:w-40 lg:h-40 mb-3 lg:mb-4 overflow-hidden mx-auto">
+                            <div className="relative w-24 h-24 lg:w-44 lg:h-44 mb-3 lg:mb-4 overflow-hidden mx-auto">
                                 <Image
                                     src={image3}
                                     alt="Wonderland"
@@ -434,7 +434,7 @@ export default function ContactForm() {
                                 <span className="text-[#367a3b] text-sm lg:text-base font-bold leading-tight">
                                     Sheshi &quot;Adem Jashari&quot; Prishtina Wonderland
                                 </span>
-                                <span className="text-[#031603]/80 text-[9px] lg:text-[10px] mt-0.5 italic">(me mjete motorike)</span>
+                                <span className="text-[#031603]/80 text-[10px] lg:text-[10px] mt-0.5 italic">(me mjete motorike)</span>
                             </div>
 
                             {/* Checkbox */}
@@ -463,7 +463,7 @@ export default function ContactForm() {
                     </div>
                 </div>
 
-                <div className="w-full max-w-[700px] mx-auto px-2">
+                <div className="w-full max-w-[700px] mx-auto">
                     {loading ? (
                         <div className="w-full py-3 flex items-center justify-center">
                             <span className="flex items-center gap-1 text-[#367a3b] font-semibold text-lg">
