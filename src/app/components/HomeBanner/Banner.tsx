@@ -49,7 +49,7 @@ export default function Banner(): JSX.Element {
   }, []);
 
   const handleViewPDF = () => {
-    window.open('/assets/pdf-verendimen.pdf', '_blank');
+    window.open('/assets/Thirrje-për-aplikim-2025.pdf', '_blank');
   };
 
   const scrollToForm = () => {
