@@ -434,7 +434,7 @@ export default function ContactForm() {
                                 <span className="text-[#367a3b] text-sm lg:text-base font-bold leading-tight">
                                     Sheshi &quot;Adem Jashari&quot; Prishtina Wonderland
                                 </span>
-                                <span className="text-[#031603]/80 text-[10px] lg:text-[10px] mt-0.5 italic">(me mjete motorike)</span>
+                                <span className="text-[#031603]/80 text-[11px] underline underline-offset-4 lg:text-base mt-0.5 italic">(me mjete motorike)</span>
                             </div>
 
                             {/* Checkbox */}
