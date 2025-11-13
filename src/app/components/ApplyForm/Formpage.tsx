@@ -6,7 +6,7 @@ import React from 'react';
 // import { AppCriteria } from './AppCriteria';
 // import Header from '../Header';
 import Banner from '../HomeBanner/Banner';
-import ThankYouMessage from './ThankYouMessage';
+import ContactForm from './Form';
 
 // import SecondBanner from '../HomeBanner/SecondBanner';
 
@@ -18,8 +18,8 @@ export const Formpage = () => {
       <Banner />
       {/* <SecondBanner /> */}
       {/* <AppCriteria /> */}
-      {/* <ContactForm /> */}
-      <ThankYouMessage />
+      <ContactForm />
+      {/* <ThankYouMessage /> */}
     </div>
     </>
   );  

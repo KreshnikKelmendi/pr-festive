@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import Image from 'next/image';
-import logo from '../../../public/Logo-green.png';
+import logo from '../../../public/assets/logo-2025.png';
 // import { CgCloseR } from 'react-icons/cg';
 // import { FaHamburger } from 'react-icons/fa';
 // import { PiHamburgerBold } from 'react-icons/pi';

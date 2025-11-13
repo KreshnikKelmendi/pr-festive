@@ -314,7 +314,7 @@ www.prishtinafestive.com
     // Prepare the mail options
     const mailOptions = {
       from: "Aplikimi i Ri - Prishtina Festive <donotreply.sportmarketing@gmail.com>",
-      to: 'info@prishtinafestive.com, info@nplsportmarketing.com',
+      to: 'kreshnik.kelmendi1994@gmail.com',
       subject: `Aplikim i Ri: ${name} ${surname} - ${companyName}`,
       text: textContent,
       html: htmlContent,

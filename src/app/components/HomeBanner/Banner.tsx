@@ -1,16 +1,11 @@
 "use client";
 import Image from "next/image";
-import logo from "../../../../public/logo-prishtinafestive2.png";
+import logo from "../../../../public/assets/logo-2025.png";
 import { MdKeyboardDoubleArrowDown } from "react-icons/md";
 
 export default function Banner(): JSX.Element {
-  const handleDownloadPDF = () => {
-    const link = document.createElement('a');
-    link.href = '/Thirrje per aplikim.pdf';
-    link.download = 'Thirrje per aplikim.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  const handleViewPDF = () => {
+    window.open('/assets/pdf-verendimen.pdf', '_blank');
   };
 
   const scrollToForm = () => {
@@ -41,22 +36,23 @@ export default function Banner(): JSX.Element {
         </h1>
         
         {/* Subtitle */}
-        <p className="text-3xl md:text-5xl text-[#EF5B13] font-semibold mb-10 font-malkie-slab tracking-[1px] text-center leading-snug">
-          A doni me mërdhi Verën?
+        <p className="text-3xl md:text-5xl text-[#367a3b] font-semibold  font-malkie-slab tracking-[1px] text-center leading-snug">
+          A doni me nxe Dimnin?
         </p>
 
         {/* Description */}
         <p className="text-base md:text-xl text-[#1D1D1B] mb-14 font-aeonik-pro text-center max-w-3xl mx-auto leading-normal">
-          Këtu mund të gjeni projekt dokumentin dhe kriteret kualifikuese për aplikim në shtëpizat &quot;Akull n&rsquo;Verë&quot;.
+          Këtu mund të gjeni projekt dokumentin dhe kriteret kualifikuese për aplikim në shtëpizat &quot;Verë n&rsquo;Dimën&quot;.
         </p>
 
-        {/* Download Button */}
+        {/* View Button */}
         <div className="mb-10">
           <button
-            onClick={handleDownloadPDF}
-            className="bg-[#EF5B13] text-white px-8 py-3 font-bold text-base lg:text-xl hover:bg-[#D44A0F] transition-colors duration-300 font-aeonik-pro shadow-lg"
+            onClick={handleViewPDF}
+            className="bg-[#367a3b] text-white px-8 py-3 font-bold text-base lg:text-xl hover:bg-[#87c260] transition-colors duration-300 font-aeonik-pro shadow-lg rounded-md flex items-center gap-2 mx-auto"
           >
-            Shkarko Dokumentin
+            
+            Shiko Dokumentin
           </button>
         </div>
 
@@ -67,7 +63,7 @@ export default function Banner(): JSX.Element {
             className="text-[#1D1D1B] hover:text-[#EF5B13] transition-colors duration-300"
           >
             <div className="flex flex-col items-center space-y-1">
-              <MdKeyboardDoubleArrowDown color="#EF5B13" className="w-10 h-10 animate-bounce" />
+              <MdKeyboardDoubleArrowDown color="#367a3b" className="w-10 h-10 animate-bounce" />
             </div>
           </button>
         </div>

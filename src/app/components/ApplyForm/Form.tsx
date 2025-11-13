@@ -2,11 +2,13 @@
 
 import { useState, ChangeEvent, FormEvent } from 'react';
 import Image from 'next/image';
-import pattern from "../../../../public/Vijat-01.png";
+import pattern from "../../../../public/assets/pattern.png";
+import image1 from "../../../../public/assets/zahiri.png";
+import image2 from "../../../../public/assets/skenderbeu.png";
+import image3 from "../../../../public/assets/wonderland.png";
 
 export default function ContactForm() {
-    const [name, setName] = useState('');
-    const [surname, setSurname] = useState('');
+    const [fullName, setFullName] = useState('');
     const [companyName, setCompanyName] = useState('');
     const [companyEmail, setCompanyEmail] = useState('');
     const [businessCertificate, setBusinessCertificate] = useState<File | null>(null);
@@ -18,9 +20,24 @@ export default function ContactForm() {
     const [tooManyRequests, setTooManyRequests] = useState(false);
     const [showFileErrorModal, setShowFileErrorModal] = useState(false);
     const [selectedSpace, setSelectedSpace] = useState<string>('');
-    const [submittedName, setSubmittedName] = useState('');
-    const [submittedSurname, setSubmittedSurname] = useState('');
+    const [submittedFullName, setSubmittedFullName] = useState('');
+    const [submittedSelectedSpace, setSubmittedSelectedSpace] = useState('');
     const [showSpaceErrorModal, setShowSpaceErrorModal] = useState(false);
+
+    // Function to split full name into name and surname
+    const splitFullName = (fullName: string) => {
+        const trimmed = fullName.trim();
+        if (!trimmed) return { name: '', surname: '' };
+        
+        const parts = trimmed.split(/\s+/);
+        if (parts.length === 1) {
+            return { name: parts[0], surname: '' };
+        }
+        
+        const name = parts[0];
+        const surname = parts.slice(1).join(' ');
+        return { name, surname };
+    };
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -41,6 +58,9 @@ export default function ContactForm() {
         }
 
         setLoading(true);
+
+        // Split full name into name and surname
+        const { name, surname } = splitFullName(fullName);
 
         // Convert files to base64
         const convertFileToBase64 = (file: File): Promise<string> => {
@@ -81,13 +101,12 @@ export default function ContactForm() {
             setLoading(false);
 
             if (response.ok) {
-                // Store the submitted names for the thank you message
-                setSubmittedName(name);
-                setSubmittedSurname(surname);
+                // Store the submitted full name and selected space for the thank you message
+                setSubmittedFullName(fullName);
+                setSubmittedSelectedSpace(selectedSpace);
                 setShowModal(true);
                 // Clear form fields
-                setName('');
-                setSurname('');
+                setFullName('');
                 setCompanyName('');
                 setCompanyEmail('');
                 setBusinessCertificate(null);
@@ -175,184 +194,342 @@ export default function ContactForm() {
 
     return (
         <div className="flex justify-center">
-            <form onSubmit={handleSubmit} className="w-full bg-[#FFDB00] space-y-4 p-8">
-                <Image src={pattern} alt="Logo" className="object-contain mx-auto" />
+            <form onSubmit={handleSubmit} className="w-full space-y-4 px-8">
+                <Image src={pattern} alt="Logo" className="lg:w-[100ch] w-full object-contain mx-auto" />
                 <div className='lg:w-[409px] mx-auto'>
-                    <p className="text-[32px] text-center font-extrabold text-[#EF5B13]">Apliko këtu!</p>
-                    <p className="text-center">Plotëso të dhënat në hapësirat e mëposhtme për të aplikuar për shtëpizë në <b>&quot;Akull n&rsquo;Verë&quot;.</b></p>
+                    <p className="text-[32px] text-center font-extrabold font-malkie-slab text-[#1d1d1b]">Apliko këtu!</p>
+                    <p className="text-center">Plotëso të dhënat në hapësirat e mëposhtme për të aplikuar për shtëpizë në <b>&quot;Verë n&rsquo;Dimën&quot;.</b></p>
                 </div>
 
                 {/* SEKSIONI 1: INFORMATA PERSONALE */}
                 <div className="space-y-4">
-                    <h3 className="text-[#EF5B13] font-bold text-lg text-center">INFORMATA PERSONALE</h3>
+                    <h3 className="text-[#367a3b] font-bold text-lg text-center">INFORMATA PERSONALE</h3>
                     
-                    <div className="flex flex-col lg:flex-row justify-center items-center space-x-0 lg:space-x-4 space-y-4 lg:space-y-0">
+                    <div className="w-full max-w-[700px] mx-auto px-2 space-y-4">
                         <input
                             type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            placeholder="Emri"
+                            value={fullName}
+                            onChange={(e) => setFullName(e.target.value)}
+                            placeholder="Shkruani emrin dhe mbiemrin"
                             required
-                            className="block w-full lg:w-[244px] text-white px-4 py-3 border bg-[#031603] border-[#1D1D1B] rounded-[5px] focus:outline-none focus:ring focus:border-blue-500"
+                            className="block w-full px-4 py-3 bg-[#031603] text-white border border-[#EF5B13]/30 rounded-md focus:outline-none focus:border-[#EF5B13] transition-all"
                         />
 
                         <input
                             type="text"
-                            value={surname}
-                            onChange={(e) => setSurname(e.target.value)}
-                            placeholder="Mbiemri"
+                            value={companyName}
+                            onChange={(e) => setCompanyName(e.target.value)}
+                            placeholder="Emri i kompanisë"
                             required
-                            className="lg:mt-1 block w-full lg:w-[244px] px-4 py-3 bg-[#031603] text-white rounded-[5px] focus:outline-none focus:ring focus:border-blue-500"
-                        />
-                    </div>
-
-                    <input
-                        type="text"
-                        value={companyName}
-                        onChange={(e) => setCompanyName(e.target.value)}
-                        placeholder="Emri i Kompanisë"
-                        required
-                        className="lg:mt-1 block w-full lg:w-[503px] mx-auto px-4 py-3 bg-[#031603] text-white border-gray-300 rounded-[5px] focus:outline-none focus:ring focus:border-blue-500"
-                    />
-
-                    <div className="lg:flex lg:justify-center lg:space-x-4 flex-col lg:flex-row space-y-4 lg:space-y-0">
-                        <input
-                            type="email"
-                            value={companyEmail}
-                            onChange={(e) => setCompanyEmail(e.target.value)}
-                            placeholder="Email i Kompanisë"
-                            required
-                            className="block w-full lg:w-[244px] px-4 py-3 bg-[#031603] rounded-md text-white shadow-sm focus:outline-none focus:ring focus:border-blue-500"
+                            className="block w-full px-4 py-3 bg-[#031603] text-white border border-[#EF5B13]/30 rounded-md focus:outline-none focus:border-[#EF5B13] transition-all"
                         />
 
-                        <input
-                            type="tel"
-                            value={phoneNumber}
-                            onChange={(e) => setPhoneNumber(e.target.value)}
-                            placeholder="Nr.Tel"
-                            required
-                            className="lg:mt-1 block w-full lg:w-[244px] px-4 py-3 bg-[#031603] rounded-[5px] text-white focus:outline-none focus:ring focus:border-blue-500"
-                        />
+                        <div className="flex flex-col lg:flex-row gap-4">
+                            <input
+                                type="email"
+                                value={companyEmail}
+                                onChange={(e) => setCompanyEmail(e.target.value)}
+                                placeholder="Email adresa"
+                                required
+                                className="flex-1 px-4 py-3 bg-[#031603] text-white border border-[#EF5B13]/30 rounded-md focus:outline-none focus:border-[#EF5B13] transition-all"
+                            />
+
+                            <input
+                                type="tel"
+                                value={phoneNumber}
+                                onChange={(e) => setPhoneNumber(e.target.value)}
+                                placeholder="Nr.kontaktues"
+                                required
+                                className="flex-1 px-4 py-3 bg-[#031603] text-white border border-[#EF5B13]/30 rounded-md focus:outline-none focus:border-[#EF5B13] transition-all placeholder-gray-500"
+                            />
+                        </div>
                     </div>
                 </div>
 
                 {/* SEKSIONI 2: DOKUMENTET PËR NGARKIM */}
                 <div className="space-y-4">
-                    <h3 className="text-[#EF5B13] font-bold text-lg text-center">DOKUMENTET PËR NGARKIM</h3>
+                    <h3 className="text-[#367a3b] font-bold text-lg text-center">DOKUMENTET PËR NGARKIM</h3>
                     
-                    <input
-                        type="file"
-                        onChange={handleBusinessCertificateChange}
-                        required
-                        accept=".pdf, .jpg, .jpeg, .png"
-                        className="lg:mt-1 block w-full lg:w-[503px] mx-auto px-4 py-3 bg-[#031603] rounded-md text-white shadow-sm focus:outline-none focus:ring focus:border-blue-500"
-                    />
-                    <div className="text-center text-black text-xs italic">
-                        Ngarkoni certifikatën e biznesit të regjistruar në ARBK (PDF, JPG, PNG)
-                    </div>
-                    {businessCertificate && (
-                        <div className="text-center text-green-600 text-sm font-medium">
-                            ✓ {businessCertificate.name}
-                        </div>
-                    )}
+                    <div className="w-full max-w-[700px] mx-auto px-2 space-y-4">
+                        {/* File inputs in flex layout */}
+                        <div className="flex flex-col lg:flex-row gap-4">
+                            {/* Business Certificate */}
+                            <div className="flex-1 space-y-2">
+                                <label className="block">
+                                    <input
+                                        type="file"
+                                        onChange={handleBusinessCertificateChange}
+                                        required
+                                        accept=".pdf, .jpg, .jpeg, .png"
+                                        className="block w-full px-4 py-3 bg-[#031603] text-white border border-[#EF5B13]/30 rounded-md focus:outline-none focus:border-[#EF5B13] transition-all file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-[#367a3b] file:text-white hover:file:bg-[#c43b32] file:cursor-pointer cursor-pointer"
+                                    />
+                                </label>
+                                <p className="text-[#c43b32] text-xs italic text-center lg:text-left">
+                                    Certifikata e biznesit e regjistruar në ARBK (PDF, JPG, PNG)
+                                </p>
+                                {businessCertificate && (
+                                    <div className="text-center lg:text-left text-[#367a3b] text-xs font-medium truncate">
+                                        ✓ {businessCertificate.name}
+                                    </div>
+                                )}
+                            </div>
 
-                    <input
-                        type="file"
-                        onChange={handlePersonalDocumentChange}
-                        required
-                        accept=".pdf, .jpg, .jpeg, .png"
-                        className="lg:mt-1 block w-full lg:w-[503px] mx-auto px-4 py-3 bg-[#031603] rounded-md text-black shadow-sm focus:outline-none focus:ring focus:border-blue-500"
-                    />
-                    <div className="text-center text-black text-xs mt-1 italic">
-                        Ngarkoni dokumentin personal të identifikimit (PDF, JPG, PNG)
-                    </div>
-                    {personalDocument && (
-                        <div className="text-center text-green-600 text-sm font-medium">
-                            ✓ {personalDocument.name}
-                        </div>
-                    )}
-
-                    <div className='flex items-center justify-start lg:w-[503px] mx-auto'>
-                        <p className="lg:text-center mt-[-5px] lg:w-[503px] font-bold text-[12px] text-red-500 italic">
-                             * Ju lutem mos ngarkoni përmbajtje më të madhe se 2MB për dokumentet tuaja.
-                        </p>
-                    </div>
-                    {/* <div className="underline uppercase text-[#031603] mt-2 lg:text-center text-sm font-bold">
-                        Ju lutem mos ngarkoni përmbajtje më të madhe se 2MB për skedar
-                    </div> */}
-                </div>
-
-                {/* SEKSIONI 3: TË TJERA */}
-                <div className="space-y-4">
-                    <h3 className="text-[#EF5B13] font-bold text-lg text-center">ZGJIDHNI HAPËSIRËN</h3>
-                    
-                    {/* Time Remaining Message */}
-                    <div className="lg:w-[503px] mx-auto">
-                        <p className="text-center text-sm text-[#EF5B13] font-bold">Edhe 2 ditë kanë mbetur për të rezervuar hapësirën tuaj në Zahir Pajaziti!</p>
-                    </div>
-                    
-                    <div className="space-y-3 lg:w-[503px] mx-auto">
-                        <div className="flex items-center justify-start w-full px-4 py-3 bg-gray-200 rounded-md border border-gray-300 opacity-75">
-                            <label className="text-gray-600 text-sm font-medium">
-                                <b className='uppercase'>Hapësira 1: Sheshi &quot;Skënderbeu&quot;</b> 
-                                <span className='text-[10px] lg:text-[12px] italic text-gray-500 block'>Çmimi: 2,600.00€ + Tvsh</span>
-                            </label>
-                            <div className="ml-auto flex items-center space-x-2">
-                                <svg className="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fillRule="evenodd" d="M3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
-                                </svg>
-                                <span className="text-red-500 text-xs font-semibold">HAPËSIRA E MBUSHUR</span>
+                            {/* Personal Document */}
+                            <div className="flex-1 space-y-2">
+                                <label className="block">
+                                    <input
+                                        type="file"
+                                        onChange={handlePersonalDocumentChange}
+                                        required
+                                        accept=".pdf, .jpg, .jpeg, .png"
+                                        className="block w-full px-4 py-3 bg-[#031603] text-white border border-[#EF5B13]/30 rounded-md focus:outline-none focus:border-[#EF5B13] transition-all file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-[#367a3b] file:text-white hover:file:bg-[#c43b32] file:cursor-pointer cursor-pointer"
+                                    />
+                                </label>
+                                <p className="text-[#c43b32] text-xs italic text-center lg:text-left">
+                                    Ngarkoni dokumentin personal të identifikimit
+                                </p>
+                                {personalDocument && (
+                                    <div className="text-center lg:text-left text-[#367a3b] text-xs font-medium truncate">
+                                        ✓ {personalDocument.name}
+                                    </div>
+                                )}
                             </div>
                         </div>
 
-                        <div className="flex items-center justify-start w-full px-4 py-3 bg-[#031603] rounded-md border-2 border-[#EF5B13] shadow-lg">
-                            <input
-                                type="radio"
-                                name="space"
-                                value="Zahir Pajaziti"
-                                checked={selectedSpace === 'Zahir Pajaziti'}
-                                onChange={(e) => setSelectedSpace(e.target.value)}
-                                className="mr-3 h-5 w-5 accent-[#EF5B13]" 
-                            />
-                            <label className="text-[#EF5B13] text-sm font-medium">
-                                <b className='uppercase'>Hapësira 2: Sheshi &quot;Zahir Pajaziti&quot;</b> 
-                                <span className='text-[10px] lg:text-[12px] italic text-white block'>Çmimi: 2,400.00€ + Tvsh</span>
-                                <span className='text-[10px] lg:text-[12px] italic text-green-400 block font-bold'>HAPËSIRA E DISPONUESHME</span>
-                            </label>
+                        {/* Warning message */}
+                        <div className="w-full">
+                            <p className="text-center text-[#c43b32] text-xs font-semibold italic">
+                                * Ju lutem mos ngarkoni përmbajtje më të madhe se 2MB për dokumentet tuaja.
+                            </p>
                         </div>
                     </div>
                 </div>
 
-                <div className="flex justify-center items-center">
-                    <button
-                        type="submit"
-                        className="w-full lg:w-[200px]  bg-[#EF5B13] hover:bg-[#031603] hover:duration-200 ease-in-out text-white font-semibold py-2 rounded-[5px] transition duration-200 shadow-sm focus:outline-none focus:ring focus:ring-blue-300"
-                    >
-                        Dërgo
-                    </button>
+                {/* SEKSIONI 3: ZGJIDHNI HAPËSIRËN */}
+                <div>
+                    <h3 className="text-[#367a3b] font-bold text-lg text-center mb-4">ZGJIDHNI HAPËSIRËN</h3>
+                    
+                    <div className="grid grid-cols-3 gap-3 lg:gap-4 w-full max-w-[700px] mx-auto">
+                        {/* Option 1: Sheshi Skënderbeu */}
+                        <label 
+                            className={`group relative flex flex-col items-center p-2 lg:p-3 cursor-pointer transition-all duration-150 ${
+                                selectedSpace === 'Sheshi Skënderbeu'
+                                    ? 'opacity-100'
+                                    : 'opacity-100 hover:opacity-90'
+                            }`}
+                        >
+                            {/* Image - Fixed square size */}
+                            <div className="relative w-24 h-24 lg:w-40 lg:h-40 mb-3 lg:mb-4 overflow-hidden mx-auto">
+                                <Image
+                                    src={image2}
+                                    alt="Sheshi Skënderbeu"
+                                    fill
+                                    className="object-cover rounded-md"
+                                    priority={false}
+                                />
+                            </div>
+                            
+                            {/* Name */}
+                            <div className="flex flex-col items-center text-center w-full mb-3">
+                                <span className="text-[#367a3b] text-sm lg:text-base font-bold leading-tight">
+                                    Sheshi &quot;Skënderbeu&quot;
+                                </span>
+                            </div>
+
+                            {/* Checkbox */}
+                            <div className="flex items-center justify-center">
+                                <div className={`w-5 h-5 lg:w-6 lg:h-6 border-2 flex items-center justify-center transition-all ${
+                                    selectedSpace === 'Sheshi Skënderbeu'
+                                        ? 'border-[#36713b] bg-[#367a3b]'
+                                        : 'border-[#367a3b] group-hover:border-[#87c260] bg-transparent'
+                                }`}>
+                                    {selectedSpace === 'Sheshi Skënderbeu' && (
+                                        <svg className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-[#c43b32]" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                        </svg>
+                                    )}
+                                </div>
+                                <input
+                                    type="radio"
+                                    name="space"
+                                    value="Sheshi Skënderbeu"
+                                    checked={selectedSpace === 'Sheshi Skënderbeu'}
+                                    onChange={(e) => setSelectedSpace(e.target.value)}
+                                    className="absolute opacity-0 w-0 h-0" 
+                                />
+                            </div>
+                        </label>
+
+                        {/* Option 2: Sheshi Zahir Pajaziti */}
+                        <label 
+                            className={`group relative flex flex-col items-center p-2 lg:p-3 cursor-pointer transition-all duration-150 ${
+                                selectedSpace === 'Sheshi Zahir Pajaziti'
+                                    ? 'opacity-100'
+                                    : 'opacity-100 hover:opacity-90'
+                            }`}
+                        >
+                            {/* Image - Fixed square size */}
+                            <div className="relative w-24 h-24 lg:w-40 lg:h-40 mb-3 lg:mb-4 overflow-hidden mx-auto">
+                                <Image
+                                    src={image1}
+                                    alt="Sheshi Zahir Pajaziti"
+                                    fill
+                                    className="object-cover rounded-md"
+                                    priority={false}
+                                />
+                            </div>
+                            
+                            {/* Name */}
+                            <div className="flex flex-col items-center text-center w-full mb-3">
+                                <span className="text-[#367a3b] text-sm lg:text-base font-bold leading-tight">
+                                    Sheshi &quot;Zahir Pajaziti&quot;
+                                </span>
+                            </div>
+
+                            {/* Checkbox */}
+                            <div className="flex items-center justify-center">
+                                <div className={`w-5 h-5 lg:w-6 lg:h-6 border-2 flex items-center justify-center transition-all ${
+                                    selectedSpace === 'Sheshi Zahir Pajaziti'
+                                        ? 'border-[#367a3b] bg-[#367a3b]'
+                                        : 'border-[#367a3b] group-hover:border-[#87c260] bg-transparent'
+                                }`}>
+                                    {selectedSpace === 'Sheshi Zahir Pajaziti' && (
+                                        <svg className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-[#c43b32]" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                        </svg>
+                                    )}
+                                </div>
+                                <input
+                                    type="radio"
+                                    name="space"
+                                    value="Sheshi Zahir Pajaziti"
+                                    checked={selectedSpace === 'Sheshi Zahir Pajaziti'}
+                                    onChange={(e) => setSelectedSpace(e.target.value)}
+                                    className="absolute opacity-0 w-0 h-0" 
+                                />
+                            </div>
+                        </label>
+
+                        {/* Option 3: Wonderland */}
+                        <label 
+                            className={`group relative flex flex-col items-center p-2 lg:p-3 cursor-pointer transition-all duration-150 ${
+                                selectedSpace === 'Wonderland (me mjete motorike)'
+                                    ? 'opacity-100'
+                                    : 'opacity-100 hover:opacity-90'
+                            }`}
+                        >
+                            {/* Image - Fixed square size */}
+                            <div className="relative w-24 h-24 lg:w-40 lg:h-40 mb-3 lg:mb-4 overflow-hidden mx-auto">
+                                <Image
+                                    src={image3}
+                                    alt="Wonderland"
+                                    fill
+                                    className="object-cover rounded-md"
+                                    priority={false}
+                                />
+                            </div>
+                            
+                            {/* Name */}
+                            <div className="flex flex-col items-center text-center w-full mb-3">
+                                <span className="text-[#367a3b] text-sm lg:text-base font-bold leading-tight">
+                                    Sheshi &quot;Adem Jashari&quot; Prishtina Wonderland
+                                </span>
+                                <span className="text-[#031603]/80 text-[9px] lg:text-[10px] mt-0.5 italic">(me mjete motorike)</span>
+                            </div>
+
+                            {/* Checkbox */}
+                            <div className="flex items-center justify-center">
+                                <div className={`w-5 h-5 lg:w-6 lg:h-6 border-2 flex items-center justify-center transition-all ${
+                                    selectedSpace === 'Wonderland (me mjete motorike)'
+                                        ? 'border-[#367a3b] bg-[#367a3b]'
+                                        : 'border-[#367a3b] group-hover:border-[#87c260] bg-transparent'
+                                }`}>
+                                    {selectedSpace === 'Wonderland (me mjete motorike)' && (
+                                        <svg className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-[#c43b32]" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                        </svg>
+                                    )}
+                                </div>
+                                <input
+                                    type="radio"
+                                    name="space"
+                                    value="Wonderland (me mjete motorike)"
+                                    checked={selectedSpace === 'Wonderland (me mjete motorike)'}
+                                    onChange={(e) => setSelectedSpace(e.target.value)}
+                                    className="absolute opacity-0 w-0 h-0" 
+                                />
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <div className="w-full max-w-[700px] mx-auto px-2">
+                    {loading ? (
+                        <div className="w-full py-3 flex items-center justify-center">
+                            <span className="flex items-center gap-1 text-[#367a3b] font-semibold text-lg">
+                                Duke u procesuar
+                                <span className="flex gap-1 ml-1">
+                                    <span className="animate-bounce-dot" style={{ animationDelay: '0s' }}>.</span>
+                                    <span className="animate-bounce-dot" style={{ animationDelay: '0.2s' }}>.</span>
+                                    <span className="animate-bounce-dot" style={{ animationDelay: '0.4s' }}>.</span>
+                                </span>
+                            </span>
+                        </div>
+                    ) : (
+                        <button
+                            type="submit"
+                            className="w-full bg-[#367a3b] hover:bg-[#1d1d1b] text-white font-semibold py-3 rounded-md transition-all duration-300 shadow-md hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center gap-2"
+                        >
+                            Dërgo
+                        </button>
+                    )}
                 </div>
 
                 <p className="text-center text-[#031603] text-[12px] font-malkieslab">© 2025 Prishtina Festive</p>
-                <Image src={pattern} alt="Logo" className="object-contain mx-auto" />
+                <Image src={pattern} alt="Logo" className="object-contain lg:w-[100ch] w-full pb-8 mx-auto" />
             </form>
 
-            {loading && (
-                <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50">
-                    <div className="w-16 h-16 border-t-4 border-b-4 border-[#031603] border-solid rounded-full animate-spin"></div>
-                </div>
-            )}
-
             {showModal && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex lg:justify-center items-center z-50">
-                    <div className="bg-white p-8 rounded-md shadow-lg">
-                        <p className="text-center font-bold uppercase text-2xl text-[#EF5B13]">Faleminderit për aplikimin!</p>
-                        <p className="text-center font-medium text-lg mt-2">
-                            I nderuar <span className="font-bold text-[#031603]">{submittedName} {submittedSurname}</span>,
-                        </p>
-                        <p className="text-center font-medium text-base mt-2">
-                            Aplikimi juaj u dërgua me sukses. Për detaje tjera do të njoftoheni me kohë.
-                        </p>
-                        <button onClick={closeModal} className="mt-6 bg-[#EF5B13] hover:bg-[#031603] w-full text-white font-semibold py-3 px-4 rounded-md focus:outline-none transition duration-200">
+                <div 
+                    className="fixed inset-0 bg-black bg-opacity-50 flex lg:justify-center items-center z-50 p-4 animate-fadeIn"
+                    onClick={closeModal}
+                >
+                    <div 
+                        className="p-8 rounded-xl shadow-2xl max-w-lg w-full border border-[#367a3b]/10 animate-scaleIn"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <div className="text-center mb-8">
+                            {/* Success Icon with Animation */}
+                            <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-[#367a3b]/20 to-[#87c260]/20 mb-6 animate-bounceIn">
+                                <div className="w-16 h-16 rounded-full bg-[#367a3b]/10 flex items-center justify-center">
+                                    <svg className="w-10 h-10 text-[#367a3b]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                    </svg>
+                                </div>
+                            </div>
+                            
+                            {/* Thank You Message */}
+                            <h2 className="text-center font-bold text-2xl text-[#1d1d1b] mb-4 leading-tight">
+                                Faleminderit <span className="font-bold text-[#367a3b]">{submittedFullName}</span> që aplikuat për shtëpizë në Verë n&rsquo;Dimën.
+                            </h2>
+                            
+                            {/* Professional Message */}
+                            <div className="space-y-3 text-[#1d1d1b] leading-relaxed">
+                               
+                                <p className="text-base">
+                                    Ju keni zgjedhur hapësirën <span className="font-semibold text-[#367a3b]">{submittedSelectedSpace}</span>.
+                                </p>
+                                <p className="text-base text-[#1d1d1b]/80">
+                                    Për detaje tjera do të njoftoheni me kohë.
+                                </p>
+                            </div>
+                        </div>
+                        
+                        {/* Close Button */}
+                        <button 
+                            onClick={closeModal} 
+                            className="w-full bg-[#367a3b] hover:bg-[#1d1d1b] text-white font-semibold py-3 px-6 rounded-lg focus:outline-none transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
+                        >
                             Mbyll
                         </button>
                     </div>
@@ -384,7 +561,7 @@ export default function ContactForm() {
             {showSpaceErrorModal && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
                     <div className="bg-white p-8 rounded-md shadow-lg py-12">
-                        <p className="text-center font-bold text-lg">Ju lutem klikoni mbi rrethin tek hapësira &quot;Zahir Pajaziti&quot;</p>
+                        <p className="text-center font-bold text-lg">Ju lutem zgjidhni një hapësirë</p>
                         <button onClick={closeSpaceErrorModal} className="mt-4 w-full bg-[#EF5B13] hover:bg-[#031603] text-white font-semibold py-2 px-4 rounded-md focus:outline-none">
                             Mbyll
                         </button>
