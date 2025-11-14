@@ -193,8 +193,44 @@ export default function ContactForm() {
     };
 
     return (
-        <div className="flex justify-center mt-[-8px]">
+        <div className="flex justify-center mt-[-8px] p-8">
             <form onSubmit={handleSubmit} className="w-full space-y-4 px-8">
+                {/* Logo centered at top */}
+                <div className="flex justify-center mb-6">
+                    <Image 
+                        src="/assets/logo-2025.png" 
+                        alt="Logo" 
+                        width={170}
+                        height={120}
+                        className="w-40 h-40 sm:w-32 sm:h-32 object-contain"
+                    />
+                </div>
+
+                {/* Header Text */}
+                <div className="text-center mb-6 space-y-2">
+                    <h1 className="text-xl sm:text-2xl font-bold font-malkie-slab text-[#031603]">
+                        Prishtina Festive
+                    </h1>
+                    <h2 className="text-3xl sm:text-4xl text-[#367a3b] font-malkie-slab">
+                        Bashkë në shesh!
+                    </h2>
+                    <p className="text-sm sm:text-base text-gray-600 font-aerialpro mt-4">
+                        Këtu mund të gjeni dokumentin mbi detajet për aplikimin për shtëpizë në <b>Verë n&apos;Dimën</b>
+                    </p>
+                </div>
+
+                {/* PDF Document View/Download */}
+                <div className="flex justify-center gap-3 mb-6">
+                    <a 
+                        href="/assets/Thirrje-per-aplikim.pdf" 
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center px-6 py-3 bg-[#367a3b] text-white rounded hover:bg-[#2d5f32] font-aerialpro text-base transition shadow-md hover:shadow-lg"
+                    >
+                        Shiko dokumentin
+                    </a>
+                </div>
+
                 <Image src={pattern} alt="Logo" className="lg:w-[100ch] w-full object-contain mx-auto" />
                 <div className='lg:w-[409px] mx-auto'>
                     <p className="text-[32px] text-center font-extrabold font-malkie-slab text-[#1d1d1b]">Apliko këtu!</p>
