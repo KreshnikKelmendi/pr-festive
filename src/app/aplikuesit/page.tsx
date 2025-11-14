@@ -1,18 +1,8 @@
 "use client";
 
 import React, { useState, useMemo, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { mockApplicants, spaces } from './data/data';
-
-interface Applicant {
-  id: string;
-  fullName: string;
-  companyName: string;
-  phoneNumber: string;
-  companyEmail: string;
-  selectedSpace: string;
-  businessCertificate?: string;
-  personalDocument?: string;
-}
 
 export default function AplikuesitPage() {
   const [selectedFilter, setSelectedFilter] = useState<string>('');
@@ -206,12 +196,14 @@ export default function AplikuesitPage() {
         {/* Simple Header */}
         <div className="mb-4 sm:mb-6">
           <div className="flex items-center gap-4 mb-3">
-            <img 
+            <Image 
               src="/assets/logo-2025.png" 
               alt="Logo" 
+              width={80}
+              height={80}
               className="w-16 h-16 sm:w-20 sm:h-20 object-contain"
             />
-            <h1 className="text-2xl sm:text-3xl font-bold text-[#031603] font-aerialpro">Lista e Aplikuesve për Shtëpizë në Verë n'Dimën</h1>
+            <h1 className="text-2xl sm:text-3xl font-bold text-[#031603] font-aerialpro">Lista e Aplikuesve për Shtëpizë në Verë n&apos;Dimën</h1>
           </div>
           <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600 font-aerialpro">
             <span className="font-aerialpro">Sheshi Skënderbeu: <strong className="text-[#EF5B13] font-aerialpro">{spaceCounts['Sheshi Skënderbeu']}</strong></span>
