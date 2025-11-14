@@ -1,13 +1,18 @@
 "use client";
 
-import { useState, ChangeEvent, FormEvent } from 'react';
+import { useState, ChangeEvent, FormEvent, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import { gsap } from 'gsap';
+import { HiOutlineChevronDoubleDown } from 'react-icons/hi';
 import pattern from "../../../../public/assets/pattern.png";
 import image1 from "../../../../public/assets/zahiri.png";
 import image2 from "../../../../public/assets/skenderbeu.png";
 import image3 from "../../../../public/assets/wonderland.png";
 
 export default function ContactForm() {
+    const prishtinaRef = useRef<HTMLHeadingElement>(null);
+    const bashkeRef = useRef<HTMLHeadingElement>(null);
+    const arrowRef = useRef<HTMLDivElement>(null);
     const [fullName, setFullName] = useState('');
     const [companyName, setCompanyName] = useState('');
     const [companyEmail, setCompanyEmail] = useState('');
@@ -23,6 +28,42 @@ export default function ContactForm() {
     const [submittedFullName, setSubmittedFullName] = useState('');
     const [submittedSelectedSpace, setSubmittedSelectedSpace] = useState('');
     const [showSpaceErrorModal, setShowSpaceErrorModal] = useState(false);
+
+    // GSAP animations for headings
+    useEffect(() => {
+        if (prishtinaRef.current && bashkeRef.current) {
+            const tl = gsap.timeline();
+            
+            // Animate "Prishtina Festive" - fade in and slide up
+            tl.from(prishtinaRef.current, {
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                ease: "power3.out"
+            })
+            // Animate "Bashkë në shesh!" - fade in and slide up with slight delay
+            .from(bashkeRef.current, {
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                ease: "power3.out",
+                scale: 0.9
+            }, "-=0.4");
+        }
+    }, []);
+
+    // GSAP bounce animation for arrow
+    useEffect(() => {
+        if (arrowRef.current) {
+            gsap.to(arrowRef.current, {
+                y: 10,
+                duration: 0.8,
+                ease: "power2.inOut",
+                repeat: -1,
+                yoyo: true
+            });
+        }
+    }, []);
 
     // Function to split full name into name and surname
     const splitFullName = (fullName: string) => {
@@ -194,7 +235,7 @@ export default function ContactForm() {
 
     return (
         <div className="flex justify-center mt-[-8px] p-8">
-            <form onSubmit={handleSubmit} className="w-full space-y-4 px-8">
+            <form onSubmit={handleSubmit} className="w-full space-y-4">
                 {/* Logo centered at top */}
                 <div className="flex justify-center mb-6">
                     <Image 
@@ -208,10 +249,10 @@ export default function ContactForm() {
 
                 {/* Header Text */}
                 <div className="text-center mb-6 space-y-2">
-                    <h1 className="text-xl sm:text-2xl font-bold font-malkie-slab text-[#031603]">
+                    <h1 ref={prishtinaRef} className="text-xl sm:text-2xl font-bold font-malkie-slab text-[#031603]">
                         Prishtina Festive
                     </h1>
-                    <h2 className="text-3xl sm:text-4xl text-[#367a3b] font-malkie-slab">
+                    <h2 ref={bashkeRef} className="text-3xl sm:text-4xl text-[#367a3b] font-malkie-slab">
                         Bashkë në shesh!
                     </h2>
                     <p className="text-sm sm:text-base text-gray-600 font-aerialpro mt-4">
@@ -220,7 +261,7 @@ export default function ContactForm() {
                 </div>
 
                 {/* PDF Document View/Download */}
-                <div className="flex justify-center gap-3 mb-6">
+                <div className="flex flex-col items-center gap-3 mb-6">
                     <a 
                         href="/assets/Thirrje-per-aplikim.pdf" 
                         target="_blank"
@@ -229,6 +270,9 @@ export default function ContactForm() {
                     >
                         Shiko dokumentin
                     </a>
+                    <div ref={arrowRef} className="flex justify-center">
+                        <HiOutlineChevronDoubleDown className="text-[#367a3b] text-2xl" />
+                    </div>
                 </div>
 
                 <Image src={pattern} alt="Logo" className="lg:w-[100ch] w-full object-contain mx-auto" />
