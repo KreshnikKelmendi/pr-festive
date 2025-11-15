@@ -6,6 +6,146 @@ export const spaces = [
 
 export const mockApplicants = [
   {
+    id: '98',
+    companyName: 'A-D-E Group Sh.p.k',
+    companyEmail: 'shpkadegroup@gmail.com',
+    phoneNumber: '+38344246813',
+    fullName: 'Bashkim Gashi',
+    selectedSpace: 'Sheshi Zahir Pajaziti',
+    businessCertificate: '/attachments/Certifikata e biznesitt.pdf.pdf',
+    personalDocument: '/attachments/Dokumentat personal të identifikimit.pdf.pdf'
+  },
+  {
+    id: '97',
+    companyName: 'Soju Bar LLC',
+    companyEmail: 'atdhe@sojubar.com',
+    phoneNumber: '043567555',
+    fullName: 'Atdhe Lena',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_2064.jpeg.png',
+    personalDocument: '/attachments/21.09.22, 11_45 Microsoft Lens.pdf.png'
+  },
+  {
+    id: '96',
+    companyName: 'The Moving Guys L.L.C',
+    companyEmail: 'themovingguysllc1@gmail.com',
+    phoneNumber: '045548844',
+    fullName: 'Florent Hajdini',
+    selectedSpace: 'Sheshi Zahir Pajaziti',
+    businessCertificate: '/attachments/inbound1338714012972306935.jpg.png',
+    personalDocument: '/attachments/inbound5785713515604344325.jpg.png'
+  },
+  {
+    id: '95',
+    companyName: 'Inbox Lounge Bar SHPK',
+    companyEmail: 'Valdrinbajrami625@gmail.com',
+    phoneNumber: '044525385',
+    fullName: 'Valdrin Bajrami',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Nr.B.pdf.pdf',
+    personalDocument: '/attachments/ID.pdf.pdf'
+  },
+  {
+    id: '94',
+    companyName: 'Taverna te Martini',
+    companyEmail: 'astritt.h1@hotmail.com',
+    phoneNumber: '+38346226666',
+    fullName: 'Astrit Hajdaraj',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG-20251115-WA0027.jpg.png',
+    personalDocument: '/attachments/17632159897519217514492694093032.jpg.png'
+  },
+  {
+    id: '93',
+    companyName: 'Petrit Bajrami .B.I',
+    companyEmail: 'Petrit_baj@hotmail.com',
+    phoneNumber: '049860470',
+    fullName: 'Petrit Bajrami',
+    selectedSpace: 'Sheshi Zahir Pajaziti',
+    businessCertificate: '/attachments/IMG-d492190df1ccc364e0b8271a325e8544-V.jpg.png',
+    personalDocument: '/attachments/IMG-21cc4bb06926e1496dc4b33d821071f4-V.jpg.png'
+  },
+  {
+    id: '92',
+    companyName: 'Lord\'s Lounge SH.P.K',
+    companyEmail: 'lordslounge@outlook.com',
+    phoneNumber: '+38344557986',
+    fullName: 'Ardian Pacolli',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Scan.pdf.pdf',
+    personalDocument: '/attachments/Scan Leja.pdf.pdf'
+  },
+  {
+    id: '91',
+    companyName: 'Piceria X SHPK',
+    companyEmail: 'valentinnushi5@gmail.com',
+    phoneNumber: '046999959',
+    fullName: 'Linda Nushi',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_4181.jpeg.png',
+    personalDocument: '/attachments/IMG_4180.jpeg.png'
+  },
+  {
+    id: '90',
+    companyName: 'Taksim City SH.P.K',
+    companyEmail: 'malokumon1@gmail.com',
+    phoneNumber: '+38345506400',
+    fullName: 'Sylejman Maloku',
+    selectedSpace: 'Sheshi Zahir Pajaziti',
+    businessCertificate: '/attachments/inbound3181455755191183327.jpg.png',
+    personalDocument: '/attachments/inbound2489452116031355698.jpg.png'
+  },
+  {
+    id: '89',
+    companyName: 'Hotdog n\'sweets sh.p.k.',
+    companyEmail: 'bujar.osmanajj@gmail.com',
+    phoneNumber: '046999919',
+    fullName: 'Fisar Vejsa',
+    selectedSpace: 'Wonderland (me mjete motorike)',
+    businessCertificate: '/attachments/IMG_0215.jpeg.png',
+    personalDocument: '/attachments/IMG_0216.jpeg.png'
+  },
+  {
+    id: '88',
+    companyName: 'Magic Steam',
+    companyEmail: 'magicsteam1@outlook.com',
+    phoneNumber: '+38344330209',
+    fullName: 'Alvis Mehmeti',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/332.png',
+    personalDocument: '/attachments/IMG_1071.jpeg.png'
+  },
+  {
+    id: '87',
+    companyName: 'Blerta Sekiraqa B.I',
+    companyEmail: 'murturib27@gmail.com',
+    phoneNumber: '046124449',
+    fullName: 'Blerta Sekiraqa',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_3131.jpeg.png',
+    personalDocument: '/attachments/IMG_3130.jpeg.png'
+  },
+  {
+    id: '86',
+    companyName: 'Pezzo di pizza',
+    companyEmail: 'ismaili.suad1@gmail.com',
+    phoneNumber: '049689703',
+    fullName: 'Suad ismaili',
+    selectedSpace: 'Sheshi Zahir Pajaziti',
+    businessCertificate: '/attachments/62DE386C-9533-4BCE-88ED-3B295F0A1A61.jpeg.png',
+    personalDocument: '/attachments/DB52995F-DDAA-49E7-A4EF-DB6999E75D24.jpeg.png'
+  },
+  {
+    id: '85',
+    companyName: 'N.H.BUJTINA LIDO',
+    companyEmail: 'restlido@hotmail.com',
+    phoneNumber: '049112981',
+    fullName: 'Orhan Plepolli',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/2bcba5c4-a803-4761-91b2-788ec701fe02.jpeg.png',
+    personalDocument: '/attachments/856cfb6d-ac76-42e5-a078-e96260048584.jpeg.png'
+  },
+  {
     id: '84',
     companyName: 'Blerta Sekiraqa B.I',
     companyEmail: 'murturib27@gmail.com',
