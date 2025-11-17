@@ -3,6 +3,15 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { mockApplicants, spaces } from './data/data';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+
+// Map space names for PDF display
+const spaceMapping: { [key: string]: string } = {
+  'Sheshi Skënderbeu': 'Skenderbeu',
+  'Sheshi Zahir Pajaziti': 'Zahir Pajaziti',
+  'Wonderland (me mjete motorike)': 'Wonderland Adem Jashari'
+};
 
 export default function AplikuesitPage() {
   const [selectedFilter, setSelectedFilter] = useState<string>('');
@@ -15,6 +24,8 @@ export default function AplikuesitPage() {
     url: string;
     filename: string;
   } | null>(null);
+  const [selectedApplicants, setSelectedApplicants] = useState<Set<string>>(new Set());
+  const [activeSpaceForSelection, setActiveSpaceForSelection] = useState<string>('');
   const sortDropdownRef = useRef<HTMLDivElement>(null);
   const applicantsPerPage = 15;
 
@@ -54,6 +65,9 @@ export default function AplikuesitPage() {
     if (selectedFilter) {
       filtered = filtered.filter(applicant => applicant.selectedSpace === selectedFilter);
     }
+
+    // Don't filter by activeSpaceForSelection - we want to show all applicants
+    // but only enable checkboxes for the active space
 
     if (searchByName.trim()) {
       filtered = filtered.filter(applicant =>
@@ -111,6 +125,187 @@ export default function AplikuesitPage() {
   const getSortLabel = () => {
     return sortOrder === 'asc' ? 'I pari te i fundit' : 'Më të rejat';
   };
+
+  // Handle activating space for selection
+  const handleActivateSpaceSelection = (space: string) => {
+    if (activeSpaceForSelection === space) {
+      // If clicking the same space, deactivate it
+      setActiveSpaceForSelection('');
+      // Clear selections for this space
+      const newSelected = new Set(selectedApplicants);
+      filteredApplicants
+        .filter(applicant => applicant.selectedSpace === space)
+        .forEach(applicant => newSelected.delete(applicant.id));
+      setSelectedApplicants(newSelected);
+    } else {
+      // Activate new space
+      setActiveSpaceForSelection(space);
+    }
+  };
+
+  // Handle checkbox selection for winners list
+  const handleSelectApplicant = (applicantId: string) => {
+    if (!activeSpaceForSelection) return;
+    
+    const applicant = filteredApplicants.find(a => a.id === applicantId);
+    if (!applicant || applicant.selectedSpace !== activeSpaceForSelection) return;
+
+    const newSelected = new Set(selectedApplicants);
+    if (newSelected.has(applicantId)) {
+      newSelected.delete(applicantId);
+    } else {
+      newSelected.add(applicantId);
+    }
+    setSelectedApplicants(newSelected);
+  };
+
+  // Handle select all on current page (only for active space)
+  const handleSelectAllOnPage = () => {
+    if (!activeSpaceForSelection) return;
+
+    const newSelected = new Set(selectedApplicants);
+    const applicantsInActiveSpace = paginatedApplicants.filter(
+      applicant => applicant.selectedSpace === activeSpaceForSelection
+    );
+    
+    const allSelectedOnPage = applicantsInActiveSpace.every(applicant => 
+      newSelected.has(applicant.id)
+    );
+
+    applicantsInActiveSpace.forEach(applicant => {
+      if (allSelectedOnPage) {
+        newSelected.delete(applicant.id);
+      } else {
+        newSelected.add(applicant.id);
+      }
+    });
+
+    setSelectedApplicants(newSelected);
+  };
+
+  // Check if all on current page are selected (for active space)
+  const allSelectedOnPage = activeSpaceForSelection 
+    ? paginatedApplicants.length > 0 && 
+      paginatedApplicants
+        .filter(applicant => applicant.selectedSpace === activeSpaceForSelection)
+        .every(applicant => selectedApplicants.has(applicant.id))
+    : false;
+
+  // Generate Winners List PDF for a specific space
+  const handleGenerateWinnersPDF = (targetSpace: string) => {
+    const selectedData = filteredApplicants.filter(applicant => 
+      selectedApplicants.has(applicant.id) && applicant.selectedSpace === targetSpace
+    );
+
+    if (selectedData.length === 0) {
+      alert('Ju lutem zgjidhni të paktën një aplikant për këtë shesh për të krijuar listën fituese!');
+      return;
+    }
+
+    const doc = new jsPDF({ orientation: 'portrait' });
+    
+    // Clean white background
+    doc.setFillColor(255, 255, 255);
+    doc.rect(0, 0, 210, 297, 'F');
+    
+    // Title
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(18);
+    doc.setTextColor(239, 91, 19);
+    doc.text('LISTA FITUESE', 105, 20, { align: 'center' });
+    
+    // Space subtitle
+    const displaySpace = spaceMapping[targetSpace] || targetSpace;
+    doc.setFontSize(14);
+    doc.setTextColor(54, 122, 59);
+    doc.text(`Sheshi: ${displaySpace}`, 105, 30, { align: 'center' });
+    
+    // Date
+    doc.setFontSize(12);
+    doc.setFont('helvetica', 'normal');
+    doc.setTextColor(100, 100, 100);
+    const dateStr = new Date().toLocaleDateString('sq-AL', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+    doc.text(`Gjeneruar më: ${dateStr}`, 105, 40, { align: 'center' });
+    
+    let currentY = 50;
+    let pageNumber = 1;
+
+    // Table columns
+    const columns = [
+      '#',
+      'Emri i Plotë',
+      'Emri i Kompanisë',
+      'Email',
+      'Telefoni',
+      'Certifikatat'
+    ];
+
+    // Table for this space
+    const rows = selectedData.map((applicant, idx) => [
+      idx + 1,
+      applicant.fullName,
+      applicant.companyName,
+      applicant.companyEmail,
+      applicant.phoneNumber,
+      (applicant.businessCertificate || applicant.personalDocument) ? 'PO' : '—'
+    ]);
+    
+    autoTable(doc, {
+      head: [columns],
+      body: rows,
+      startY: currentY,
+      styles: { 
+        font: 'helvetica', 
+        fontSize: 9,
+        textColor: [50, 50, 50]
+      },
+      headStyles: { 
+        fillColor: [239, 91, 19],
+        textColor: [255, 255, 255],
+        fontStyle: 'bold'
+      },
+      alternateRowStyles: { 
+        fillColor: [248, 248, 248]
+      },
+      margin: { left: 15, right: 15 },
+      columnStyles: {
+        0: { cellWidth: 15, halign: 'center' }, // #
+        1: { cellWidth: 45 }, // Full Name
+        2: { cellWidth: 50 }, // Company Name
+        3: { cellWidth: 50 }, // Email
+        4: { cellWidth: 30, halign: 'center' }, // Phone
+        5: { cellWidth: 25, halign: 'center' } // Certificates
+      },
+      didDrawPage: function () {
+        // Add page number
+        doc.setFontSize(10);
+        doc.setTextColor(150, 150, 150);
+        doc.text(`Faqja ${pageNumber}`, 105, 290, { align: 'center' });
+      }
+    });
+    
+    const fileName = `lista-fituese-${displaySpace.toLowerCase().replace(/\s+/g, '-')}-${new Date().toISOString().split('T')[0]}.pdf`;
+    doc.save(fileName);
+    
+    // Keep selections saved - don't clear after generating PDF
+  };
+
+  const selectedCount = selectedApplicants.size;
+
+  // Calculate selected count per space
+  const selectedCountBySpace = useMemo(() => {
+    const counts: { [key: string]: number } = {};
+    spaces.forEach(space => {
+      counts[space] = filteredApplicants.filter(applicant => 
+        selectedApplicants.has(applicant.id) && applicant.selectedSpace === space
+      ).length;
+    });
+    return counts;
+  }, [selectedApplicants, filteredApplicants]);
 
   // Pagination Component
   const Pagination = () => {
@@ -255,12 +450,17 @@ export default function AplikuesitPage() {
         </div>
 
         {/* Results Count and Sort Button */}
-        <div className="mb-3 flex justify-between items-center gap-3">
+        <div className="mb-3 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
           <div className="text-xs sm:text-sm text-gray-600 font-aerialpro">
             Rezultatet: <span className="font-bold text-[#EF5B13]">{filteredApplicants.length}</span>
             {totalPages > 1 && (
               <span className="ml-2">
                 (Faqja <span className="font-bold">{currentPage}</span> nga <span className="font-bold">{totalPages}</span>)
+              </span>
+            )}
+            {selectedCount > 0 && (
+              <span className="ml-2 text-[#367a3b] font-bold">
+                • Zgjedhur: {selectedCount}
               </span>
             )}
           </div>
@@ -293,6 +493,52 @@ export default function AplikuesitPage() {
           </div>
         </div>
 
+        {/* Generate Winners List PDF Buttons by Space - Always Visible */}
+        <div className="mb-4 p-4  rounded-lg border border-gray-200">
+          <h3 className="text-sm font-bold underline underline-offset-4 text-[#031603] font-aerialpro mb-3">
+            Krijo listen përzgjedhëse për sheshet:
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {spaces.map((space) => {
+              const count = selectedCountBySpace[space] || 0;
+              const displaySpace = spaceMapping[space] || (space === 'Wonderland (me mjete motorike)' ? 'Wonderland' : space);
+              const isActive = activeSpaceForSelection === space;
+              const hasSelections = count > 0;
+              
+              return (
+                <div key={space} className="flex flex-col gap-2">
+                  <button
+                    onClick={() => handleActivateSpaceSelection(space)}
+                    className={`px-4 py-2 rounded font-aerialpro font-bold text-sm transition whitespace-nowrap ${
+                      isActive
+                        ? 'bg-[#EF5B13] text-white hover:bg-[#c94a0f]'
+                        : 'bg-[#367a3b] text-white hover:bg-[#2d5f32]'
+                    }`}
+                  >
+                    {isActive ? `✓ ${displaySpace}` : displaySpace}
+                    {isActive && ' (Aktive)'}
+                  </button>
+                  {hasSelections && (
+                    <button
+                      onClick={() => handleGenerateWinnersPDF(space)}
+                      className="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700 font-aerialpro text-xs transition"
+                    >
+                      Gjenero PDF ({count})
+                    </button>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+          {activeSpaceForSelection && (
+            <div className="mt-3 pt-3 border-t border-gray-300">
+              <p className="text-xs text-gray-600 font-aerialpro">
+                Zgjidhni aplikantët për <strong>{spaceMapping[activeSpaceForSelection] || activeSpaceForSelection}</strong> duke përdorur checkboxes më poshtë
+              </p>
+            </div>
+          )}
+        </div>
+
         {/* Pagination Top */}
         {totalPages > 1 && <Pagination />}
 
@@ -301,17 +547,38 @@ export default function AplikuesitPage() {
           {paginatedApplicants.length > 0 ? (
             paginatedApplicants.map((applicant) => (
               <div key={applicant.id} className="border-b border-gray-300 p-4">
-                <div className="flex flex-col">
-                  <span className="text-xs font-bold text-[#EF5B13] font-aerialpro mb-1">ID: {applicant.id}</span>
-                  <h3 className="text-base font-bold text-[#367a3b] font-aerialpro tracking-[0.5px] mb-2">
-                    {applicant.fullName}
-                  </h3>
-                  <p className="text-sm text-gray-600 font-aerialpro mb-1">
-                    {applicant.companyName}
-                  </p>
-                  <p className="text-sm text-[#367a3b] font-aerialpro">
-                    {applicant.selectedSpace === 'Wonderland (me mjete motorike)' ? 'Wonderland' : applicant.selectedSpace}
-                  </p>
+                <div className="flex items-start gap-3">
+                  {activeSpaceForSelection && (
+                    <input
+                      type="checkbox"
+                      checked={selectedApplicants.has(applicant.id)}
+                      onChange={() => handleSelectApplicant(applicant.id)}
+                      disabled={applicant.selectedSpace !== activeSpaceForSelection}
+                      className={`w-5 h-5 text-[#EF5B13] border-gray-700 rounded focus:ring-2 focus:ring-[#EF5B13] mt-1 flex-shrink-0 ${
+                        applicant.selectedSpace === activeSpaceForSelection 
+                          ? 'cursor-pointer' 
+                          : 'cursor-not-allowed opacity-30'
+                      }`}
+                    />
+                  )}
+                  <div className="flex flex-col flex-1">
+                    <span className="text-xs font-bold text-[#EF5B13] font-aerialpro mb-1">ID: {applicant.id}</span>
+                    <h3 className="text-base font-bold text-[#367a3b] font-aerialpro tracking-[0.5px] mb-2">
+                      {applicant.fullName}
+                    </h3>
+                    <p className="text-sm text-gray-600 font-aerialpro mb-1">
+                      {applicant.companyName}
+                    </p>
+                    <p className="text-sm text-[#367a3b] font-aerialpro mb-1">
+                      {applicant.selectedSpace === 'Wonderland (me mjete motorike)' ? 'Wonderland' : applicant.selectedSpace}
+                    </p>
+                    <p className="text-xs text-gray-500 font-aerialpro">
+                      {applicant.companyEmail}
+                    </p>
+                    <p className="text-xs text-gray-500 font-aerialpro">
+                      {applicant.phoneNumber}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))
@@ -322,12 +589,68 @@ export default function AplikuesitPage() {
           )}
         </div>
 
+        {/* Generate Winners PDF Buttons by Space (Mobile) - Always Visible */}
+        <div className="md:hidden mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+          <h3 className="text-sm font-bold text-[#031603] font-aerialpro mb-3">
+            Krijo Lista Fituese për Sheshet:
+          </h3>
+          <div className="flex flex-col gap-2">
+            {spaces.map((space) => {
+              const count = selectedCountBySpace[space] || 0;
+              const displaySpace = spaceMapping[space] || (space === 'Wonderland (me mjete motorike)' ? 'Wonderland' : space);
+              const isActive = activeSpaceForSelection === space;
+              
+              return (
+                <div key={space} className="flex flex-col gap-2">
+                  <button
+                    onClick={() => handleActivateSpaceSelection(space)}
+                    className={`w-full px-6 py-3 rounded-lg font-aerialpro font-bold shadow-lg transition ${
+                      isActive
+                        ? 'bg-[#EF5B13] text-white hover:bg-[#c94a0f]'
+                        : 'bg-[#367a3b] text-white hover:bg-[#2d5f32]'
+                    }`}
+                  >
+                    {isActive ? `✓ ${displaySpace}` : displaySpace}
+                    {isActive && ' (Aktive)'}
+                  </button>
+                  {count > 0 && (
+                    <button
+                      onClick={() => handleGenerateWinnersPDF(space)}
+                      className="w-full px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 font-aerialpro text-sm transition"
+                    >
+                      Gjenero PDF ({count})
+                    </button>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+          {activeSpaceForSelection && (
+            <div className="mt-3 pt-3 border-t border-gray-300">
+              <p className="text-xs text-gray-600 font-aerialpro">
+                Zgjidhni aplikantët për <strong>{spaceMapping[activeSpaceForSelection] || activeSpaceForSelection}</strong> duke përdorur checkboxes më poshtë
+              </p>
+            </div>
+          )}
+        </div>
+
         {/* Desktop Table View */}
         <div className="hidden md:block border border-gray-400 p-1 sm:p-2 rounded overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full min-w-[640px]">
               <thead className="bg-gray-100">
                 <tr>
+                  {activeSpaceForSelection && (
+                    <th className="px-2 sm:px-4 py-2 text-center text-xs sm:text-sm text-[#031603] font-aerialpro border-b w-12">
+                      <input
+                        type="checkbox"
+                        checked={allSelectedOnPage}
+                        onChange={handleSelectAllOnPage}
+                        className="w-4 h-4 text-[#EF5B13] border-gray-700 rounded focus:ring-2 focus:ring-[#EF5B13] cursor-pointer"
+                        title="Zgjidh të gjitha në këtë faqe"
+                      />
+                    </th>
+                  )}
                   <th className="px-2 sm:px-4 py-2 text-left text-xs sm:text-sm text-[#031603] font-aerialpro border-b">ID</th>
                   <th className="px-2 sm:px-4 py-2 text-left text-xs sm:text-sm text-[#031603] font-aerialpro border-b">Emri</th>
                   <th className="px-2 sm:px-4 py-2 text-left text-xs sm:text-sm text-[#031603] font-aerialpro border-b">Kompania</th>
@@ -341,6 +664,21 @@ export default function AplikuesitPage() {
                 {paginatedApplicants.length > 0 ? (
                   paginatedApplicants.map((applicant) => (
                     <tr key={applicant.id} className="border-b hover:bg-gray-50">
+                      {activeSpaceForSelection && (
+                        <td className="px-2 sm:px-4 py-2 text-center">
+                          <input
+                            type="checkbox"
+                            checked={selectedApplicants.has(applicant.id)}
+                            onChange={() => handleSelectApplicant(applicant.id)}
+                            disabled={applicant.selectedSpace !== activeSpaceForSelection}
+                            className={`w-4 h-4 text-[#EF5B13] border-gray-700 rounded focus:ring-2 focus:ring-[#EF5B13] ${
+                              applicant.selectedSpace === activeSpaceForSelection 
+                                ? 'cursor-pointer' 
+                                : 'cursor-not-allowed opacity-30'
+                            }`}
+                          />
+                        </td>
+                      )}
                       <td className="px-2 sm:px-4 py-2 text-xs sm:text-sm font-bold text-[#EF5B13] font-aerialpro">{applicant.id}</td>
                       <td className="px-2 sm:px-4 py-2 text-xs sm:text-sm text-[#367a3b] font-aerialpro font-bold tracking-[0.5px]">
                         {applicant.fullName}
@@ -375,7 +713,7 @@ export default function AplikuesitPage() {
                   ))
                 ) : (
                   <tr>
-                    <td colSpan={7} className="px-4 py-8 text-center text-gray-500 font-aerialpro">
+                    <td colSpan={activeSpaceForSelection ? 8 : 7} className="px-4 py-8 text-center text-gray-500 font-aerialpro">
                       Nuk u gjetën aplikantë
                     </td>
                   </tr>
