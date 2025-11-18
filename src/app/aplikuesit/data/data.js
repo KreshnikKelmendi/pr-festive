@@ -6,6 +6,126 @@ export const spaces = [
 
 export const mockApplicants = [
   {
+    id: '129',
+    companyName: 'FRIENDS SH.P.K.',
+    companyEmail: 'erong2004@gmail.com',
+    phoneNumber: '+38349155748',
+    fullName: 'Eron Gashi',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Certifikaata .pdf.pdf',
+    personalDocument: '/attachments/IMG_2796.jpeg.png'
+  },
+  {
+    id: '128',
+    companyName: 'Nena Shpk',
+    companyEmail: 'vigan_b@hotmail.com',
+    phoneNumber: '045555200',
+    fullName: 'Vigan Beqiri',
+    selectedSpace: 'Sheshi Zahir Pajaziti',
+    businessCertificate: '/attachments/Certifikate_Numri fiskal_NenaShpk.pdf.pdf',
+    personalDocument: '/attachments/ViganBeqiri_Leternjoftimi.pdf.pdf'
+  },
+  {
+    id: '127',
+    companyName: 'Tartine L.L.C.',
+    companyEmail: 'info@tartinedeli.com',
+    phoneNumber: '+38349644788',
+    fullName: 'Adelina Sokoli',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Certifikata ee Biznesit.pdf.pdf',
+    personalDocument: '/attachments/ID Adelina Sokoli.pdf.pdf'
+  },
+  {
+    id: '126',
+    companyName: 'Proka shpk',
+    companyEmail: 'besnikzeka08@gmail.com',
+    phoneNumber: '044454931',
+    fullName: 'Saranda sogojeva',
+    selectedSpace: 'Sheshi Zahir Pajaziti',
+    businessCertificate: '/attachments/Proka Certif.pdf.pdf',
+    personalDocument: '/attachments/IMG_3303.jpeg.png'
+  },
+  {
+    id: '125',
+    companyName: 'Furra Roha\'s 2 SH.P.K (Furra UKA org.)',
+    companyEmail: 'furrauka@gmail.com',
+    phoneNumber: '+38349457603',
+    fullName: 'Ruant Cikaj',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Furra Roha’s -ARBK.pdf.pdf',
+    personalDocument: '/attacments/RuantCikajID.pdf.pdf'
+  },
+  {
+    id: '124',
+    companyName: 'Traditional kuzina shpk',
+    companyEmail: 'denishoxha200@gmail.com',
+    phoneNumber: '+38348467280',
+    fullName: 'Shensije nuhiaj musaj',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/inbound7578342680187120088.pdf.pdf',
+    personalDocument: '/attachments/inbound4730873329461022781.pdf.pdf'
+  },
+  {
+    id: '123',
+    companyName: 'ONYX HOOKAH LOUNGE SH.P.K.',
+    companyEmail: 'agonkrasniqi128@gmail.com',
+    phoneNumber: '+38344869440',
+    fullName: 'Agon Krasniqi',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_6991.jpeg.png',
+    personalDocument: '/attachments/IMG_6993.png (1).png'
+  },
+  {
+    id: '122',
+    companyName: 'Infinit food & drinks shpk',
+    companyEmail: 'infinitfoodanddrinks@gmail.com',
+    phoneNumber: '044525404',
+    fullName: 'Miradije Bogaj',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_4279.jpeg.png',
+    personalDocument: '/attachments/IMG_4278.jpeg.png'
+  },
+  {
+    id: '121',
+    companyName: 'mikava',
+    companyEmail: 'lindonislami11@gmail.com',
+    phoneNumber: '045727210',
+    fullName: 'lindon islami',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/iimage.jpg.png',
+    personalDocument: '/attachments/image.jpg (1).png'
+  },
+  {
+    id: '120',
+    companyName: 'EIG Investment Group',
+    companyEmail: 'eiggroup.ks@gmail.com',
+    phoneNumber: '049302000',
+    fullName: 'Edib Cibukciu',
+    selectedSpace: 'Sheshi Zahir Pajaziti',
+    businessCertificate: '/attachments/Eig investment.pdf.pdf',
+    personalDocument: '/attachments/Pasaporta edibi.pdf.pdf'
+  },
+  {
+    id: '119',
+    companyName: 'MykonosSerenity Coffee L.L.C.',
+    companyEmail: 'Petritbeqiri1@gmail.com',
+    phoneNumber: '048888007',
+    fullName: 'Valbone Dalipi',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/81cb1dd4-d322-4725-bfc0-09553f5d4729.jpeg.png',
+    personalDocument: '/attachments/12b4a3cd-efd7-4f84-b0c8-452c33443047.jpeg.png'
+  },
+  {
+    id: '118',
+    companyName: 'Hotel Opera',
+    companyEmail: 'ermal.ismaili15@gnail.com',
+    phoneNumber: '048855852',
+    fullName: 'Ermal Ismaili',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_2127.jpeg.png',
+    personalDocument: '/attachments/IMG_2128.jpeg.png'
+  },
+  {
     id: '117',
     companyName: 'Rombo Event',
     companyEmail: 'jonnredenica@gmail.com',
