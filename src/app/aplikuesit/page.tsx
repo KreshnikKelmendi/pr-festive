@@ -231,8 +231,8 @@ export default function AplikuesitPage() {
     });
     doc.text(`Gjeneruar më: ${dateStr}`, 105, 40, { align: 'center' });
     
-    let currentY = 50;
-    let pageNumber = 1;
+    const currentY = 50;
+    const pageNumber = 1;
 
     // Table columns
     const columns = [
