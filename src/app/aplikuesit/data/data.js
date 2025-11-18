@@ -6,6 +6,46 @@ export const spaces = [
 
 export const mockApplicants = [
   {
+    id: '133',
+    companyName: 'OMBRA SH.P.K',
+    companyEmail: 'rexhepiarizon@gmail.com',
+    phoneNumber: '+38345502468',
+    fullName: 'Arizon Rexhepi',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/C8F0DA9B-162A-45FC-8A26-9EE9CE5BB1EB.JPG.png',
+    personalDocument: '/attachments/514EDFF1-C9F4-4AF4-8188-66CF96B99223.JPG.png'
+  },
+  {
+    id: '132',
+    companyName: 'Eco Exclusive Sh.P.K.',
+    companyEmail: 'info@eco-exclusive.com',
+    phoneNumber: '049192291*049997811',
+    fullName: 'Leonora morel',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/1757512650387740.jpeg.png',
+    personalDocument: '/attachments/7fe5956e-5bc2-4d64-bbdb-7232b353c957.jpeg.png'
+  },
+  {
+    id: '131',
+    companyName: 'To GO Group',
+    companyEmail: 'mexhuanifisnik@gmail.com',
+    phoneNumber: '049119119',
+    fullName: 'Fisnik Mexhuani',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_7166.jpeg.png',
+    personalDocument: '/attachments/IMG_6633.jpeg.png'
+  },
+  {
+    id: '130',
+    companyName: 'Live Grill',
+    companyEmail: 'enverlatifi50@gmail.com',
+    phoneNumber: '043716023',
+    fullName: 'Enver Latifi',
+    selectedSpace: 'Wonderland (me mjete motorike)',
+    businessCertificate: '/attachments/Screenshot_20251118_125022_Messenger.jpg.png',
+    personalDocument: '/attachments/17634663707527804237737350676938.jpg.png'
+  },
+  {
     id: '129',
     companyName: 'FRIENDS SH.P.K.',
     companyEmail: 'erong2004@gmail.com',
