@@ -6,6 +6,126 @@ export const spaces = [
 
 export const mockApplicants = [
   {
+    id: '179',
+    companyName: 'Rojo Caffe Bar',
+    companyEmail: 'iscoo12311@gmail.com',
+    phoneNumber: '043869287',
+    fullName: 'Ndriqim krasniqi',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_2662.jpeg.png',
+    personalDocument: '/attachments/ddd.png'
+  },
+  {
+    id: '178',
+    companyName: 'Vila Germia',
+    companyEmail: 'artkelani3@gmail.com',
+    phoneNumber: '044691616',
+    fullName: 'Art Kelani',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Certifikatae e Biznesit.pdf.pdf',
+    personalDocument: '/attachments/eScanned Document.pdf.png'
+  },
+  {
+    id: '177',
+    companyName: "RUD'S PIZZA",
+    companyEmail: 'feliks.nikolla@gmail.com',
+    phoneNumber: '048169491',
+    fullName: 'Feliks Nikolla',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Certifikata e Biznesit - AMA Foods LLC.jpg.png',
+    personalDocument: '/attachments/ID - Feliks Nikolla.pdf.png'
+  },
+  {
+    id: '176',
+    companyName: 'Violeta Z. Hasani B.I.',
+    companyEmail: 'diondedinca@gmail.com',
+    phoneNumber: '045881914',
+    fullName: 'Dion dedinca',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_0888.jpeg.png',
+    personalDocument: '/attachments/6c766b89-2521-4c3c-8156-af27f8f6ccaf.jpeg.png'
+  },
+  {
+    id: '175',
+    companyName: 'Leon Hasani B.I',
+    companyEmail: 'leonhasani069@gmail.com',
+    phoneNumber: '044280999',
+    fullName: 'Leon Hasani',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_0558.jpeg.png',
+    personalDocument: '/attachments/2E11BD6F-7F58-45BD-B269-BC01BFCCDE2E.jpeg.png'
+  },
+  {
+    id: '174',
+    companyName: 'Arra Caffe SH.P.K',
+    companyEmail: 'blendismaili7@gmail.com',
+    phoneNumber: '049105035',
+    fullName: 'Agron Berisha',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_0049.jpeg.png',
+    personalDocument: '/attachments/IMG_0047.jpeg.png'
+  },
+  {
+    id: '173',
+    companyName: 'Restaurant Bar MARCO POLO SH.P.K',
+    companyEmail: 'donatmeholli068@gmail.com',
+    phoneNumber: '044497804',
+    fullName: 'Donat Meholli',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_0050.jpeg.png',
+    personalDocument: '/attachments/IMG_0052.jpeg.png'
+  },
+  {
+    id: '172',
+    companyName: 'Door53 shpk',
+    companyEmail: 'kreshnik.hyseni@gmail.com',
+    phoneNumber: '044555353',
+    fullName: 'Albiton Zhjeqi',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/ARBK (11).pdf.pdf',
+    personalDocument: '/attachments/albiton id.pdf.pdf'
+  },
+  {
+    id: '171',
+    companyName: 'Prishtina Smoke House SH.P.K',
+    companyEmail: 'drinmatoshi4@gmail.com',
+    phoneNumber: '044390466',
+    fullName: 'Vesa Hasanaj',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/9a92e6ef-064b-456d-a514-fc884cdc06d1.jpeg.png',
+    personalDocument: '/attachments/IMG_7726.jpeg.png'
+  },
+  {
+    id: '170',
+    companyName: 'Bond Caffe & Food Shop',
+    companyEmail: 'qendresa.mahmutxhiku@gmail.com',
+    phoneNumber: '+38348380670',
+    fullName: 'Mergim Mahmutxhiku',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/PHOTO-2025-11-21-11-01-54.jpg.png',
+    personalDocument: '/attachments/PHOTO-2025-11-21-11-02-16.jpg.png'
+  },
+  {
+    id: '169',
+    companyName: 'Almoras Cafee',
+    companyEmail: 'aliuleutrim2@gmail.com',
+    phoneNumber: '048651951',
+    fullName: 'Leutrim Aliu',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_6292.jpeg.png',
+    personalDocument: '/attachments/IMG_6293.jpeg.png'
+  },
+  {
+    id: '168',
+    companyName: 'Hardrockway L.L.C',
+    companyEmail: 'deliqinaxhit@gmail.com',
+    phoneNumber: '043855330',
+    fullName: 'Naxhit Deliqi',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/HARDROCKWAY L.L.C ARBK.pdf.pdf',
+    personalDocument: '/attachments/NAXHIT DELIQI - PASSPORT.pdf.pdf'
+  },
+  {
     id: '167',
     companyName: 'Sirius Wine Shpk',
     companyEmail: 'info@siriuswine.com',
