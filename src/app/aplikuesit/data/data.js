@@ -6,6 +6,346 @@ export const spaces = [
 
 export const mockApplicants = [
   {
+    id: '167',
+    companyName: 'Sirius Wine Shpk',
+    companyEmail: 'info@siriuswine.com',
+    phoneNumber: '049848222',
+    fullName: 'Fidaim Rashiti',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/1.ARBK - Certificata e Biznesit Sirius Wine.pdf.pdf',
+    personalDocument: '/attachments/FIDIAM RASHITI ID.pdf.pdf'
+  },
+  {
+    id: '166',
+    companyName: 'Pri Caffe Bar SH.P.K.',
+    companyEmail: 'nezirg98@gmail.com',
+    phoneNumber: '+38344669066',
+    fullName: 'Nezir Gashi',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_0126.jpeg.png',
+    personalDocument: '/attachments/IMG_0125.jpeg.png'
+  },
+  {
+    id: '165',
+    companyName: 'Cafe Boheme',
+    companyEmail: 'thacifatos@gmail.com',
+    phoneNumber: '044170320',
+    fullName: 'Flamur Thaçi',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Tosi.pdf.pdf',
+    personalDocument: '/attachments/Tosi.pdf.pdf'
+  },
+  {
+    id: '164',
+    companyName: 'Melt Bistro L.L.C',
+    companyEmail: 'adelinam1@hotmail.com',
+    phoneNumber: '048324423',
+    fullName: 'Besnik Mushica',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Certifikaataa.pdf.pdf',
+    personalDocument: '/attachments/Place of birth - Copy.pdf.pdf'
+  },
+  {
+    id: '163',
+    companyName: 'Novum L.L.C',
+    companyEmail: 'jetongjonaj2@gmail.com',
+    phoneNumber: '+38346118830',
+    fullName: 'Jeton Gjonaj',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_2772.jpeg.png',
+    personalDocument: '/attachments/IMG_2773.jpeg.png'
+  },
+  {
+    id: '162',
+    companyName: "N'Pauz PR01 SH.P.K",
+    companyEmail: 'makolliardi12@gmail.com',
+    phoneNumber: '044462731',
+    fullName: 'Arbër Kurtaj',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/arbk-5.pdf.pdf',
+    personalDocument: '/attachments/leternjoftiimi.pdf.pdf'
+  },
+  {
+    id: '161',
+    companyName: 'Hot tea SH.P.K',
+    companyEmail: 'fatonn.januzii@gmail.com',
+    phoneNumber: '044537314',
+    fullName: 'Faton Januzi',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/ARBK1.pdf.pdf',
+    personalDocument: '/attachments/Faton januzi Id.pdf.pdf'
+  },
+  {
+    id: '160',
+    companyName: 'ALBI CAFE FASTFOOD SH.P.K',
+    companyEmail: 'riad.zeneli17@gmail.com',
+    phoneNumber: '049199747',
+    fullName: 'Albion Ibishi',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Certifikata e b..pdf.pdf',
+    personalDocument: '/attachments/ID-20252.pdf'
+  },
+  {
+    id: '159',
+    companyName: 'Royal Terrace Cafe Sh.P.K',
+    companyEmail: 'dmorina@gmail.com',
+    phoneNumber: '045469469',
+    fullName: 'Driton Morina',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Certifikata e Biznesit 1.pdf.pdf',
+    personalDocument: '/attachments/Id Driton Morina.pdf.pdf'
+  },
+  {
+    id: '158',
+    companyName: "ILLARIOO'S CAFFE",
+    companyEmail: 'hamit2000murati@gmail.com',
+    phoneNumber: '+38349109699',
+    fullName: 'Hamit Murati',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_9107.jpeg.png',
+    personalDocument: '/attachments/IMG_9108.jpeg.png'
+  },
+  {
+    id: '157',
+    companyName: 'Azur Cafe Sh.P.K',
+    companyEmail: 'azurcafe01@gmail.com',
+    phoneNumber: '049228811',
+    fullName: 'Andi Blakqori',
+    selectedSpace: 'Sheshi Zahir Pajaziti',
+    businessCertificate: '/attachments/viber_image_2025-11-20_13-47-04-734.jpg.png',
+    personalDocument: '/attachments/andi leternjoftim.jpg.png'
+  },
+  {
+    id: '156',
+    companyName: 'Fron Caffe SH.P.K',
+    companyEmail: 'Bardhmjekiqi9@gmail.com',
+    phoneNumber: '045972972',
+    fullName: 'Bardhyl Mjekiqi',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_6281.jpeg.png',
+    personalDocument: '/attachments/IMG_6282.jpeg.png'
+  },
+  {
+    id: '155',
+    companyName: 'Restaurant Golden Events shpk',
+    companyEmail: 'goldenrestaurantpr@gmail.com',
+    phoneNumber: '045580580',
+    fullName: 'Labinot Muqiqi',
+    selectedSpace: 'Sheshi Zahir Pajaziti',
+    businessCertificate: '/attachments/Certifikata e Biznesit se bashku me Informata - Golden Events Labi (1) (1).pdf.pdf',
+    personalDocument: '/attachments/Leternjoftimi Labinot  Muqiqi (1) (1).pdf.pdf'
+  },
+  {
+    id: '154',
+    companyName: 'Sa Embel sh.p.k',
+    companyEmail: 'xhennetaisma@gmail.com',
+    phoneNumber: '044728792',
+    fullName: 'Xheneta Llapashtica Isma',
+    selectedSpace: 'Sheshi Zahir Pajaziti',
+    businessCertificate: '/attachments/IMG_4928.jpeg.png',
+    personalDocument: '/attachments/IMG_4927.jpeg.png'
+  },
+  {
+    id: '153',
+    companyName: 'KAMPUS L.L.C',
+    companyEmail: 'dorantkaqiu93@gmail.com',
+    phoneNumber: '045833337',
+    fullName: 'Dorant Kaçiu',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/20251120104954968.pdf.pdf',
+    personalDocument: '/attachments/pasaporta dorant.pdf.pdf'
+  },
+  {
+    id: '152',
+    companyName: 'AriFest L.L.C',
+    companyEmail: 'festimi-10@hotmail.com',
+    phoneNumber: '044815519',
+    fullName: 'Festim Ahmeti',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Certifikata - AriFest L.L.C..pdf.pdf',
+    personalDocument: '/attachments/ID - Festim Ahmeti.pdf.pdf'
+  },
+  {
+    id: '151',
+    companyName: 'SOHAM SHPK',
+    companyEmail: 'sohamshpk@gmail.com',
+    phoneNumber: '+383 44 721 185',
+    fullName: 'Albrim Krasniqi',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Certifikata e Biznesit me Informata.pdf.pdf',
+    personalDocument: '/attachments/Albrim Krasniqi id.pdf.pdf'
+  },
+  {
+    id: '150',
+    companyName: 'DPH “WINGS”',
+    companyEmail: 'deeniti@gmail.com',
+    phoneNumber: '049658100',
+    fullName: 'Denit Rexhepi',
+    selectedSpace: 'Sheshi Zahir Pajaziti',
+    businessCertificate: '/attachments/IMG_1157.jpeg.png',
+    personalDocument: '/attachments/IMG_1155.jpeg.png'
+  },
+  {
+    id: '149',
+    companyName: 'Eklips Group SH.P.K',
+    companyEmail: 'sadik.gashi30@gmail.com',
+    phoneNumber: '044257948',
+    fullName: 'Sadik Gashi',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Eklips Group_ARBK.jpg.png',
+    personalDocument: '/attachments/ID_Sadik Gashi_pdf1.pdf.pdf'
+  },
+  {
+    id: '148',
+    companyName: 'PARKU LOUNGE SH.P.K.',
+    companyEmail: 'rrenjeshije@gmail.com',
+    phoneNumber: '+38348782782',
+    fullName: 'Trim Ademi',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Parku Lounge.jpg.png',
+    personalDocument: '/attachments/Leternjoftimiii.jpg.png'
+  },
+  {
+    id: '147',
+    companyName: 'Ador Group shpk',
+    companyEmail: 'adorgroup@hotmail.com',
+    phoneNumber: '+38344999995',
+    fullName: 'Valon Dervisholli',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/CCertifikata e biznesit komplett.pdf.pdf',
+    personalDocument: '/attachments/foto leternjoftimi.jpg.png'
+  },
+  {
+    id: '146',
+    companyName: "N'Kantine",
+    companyEmail: 'nkantinegiftshop@gmail.com',
+    phoneNumber: '049737785',
+    fullName: 'Valbona Gjakja - Kabashi',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Certifikata e Biznesit_Nkantine.pdf.pdf',
+    personalDocument: '/attachments/ID_Valbona Gjakja Kabashi.pdf.pdf'
+  },
+  {
+    id: '145',
+    companyName: 'Furra Aurora - N SH.P.K',
+    companyEmail: 'dizitemaj111@gmail.com',
+    phoneNumber: '+38349387303',
+    fullName: 'Idriz Temaj',
+    selectedSpace: 'Sheshi Zahir Pajaziti',
+    businessCertificate: '/attachments/IMG_2278 2 Medium.png (1).png',
+    personalDocument: '/attachments/imageees.jpg.png'
+  },
+  {
+    id: '144',
+    companyName: 'Azemine Pireva B.I.',
+    companyEmail: 'ediarrrahmani41@gmail.com',
+    phoneNumber: '049888192',
+    fullName: 'Azemine Pireva',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Image to PDF 20251119 16.19.49_compressed.pdf.pdf',
+    personalDocument: '/attachments/Image to PDF 20251119 16.43.06_compressed.pdf.pdf'
+  },
+  {
+    id: '143',
+    companyName: 'Momo Coffe and More SHPK',
+    companyEmail: 'rinorzone@hotmail.com',
+    phoneNumber: '049545454',
+    fullName: 'Dekorim Sahiti',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Certifikata e biznesit MOMO.pdf.pdf',
+    personalDocument: '/attachments/Dekori ID.pdf.pdf'
+  },
+  {
+    id: '142',
+    companyName: 'Olti Trasing shpk',
+    companyEmail: 'oltitrasing2005@gmail.com',
+    phoneNumber: '+38345440440',
+    fullName: 'Osman Krasniqi',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Qertifikata Olti Trasing Valoni.pdf.pdf',
+    personalDocument: '/attachments/Leternjoftim Osmani.pdf.pdf'
+  },
+  {
+    id: '141',
+    companyName: 'OVERTIME SH.P.K.',
+    companyEmail: 'Overtime@gmail.con',
+    phoneNumber: '+38344817170',
+    fullName: 'Ardian Gashi',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_1923.jpeg.png',
+    personalDocument: '/attachments/IMG_1922.jpeg.png'
+  },
+  {
+    id: '140',
+    companyName: 'Yum Bar SH.P.K.',
+    companyEmail: 'ZijadAjazaj@gmail.com',
+    phoneNumber: '+38344100911',
+    fullName: 'Zijad Ajazaj',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_3993.jpeg.png',
+    personalDocument: '/attachments/IMG_3999.jpeg.png'
+  },
+  {
+    id: '139',
+    companyName: 'LUNCH AND TIME SH.P.K',
+    companyEmail: 'edinibrahimi@hotmail.com',
+    phoneNumber: '049700589',
+    fullName: 'Mugni Mehmeti',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG-2025-WA0000arbk.jpg.png',
+    personalDocument: '/attachments/ID.jpg.png'
+  },
+  {
+    id: '138',
+    companyName: 'Veton B. Gashi B.I',
+    companyEmail: 'veton.gg@hotmail.com',
+    phoneNumber: '044586279',
+    fullName: 'Veton Gashi',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/e2b261e9-170a-40fe-a4c0-7f6ecd2066aa.jpeg.png',
+    personalDocument: '/attachments/a9271c73-a4fc-4998-9876-b95710b323a4.jpeg.png'
+  },
+  {
+    id: '137',
+    companyName: 'Absolut',
+    companyEmail: 'korabbajgora@hotmail.com',
+    phoneNumber: '045513301',
+    fullName: 'Gëzim Dobruna',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/imagge.jpg.png',
+    personalDocument: '/attachments/IMG_1035.jpeg.png'
+  },
+  {
+    id: '136',
+    companyName: 'IN accord sh.p.k',
+    companyEmail: 'inaccord.sh.p.k@gmail.com',
+    phoneNumber: '044720726',
+    fullName: 'Islam Morina',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_5194.jpeg.png',
+    personalDocument: '/attachments/IMG_5193.jpeg.png'
+  },
+  {
+    id: '135',
+    companyName: 'Kafeinë Shpk',
+    companyEmail: 'kafeine.ks@gmail.com',
+    phoneNumber: '048419418',
+    fullName: 'Valon Sherifi',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_4728.jpeg.png',
+    personalDocument: '/attachments/3.Leternjoftimi Valon Sherifi (1).pdf.pdf'
+  },
+  {
+    id: '134',
+    companyName: 'Ambla Foods',
+    companyEmail: 'nandi.resyli@gmail.com',
+    phoneNumber: '043530152',
+    fullName: 'Nandi Resyli',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_0320.jpeg.png',
+    personalDocument: '/attachments/iiimage.jpg.png'
+  },
+  {
     id: '133',
     companyName: 'OMBRA SH.P.K',
     companyEmail: 'rexhepiarizon@gmail.com',
