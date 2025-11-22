@@ -8,7 +8,6 @@ import pattern from "../../../../public/assets/pattern.png";
 import image1 from "../../../../public/assets/zahiri.png";
 import image2 from "../../../../public/assets/skenderbeu.png";
 import image3 from "../../../../public/assets/wonderland.png";
-import CountdownTimer from './CountdownTimer';
 
 export default function ContactForm() {
     const prishtinaRef = useRef<HTMLHeadingElement>(null);
@@ -29,7 +28,6 @@ export default function ContactForm() {
     const [submittedFullName, setSubmittedFullName] = useState('');
     const [submittedSelectedSpace, setSubmittedSelectedSpace] = useState('');
     const [showSpaceErrorModal, setShowSpaceErrorModal] = useState(false);
-    const [isDeadlinePassed, setIsDeadlinePassed] = useState(false);
 
     // GSAP animations for headings
     useEffect(() => {
@@ -67,11 +65,6 @@ export default function ContactForm() {
         }
     }, []);
 
-    // Handle deadline reached
-    const handleDeadlineReached = () => {
-        setIsDeadlinePassed(true);
-    };
-
     // Function to split full name into name and surname
     const splitFullName = (fullName: string) => {
         const trimmed = fullName.trim();
@@ -89,10 +82,6 @@ export default function ContactForm() {
 
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
-        if (isDeadlinePassed) {
-            return;
-        }
 
         if (!businessCertificate) {
             setFileError("Ju lutem ngarkoni certifikatën e biznesit të regjistruar në ARBK.");
@@ -271,9 +260,6 @@ export default function ContactForm() {
                     </p>
                 </div>
 
-                {/* Countdown Timer Component */}
-                <CountdownTimer onDeadlineReached={handleDeadlineReached} />
-
                 {/* PDF Document View/Download */}
                 <div className="flex flex-col items-center gap-3 mb-6">
                     <a 
@@ -296,8 +282,6 @@ export default function ContactForm() {
                 </div>
 
                 {/* SEKSIONI 1: INFORMATA PERSONALE */}
-                {!isDeadlinePassed ? (
-                <>
                 <div className="space-y-4">
                     <h3 className="text-[#367a3b] font-bold text-lg text-center">INFORMATA PERSONALE</h3>
                     
@@ -580,8 +564,6 @@ export default function ContactForm() {
                         </button>
                     )}
                 </div>
-                </>
-                ) : null}
 
                 <p className="text-center text-[#031603] text-[12px] font-malkieslab">© 2025 Prishtina Festive</p>
                 <Image src={pattern} alt="Logo" className="object-contain lg:w-[100ch] w-full pb-8 mx-auto" />

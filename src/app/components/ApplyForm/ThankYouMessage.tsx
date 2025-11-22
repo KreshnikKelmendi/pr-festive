@@ -1,55 +1,100 @@
 "use client";
 
+import Image from 'next/image';
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+
 export default function ThankYouMessage() {
+    const headingRef = useRef<HTMLHeadingElement>(null);
+    const subtitleRef = useRef<HTMLParagraphElement>(null);
+    const messageRef = useRef<HTMLParagraphElement>(null);
+    const wordsRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const tl = gsap.timeline({ delay: 0.3 });
+        
+        if (headingRef.current) {
+            tl.from(headingRef.current, {
+                clipPath: 'inset(0 100% 0 0)',
+                duration: 1,
+                ease: 'power2.out'
+            });
+        }
+        
+        if (subtitleRef.current) {
+            tl.from(subtitleRef.current, {
+                clipPath: 'inset(0 100% 0 0)',
+                duration: 0.8,
+                ease: 'power2.out'
+            }, '-=0.5');
+        }
+        
+        if (messageRef.current) {
+            tl.from(messageRef.current, {
+                clipPath: 'inset(0 100% 0 0)',
+                duration: 0.8,
+                ease: 'power2.out'
+            }, '-=0.4');
+        }
+
+        if (wordsRef.current) {
+            const words = wordsRef.current.children;
+            tl.from(words, {
+                y: -30,
+                opacity: 0,
+                duration: 0.6,
+                ease: 'power2.out',
+                stagger: 0.15
+            }, '-=0.2');
+        }
+    }, []);
     return (
-        <div className="relative z-10 flex justify-center py-12 px-4 lg:px-0 bg-[#FFDB00]">
-            <div className="w-full max-w-4xl bg-gradient-to-br from-[#FFDB00] via-[#FFE55C] to-[#FFF2A3] space-y-6 p-12 rounded-2xl shadow-2xl border-4 border-[#EF5B13] relative overflow-hidden">
-                {/* Decorative background elements */}
-                <div className="absolute top-0 left-0 w-32 h-32 bg-[#EF5B13] opacity-10 rounded-full -translate-x-16 -translate-y-16"></div>
-                <div className="absolute bottom-0 right-0 w-24 h-24 bg-[#EF5B13] opacity-10 rounded-full translate-x-12 translate-y-12"></div>
-                <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-[#EF5B13] opacity-5 rounded-full"></div>
+        <div className="flex items-center justify-center min-h-screen px-4">
+            <div className="w-full max-w-3xl text-center space-y-6">
+                {/* Logo */}
+                <div className="flex justify-center mb-6">
+                    <Image 
+                        src="/assets/logo-2025.png" 
+                        alt="Prishtina Festive Logo" 
+                        width={180}
+                        height={126}
+                        className="w-40 h-40 object-contain"
+                    />
+                </div>
+
+                {/* Main heading */}
+                <h1 
+                    ref={headingRef}
+                    className="text-3xl sm:text-4xl lg:text-5xl text-[#367a3b] font-medium font-malkie-slab leading-tight"
+                >
+                    Faleminderit për interesimin e jashtëzakonshëm
+                </h1>
                 
-                {/* Main content */}
-                <div className="relative z-10 text-center space-y-8">
-                    {/* Icon */}
-                    <div className="flex justify-center">
-                        <div className="w-20 h-20 bg-gradient-to-br from-[#EF5B13] to-[#FF6B35] rounded-full flex items-center justify-center shadow-2xl animate-float">
-                            <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                            </svg>
-                        </div>
-                    </div>
+                {/* Subtitle */}
+                <p 
+                    ref={subtitleRef}
+                    className="text-lg sm:text-xl font-semibold text-[#031603] leading-relaxed"
+                >
+                    për aplikim për shtëpizë në <span className="font-bold text-[#367a3b] underline underline-offset-2">Verë n&apos;Dimën</span>
+                </p>
 
-                    {/* Main heading */}
-                    <div className="space-y-4">
-                        <h1 className="text-xl lg:text-5xl text-[#EF5B13] font-semibold leading-tight animate-fade-in">
-                            Faleminderit për interesimin e jashtëzakonshëm
-                        </h1>
-                        
-                        {/* Subtitle */}
-                        <p className="text-sm lg:text-2xl font-semibold text-[#031603] opacity-90 leading-relaxed">
-                            për aplikim për shtëpizë në <span className="font-bold text-[#EF5B13]">Akull n&apos;Verë</span>
-                        </p>
-                    </div>
+                {/* Message */}
+                <div className="space-y-4 max-w-2xl mx-auto">
+                    <p ref={messageRef} className="text-base sm:text-lg text-[#031603] leading-relaxed">
+                        Periudha e aplikimit ka mbaruar.
+                    </p>
+                </div>
 
-                    {/* Decorative line */}
-                    <div className="flex justify-center">
-                        <div className="w-32 h-1 bg-gradient-to-r from-transparent via-[#EF5B13] to-transparent rounded-full"></div>
-                    </div>
-
-                    {/* Additional message */}
-                    <div className="bg-white bg-opacity-90 rounded-xl p-8 shadow-xl border-2 border-[#EF5B13] border-opacity-30 backdrop-blur-sm animate-shimmer">
-                        <p className="text-lg text-[#031603] font-medium leading-relaxed">
-                            Aplikimet janë të mbyllura.
-                        </p>
-                    </div>
-
-                    {/* Decorative elements */}
-                    <div className="flex justify-center space-x-4">
-                        <div className="w-3 h-3 bg-[#EF5B13] rounded-full animate-bounce"></div>
-                        <div className="w-3 h-3 bg-[#EF5B13] rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-                        <div className="w-3 h-3 bg-[#EF5B13] rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
-                    </div>
+                {/* Bashkë në shesh - animated word by word */}
+                <div ref={wordsRef} className="flex flex-wrap justify-center gap-2 sm:gap-3 mt-8">
+                    {['Bashkë', 'në', 'Shesh!'].map((word, index) => (
+                        <span
+                            key={index}
+                            className="inline-block text-2xl sm:text-3xl lg:text-4xl text-[#EF5B13] font-malkie-slab"
+                        >
+                            {word}
+                        </span>
+                    ))}
                 </div>
             </div>
         </div>
