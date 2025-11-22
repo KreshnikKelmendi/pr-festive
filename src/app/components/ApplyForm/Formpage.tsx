@@ -6,7 +6,7 @@ import React from 'react';
 // import { AppCriteria } from './AppCriteria';
 // import Header from '../Header';
 import Banner from '../HomeBanner/Banner';
-import ContactForm from './Form';
+// import ContactForm from './Form';
 import ThankYouMessage from './ThankYouMessage';
 
 // import SecondBanner from '../HomeBanner/SecondBanner';
