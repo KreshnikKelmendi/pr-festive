@@ -6,6 +6,36 @@ export const spaces = [
 
 export const mockApplicants = [
   {
+    id: '182',
+    companyName: 'B1 Coffee More',
+    companyEmail: 'arbenvisoka911@gmail.com',
+    phoneNumber: '044966380',
+    fullName: 'ARBEN VISOKA',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Doc e firmes.pdf.pdf',
+    personalDocument: '/attachments/IMG_2552.jpg.png'
+  },
+  {
+    id: '181',
+    companyName: 'D.P.H. Caffe Z +',
+    companyEmail: 'albanrudi81@gmail.com',
+    phoneNumber: '044219843',
+    fullName: 'Alban Rudi',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Caffe Z.pdf.pdf',
+    personalDocument: '/attachments/Caffe Z+.pdf.pdf'
+  },
+  {
+    id: '180',
+    companyName: 'Caffe BaR-Fast Food Street 65 O.P.',
+    companyEmail: 'dionkadriy00@gmail.com',
+    phoneNumber: '+38348226224',
+    fullName: 'Dion kadriu',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attacments/d171fd10-efec-4556-b969-297a998f4960.jpeg.png',
+    personalDocument: '/attachments/9ce7a89b-80c6-4c3b-bf17-64fd5c77536a.jpeg.png'
+  },
+  {
     id: '179',
     companyName: 'Rojo Caffe Bar',
     companyEmail: 'iscoo12311@gmail.com',
