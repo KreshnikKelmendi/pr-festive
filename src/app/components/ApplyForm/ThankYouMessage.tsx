@@ -8,6 +8,7 @@ export default function ThankYouMessage() {
     const headingRef = useRef<HTMLHeadingElement>(null);
     const subtitleRef = useRef<HTMLParagraphElement>(null);
     const messageRef = useRef<HTMLParagraphElement>(null);
+    const detailsRef = useRef<HTMLParagraphElement>(null);
     const wordsRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -31,6 +32,14 @@ export default function ThankYouMessage() {
         
         if (messageRef.current) {
             tl.from(messageRef.current, {
+                clipPath: 'inset(0 100% 0 0)',
+                duration: 0.8,
+                ease: 'power2.out'
+            }, '-=0.4');
+        }
+
+        if (detailsRef.current) {
+            tl.from(detailsRef.current, {
                 clipPath: 'inset(0 100% 0 0)',
                 duration: 0.8,
                 ease: 'power2.out'
@@ -83,8 +92,8 @@ export default function ThankYouMessage() {
                     <p ref={messageRef} className="text-base sm:text-lg text-[#031603] leading-relaxed">
                         Periudha e aplikimit ka mbaruar.
                     </p>
-                    <p className="text-sm sm:text-base text-[#031603] opacity-80 leading-relaxed">
-                        Për detaje dhe informata shtesë do të informoheni përmes rrjetave tona sociale.
+                    <p ref={detailsRef} className="text-xs sm:text-base text-[#031603] opacity-80 leading-relaxed">
+                        *Për detaje dhe informata shtesë do të informoheni përmes rrjetave tona sociale.
                     </p>
                 </div>
 
