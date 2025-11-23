@@ -6,6 +6,186 @@ export const spaces = [
 
 export const mockApplicants = [
   {
+    id: '200',
+    companyName: 'Alush Ahmeti B.I',
+    companyEmail: 'ylli.soma@gmai',
+    phoneNumber: '044166822',
+    fullName: 'Alush Ahmeti',
+    selectedSpace: 'Sheshi Zahir Pajaziti',
+    businessCertificate: '/attachments/2Scanned Document.pdf.pdf',
+    personalDocument: '/attachments/2Scanned Document 2.pdf.pdf'
+  },
+  {
+    id: '199',
+    companyName: 'Metropoli shpk',
+    companyEmail: 'mentor.berisha200@gmail.com',
+    phoneNumber: '+38349686095',
+    fullName: 'Mentor Berisha',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/inbound1131416585540804311.jpg.png',
+    personalDocument: '/attachments/inbound4531926751537407911.jpg.png'
+  },
+  {
+    id: '198',
+    companyName: 'TOP CAFFE PRB SH.P.K.',
+    companyEmail: 'matoshielion@gmail.com',
+    phoneNumber: '048 491 106',
+    fullName: 'Elion Matoshi',
+    selectedSpace: 'Sheshi Zahir Pajaziti',
+    businessCertificate: '/attachments/aaaa.pdf.pdf',
+    personalDocument: '/attachments/ceo id.pdf.pdf'
+  },
+  {
+    id: '197',
+    companyName: 'TrioZone L.L.C',
+    companyEmail: 'lorikkadrolli123@gmail.com',
+    phoneNumber: '049370304',
+    fullName: 'Lorik Kadrolli',
+    selectedSpace: 'Wonderland (me mjete motorike)',
+    businessCertificate: '/attachments/IMG_2314.jpeg.png',
+    personalDocument: '/attachments/IMG_2315.jpeg.png'
+  },
+  {
+    id: '196',
+    companyName: 'Caffe Group',
+    companyEmail: 'agronhaziri@hotmail.com',
+    phoneNumber: '044600036',
+    fullName: 'Valon Haziri',
+    selectedSpace: 'Sheshi Zahir Pajaziti',
+    businessCertificate: '/attachments/cCertifikata e biznesit.pdf.pdf',
+    personalDocument: '/attachments/IMG_2559.jpeg.png'
+  },
+  {
+    id: '195',
+    companyName: 'StudioD AZN L.L.C',
+    companyEmail: 'rinor.rrahimi@icloud.com',
+    phoneNumber: '049545376',
+    fullName: 'Arbnore Nue',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Certifikata e biznesit e regjistruar në ARBK.pdf.pdf',
+    personalDocument: '/attachments/personal të identifikimit.pdf.pdf'
+  },
+  {
+    id: '194',
+    companyName: 'Eggcellent group Sh.P.K',
+    companyEmail: 'labi.toni.9@live.com',
+    phoneNumber: '049530526',
+    fullName: 'Lorent Bajrami',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/3b9c4178-b97b-4095-9647-ebeea4c4fdf2.jpeg.png',
+    personalDocument: '/attachments/00e22f0b-9b37-4238-bb5d-61b5f04a4c18.jpeg.png'
+  },
+  {
+    id: '193',
+    companyName: 'D.p.h "City Point"',
+    companyEmail: 'arberazemi18@gmail.com',
+    phoneNumber: '045886225',
+    fullName: 'Elmedin Maxhuni',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/inbound4349022705082713988.jpg.png',
+    personalDocument: '/attachments/inbound8622700447688352945.pdf.pdf'
+  },
+  {
+    id: '192',
+    companyName: 'Art N\'Caffe shpk',
+    companyEmail: 'lahmetxhekaj9@gmail.com',
+    phoneNumber: '049364102',
+    fullName: 'Lisjan Ahmetxhekaj',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Artncaffe.pdf.pdf',
+    personalDocument: '/attachments/IMG_2721.jpeg.png'
+  },
+  {
+    id: '191',
+    companyName: 'Sigma Group LLC',
+    companyEmail: 'kshala@sigma-ks.com',
+    phoneNumber: '+38349260077',
+    fullName: 'Kushtrim Shala',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/SIGMA Certifikata e biznesit.PDF.pdf',
+    personalDocument: '/attachments/SIGMA Kushtrim Shala ID.pdf.pdf'
+  },
+  {
+    id: '190',
+    companyName: 'Tadon SH.P.K',
+    companyEmail: 'bike180@hotmail.com',
+    phoneNumber: '+38344490690',
+    fullName: 'Naser Prapashtica',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Dokumente.pdf.pdf',
+    personalDocument: '/attachments/Dokumente_2.pdf.pdf'
+  },
+  {
+    id: '189',
+    companyName: 'Restaurant Icognito SH.P.K',
+    companyEmail: 'ejuphusi@gmail.com',
+    phoneNumber: '+38349375339',
+    fullName: 'Bujar Morina',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_4651.jpeg.png',
+    personalDocument: '/attachments/IMG_4652.jpeg.png'
+  },
+  {
+    id: '188',
+    companyName: 'SHALA SWISS OIL SH.P.K',
+    companyEmail: 'shala.nezaim@hotmail.com',
+    phoneNumber: '+38349375339',
+    fullName: 'Nezaim Shala',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/2f4cd5f4-3a74-4a39-b8ae-6b61ed34d0e4.jpeg.png',
+    personalDocument: '/attachments/IMG_4643.png.png'
+  },
+  {
+    id: '187',
+    companyName: 'DDG Group',
+    companyEmail: 'diargashi@kgtgroup.net',
+    phoneNumber: '+38344530113',
+    fullName: 'Diar Gashi',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_4779.png (1).png',
+    personalDocument: '/attachments/IMG_4794.png.png'
+  },
+  {
+    id: '186',
+    companyName: 'Maga Loung',
+    companyEmail: 'marigonaberisha@hotmail.com',
+    phoneNumber: '+38345399466',
+    fullName: 'Marigona Berisha',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_7492.jpeg.png',
+    personalDocument: '/attachments/IMG_7491.jpeg.png'
+  },
+  {
+    id: '185',
+    companyName: 'Ura Pub',
+    companyEmail: 'gjurajaltina@gmail.com',
+    phoneNumber: '046124857',
+    fullName: 'Albert Gjuraj',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_4424.jpeg.png',
+    personalDocument: '/attachments/IMG_4425.jpeg.png'
+  },
+  {
+    id: '184',
+    companyName: 'Samis Caffe SH.P.K.',
+    companyEmail: 'agamoni77@gmail.com',
+    phoneNumber: '+38349610315',
+    fullName: 'Sylejman Agaj',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/Scanned Document 11.pdf.pdf',
+    personalDocument: '/attachments/Scanned Document 10.pdf.pdf'
+  },
+  {
+    id: '183',
+    companyName: 'patio',
+    companyEmail: 'artmehijaaa@gmail.com',
+    phoneNumber: '045477445',
+    fullName: 'art mehija',
+    selectedSpace: 'Sheshi Skënderbeu',
+    businessCertificate: '/attachments/IMG_0270.jpeg.png',
+    personalDocument: '/attachments/qqq.png'
+  },
+  {
     id: '182',
     companyName: 'B1 Coffee More',
     companyEmail: 'arbenvisoka911@gmail.com',

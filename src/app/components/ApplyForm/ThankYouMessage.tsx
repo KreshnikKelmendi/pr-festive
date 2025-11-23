@@ -83,6 +83,9 @@ export default function ThankYouMessage() {
                     <p ref={messageRef} className="text-base sm:text-lg text-[#031603] leading-relaxed">
                         Periudha e aplikimit ka mbaruar.
                     </p>
+                    <p className="text-sm sm:text-base text-[#031603] opacity-80 leading-relaxed">
+                        Për detaje dhe informata shtesë do të informoheni përmes rrjetave tona sociale.
+                    </p>
                 </div>
 
                 {/* Bashkë në shesh - animated word by word */}
