@@ -27,10 +27,6 @@ function isPdf(fileName: string, mimePrefix?: string): boolean {
   return mimePrefix === 'application/pdf' || fileName.toLowerCase().endsWith('.pdf');
 }
 
-function isImage(fileName: string): boolean {
-  return /\.(jpe?g|png)$/i.test(fileName);
-}
-
 function buildPdfViewUrl(publicId: string, format: string): string {
   return buildPdfPageUrl(publicId, 1, format);
 }

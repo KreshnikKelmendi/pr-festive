@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import LoadingSpinner from './LoadingSpinner';
 
 interface DocumentViewerProps {
@@ -132,10 +133,13 @@ export default function DocumentViewer({
 
           {!loading && !error && viewUrl && isImage(fileName) && (
             <div className="flex justify-center">
-              <img
+              <Image
                 src={viewUrl}
                 alt={fileName}
-                className="max-w-full max-h-[70vh] h-auto mx-auto shadow-md rounded"
+                width={1200}
+                height={1600}
+                unoptimized
+                className="max-w-full max-h-[70vh] h-auto w-auto mx-auto shadow-md rounded"
               />
             </div>
           )}
@@ -154,9 +158,12 @@ export default function DocumentViewer({
                       Faqja {index + 1}
                     </p>
                   )}
-                  <img
+                  <Image
                     src={url}
                     alt={`${fileName} - faqja ${index + 1}`}
+                    width={1200}
+                    height={1600}
+                    unoptimized
                     className="w-full h-auto"
                   />
                 </div>
