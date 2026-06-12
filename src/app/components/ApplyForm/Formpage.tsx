@@ -1,12 +1,12 @@
 "use client"
 
 import React from 'react';
-import ThankYouMessage from './ThankYouMessage';
+import ContactForm from './Form';
 
 export const Formpage = () => {
   return (
     <div className="relative">
-      <ThankYouMessage />
+      <ContactForm />
     </div>
   );
 };

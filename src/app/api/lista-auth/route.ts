@@ -17,6 +17,7 @@ export async function POST(req: Request) {
     const response = NextResponse.json({ success: true });
     response.cookies.set('lista_auth', getListaAuthToken(), {
       httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
       maxAge: 60 * 60 * 24 * 7,
       path: '/',
