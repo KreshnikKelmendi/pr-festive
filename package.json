@@ -12,7 +12,6 @@
     "@emailjs/browser": "^4.4.1",
     "browser-image-compression": "^2.0.2",
     "cloudinary": "^2.10.0",
-    "emailjs-com": "^3.2.0",
     "express-rate-limit": "^7.4.1",
     "fireworks-js": "^2.10.8",
     "gsap": "^3.12.5",
