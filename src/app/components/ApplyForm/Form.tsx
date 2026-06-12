@@ -8,6 +8,7 @@ import pattern from "../../../../public/assets/pattern.png";
 import image1 from "../../../../public/assets/zahiri.png";
 import image2 from "../../../../public/assets/skenderbeu.png";
 import image3 from "../../../../public/assets/wonderland.png";
+import LoadingSpinner from '../LoadingSpinner';
 
 export default function ContactForm() {
     const prishtinaRef = useRef<HTMLHeadingElement>(null);
@@ -28,6 +29,7 @@ export default function ContactForm() {
     const [submittedFullName, setSubmittedFullName] = useState('');
     const [submittedSelectedSpace, setSubmittedSelectedSpace] = useState('');
     const [showSpaceErrorModal, setShowSpaceErrorModal] = useState(false);
+    const [compressingFile, setCompressingFile] = useState<string | null>(null);
 
     // GSAP animations for headings
     useEffect(() => {
@@ -119,7 +121,7 @@ export default function ContactForm() {
                 convertFileToBase64(personalDocument)
             ]);
 
-            const response = await fetch('/api/sendEmail', {
+            const response = await fetch('/api/apply', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -165,55 +167,51 @@ export default function ContactForm() {
         }
     };
 
-    const handleBusinessCertificateChange = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files) {
-            const selectedFile = e.target.files[0];
-    
-            const allowedTypes = [
-                'application/pdf',
-                'image/jpeg',
-                'image/jpg',
-                'image/png',
-            ];
-    
-            if (selectedFile && !allowedTypes.includes(selectedFile.type)) {
-                setFileError('Lloji i skedarit nuk është i vlefshëm. Ju lutem ngarkoni një PDF, JPG, ose PNG.');
-                setBusinessCertificate(null);
-                setShowFileErrorModal(true);
-            } else if (selectedFile.size > 2 * 1024 * 1024) {
-                setFileError("Përmbajtja e ngarkuar është më e madhe se 2MB, ju lutem kompresoni përmbajtjen dhe provoni përsëri.");
-                setBusinessCertificate(null);
-                setShowFileErrorModal(true);
-            } else {
-                setFileError('');
-                setBusinessCertificate(selectedFile);
-            }
+    const processSelectedFile = async (
+        selectedFile: File,
+        setFile: (file: File | null) => void,
+        label: string
+    ) => {
+        const allowedTypes = [
+            'application/pdf',
+            'image/jpeg',
+            'image/jpg',
+            'image/png',
+        ];
+
+        if (!allowedTypes.includes(selectedFile.type)) {
+            setFileError('Lloji i skedarit nuk është i vlefshëm. Ju lutem ngarkoni një PDF, JPG, ose PNG.');
+            setFile(null);
+            setShowFileErrorModal(true);
+            return;
+        }
+
+        setCompressingFile(label);
+        setFileError('');
+
+        try {
+            const { compressFileIfNeeded } = await import('@/lib/compressFile');
+            const processedFile = await compressFileIfNeeded(selectedFile);
+            setFile(processedFile);
+        } catch (error) {
+            const message = error instanceof Error ? error.message : 'Gabim gjatë kompresimit të skedarit.';
+            setFileError(message);
+            setFile(null);
+            setShowFileErrorModal(true);
+        } finally {
+            setCompressingFile(null);
         }
     };
 
-    const handlePersonalDocumentChange = (e: ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files) {
-            const selectedFile = e.target.files[0];
-    
-            const allowedTypes = [
-                'application/pdf',
-                'image/jpeg',
-                'image/jpg',
-                'image/png',
-            ];
-    
-            if (selectedFile && !allowedTypes.includes(selectedFile.type)) {
-                setFileError('Lloji i skedarit nuk është i vlefshëm. Ju lutem ngarkoni një PDF, JPG, ose PNG.');
-                setPersonalDocument(null);
-                setShowFileErrorModal(true);
-            } else if (selectedFile.size > 2 * 1024 * 1024) {
-                setFileError("Përmbajtja e ngarkuar është më e madhe se 2MB, ju lutem kompresoni përmbajtjen dhe provoni përsëri.");
-                setPersonalDocument(null);
-                setShowFileErrorModal(true);
-            } else {
-                setFileError('');
-                setPersonalDocument(selectedFile);
-            }
+    const handleBusinessCertificateChange = async (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files?.[0]) {
+            await processSelectedFile(e.target.files[0], setBusinessCertificate, 'certifikata');
+        }
+    };
+
+    const handlePersonalDocumentChange = async (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files?.[0]) {
+            await processSelectedFile(e.target.files[0], setPersonalDocument, 'dokumenti');
         }
     };
     
@@ -376,12 +374,14 @@ export default function ContactForm() {
                             </div>
                         </div>
 
-                        {/* Warning message */}
-                        <div className="w-full">
-                            <p className="text-center text-[#c43b32] text-xs font-semibold italic">
-                                * Ju lutem mos ngarkoni përmbajtje më të madhe se 2MB për dokumentet tuaja.
-                            </p>
-                        </div>
+                        {compressingFile && (
+                            <div className="w-full flex justify-center py-2">
+                                <LoadingSpinner
+                                    label="Duke përgatitur dokumentin..."
+                                    size="sm"
+                                />
+                            </div>
+                        )}
                     </div>
                 </div>
 
@@ -544,16 +544,12 @@ export default function ContactForm() {
                 </div>
 
                 <div className="w-full max-w-[700px] mx-auto">
-                    {loading ? (
-                        <div className="w-full py-3 flex items-center justify-center">
-                            <span className="flex items-center gap-1 text-[#367a3b] font-semibold text-lg">
-                                Duke u procesuar
-                                <span className="flex gap-1 ml-1">
-                                    <span className="animate-bounce-dot" style={{ animationDelay: '0s' }}>.</span>
-                                    <span className="animate-bounce-dot" style={{ animationDelay: '0.2s' }}>.</span>
-                                    <span className="animate-bounce-dot" style={{ animationDelay: '0.4s' }}>.</span>
-                                </span>
-                            </span>
+                    {loading || compressingFile ? (
+                        <div className="w-full py-4 flex items-center justify-center">
+                            <LoadingSpinner
+                                label={compressingFile ? 'Duke përgatitur dokumentin...' : 'Duke dërguar aplikimin...'}
+                                size="md"
+                            />
                         </div>
                     ) : (
                         <button

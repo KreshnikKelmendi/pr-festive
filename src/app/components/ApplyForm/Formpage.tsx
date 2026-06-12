@@ -3,20 +3,20 @@
 import React from 'react';
 // import Image from 'next/image';
 // import logo from "../../../../public/GREEN.png"
-// import { AppCriteria } from './AppCriteria';
+import { AppCriteria } from './AppCriteria';
 // import Header from '../Header';
 import Banner from '../HomeBanner/Banner';
-// import ContactForm from './Form';
+import ContactForm from './Form';
 import ThankYouMessage from './ThankYouMessage';
 
-// import SecondBanner from '../HomeBanner/SecondBanner';
+import SecondBanner from '../HomeBanner/SecondBanner';
 
 export const Formpage = () => {
   return (
     <>
     <div className="relative">
     {/* <Header /> */}
-      <Banner />
+      {/* <Banner /> */}
       {/* <SecondBanner /> */}
       {/* <AppCriteria /> */}
       {/* <ContactForm /> */}
