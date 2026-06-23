@@ -3,7 +3,7 @@
 import { useState, ChangeEvent, FormEvent, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
-import { HiOutlineChevronDoubleDown } from 'react-icons/hi';
+// import { HiOutlineChevronDoubleDown } from 'react-icons/hi';
 import pattern from "../../../../public/assets/pattern.png";
 import image1 from "../../../../public/assets/zahiri.png";
 import image2 from "../../../../public/assets/skenderbeu.png";
