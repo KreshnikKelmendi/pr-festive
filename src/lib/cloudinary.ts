@@ -139,11 +139,12 @@ export async function uploadToCloudinary(
   } catch (error) {
     const cloudinaryError = error as { http_code?: number };
     if (fileKind === 'pdf' && cloudinaryError.http_code === 403) {
-      result = await uploadBuffer(buffer, {
+      const rawOptions: Record<string, string | boolean> = {
         ...uploadOptions,
         resource_type: 'raw',
-        format: undefined,
-      });
+      };
+      delete rawOptions.format;
+      result = await uploadBuffer(buffer, rawOptions);
     } else {
       throw error;
     }
