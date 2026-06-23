@@ -253,13 +253,13 @@ export default function ContactForm() {
                     <h2 ref={bashkeRef} className="text-3xl sm:text-4xl text-[#367a3b] font-malkie-slab">
                         Bashkë në shesh!
                     </h2>
-                    <p className="text-sm sm:text-base text-gray-600 font-aerialpro mt-4">
+                    {/* <p className="text-sm sm:text-base text-gray-600 font-aerialpro mt-4">
                         Këtu mund të gjeni dokumentin mbi detajet për aplikimin për shtëpizë në <b>Verë n&apos;Dimën</b>
-                    </p>
+                    </p> */}
                 </div>
 
                 {/* PDF Document View/Download */}
-                <div className="flex flex-col items-center gap-3 mb-6">
+                {/* <div className="flex flex-col items-center gap-3 mb-6">
                     <a 
                         href="/assets/Thirrje-per-aplikim.pdf" 
                         target="_blank"
@@ -271,7 +271,7 @@ export default function ContactForm() {
                     <div ref={arrowRef} className="flex justify-center">
                         <HiOutlineChevronDoubleDown className="text-[#367a3b] text-2xl" />
                     </div>
-                </div>
+                </div> */}
 
                 <Image src={pattern} alt="Logo" className="lg:w-[100ch] w-full object-contain mx-auto" />
                 <div className='lg:w-[409px] mx-auto'>
