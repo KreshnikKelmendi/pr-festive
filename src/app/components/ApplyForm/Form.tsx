@@ -159,7 +159,8 @@ export default function ContactForm() {
             } else if (response.status === 429) {
                 setTooManyRequests(true);
             } else {
-                setFileError(`Error: ${result.error}`);
+                const detail = result.details ? `: ${result.details}` : '';
+                setFileError(`Error: ${result.error}${detail}`);
             }
         } catch {
             setLoading(false);
@@ -178,8 +179,13 @@ export default function ContactForm() {
             'image/jpg',
             'image/png',
         ];
+        const allowedExtensions = ['pdf', 'png', 'jpg', 'jpeg'];
+        const extension = selectedFile.name.split('.').pop()?.toLowerCase() || '';
 
-        if (!allowedTypes.includes(selectedFile.type)) {
+        if (
+            !allowedTypes.includes(selectedFile.type) &&
+            !allowedExtensions.includes(extension)
+        ) {
             setFileError('Lloji i skedarit nuk është i vlefshëm. Ju lutem ngarkoni një PDF, JPG, ose PNG.');
             setFile(null);
             setShowFileErrorModal(true);

@@ -2,6 +2,8 @@ import dns from 'dns';
 import mongoose from 'mongoose';
 
 dns.setDefaultResultOrder('ipv4first');
+// Windows/local networks sometimes fail SRV lookups on the default resolver.
+dns.setServers(['8.8.8.8', '8.8.4.4', '1.1.1.1']);
 
 interface MongooseCache {
   conn: typeof mongoose | null;
